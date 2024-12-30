@@ -175,16 +175,21 @@ nav.navbar.bootsnav ul.nav > li > a {
 }
 nav.navbar.bootsnav ul.nav > li > a {padding: 35px 20px;}
 
-/* Antes de Clickar */
-nav.navbar.bootsnav ul.nav > li > a:hover{color: #fd01c7;}
-    /* nav.navbar.bootsnav ul.nav > li > a:focus,
-    nav.navbar.bootsnav ul.nav > li.active>:active{color: #fd01c7;} */
-
-/* Depois de Clickar */
-.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a {color:#6a708e;}
-    /* .sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a:focus {color:#f00;} */
+/* navbar colors */
+nav.navbar.bootsnav ul.nav > li > a {color: #6a708e;}
 .sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li.active>a{color: #9f00ff;}
-.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a:hover {color:#fd01c7;}
+
+/* mouse vs touch */
+@media (pointer: fine) {
+    nav.navbar.bootsnav ul.nav > li > a:hover {
+      color: #fd01c7; /* Cor para mouse hover */
+    }
+}
+@media (pointer: coarse) {
+    nav.navbar.bootsnav ul.nav > li > a:active {
+        color: #fd01c7; /* Cor para toque (ativo) */
+    }
+}
 
 nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after {
     content: "";
@@ -193,10 +198,9 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
     font-size: 8px;
     margin-left: 0px;
 }
-/*.nav li
 
 /*.menu-ui-design*/
-.menu-ui-design{overflow-y:scroll;height: 350px;}
+.menu-ui-design{overflow-y:scroll;height: auto;}
 .menu-ui-design::-webkit-scrollbar {
     width:5px;
 }
@@ -417,7 +421,17 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 25%;}
         6.  Skills
 --------------------------------------*/
 .skill-content{padding: 0 0 80px;}
-.single-skill-content{padding-top: 50px;}
+.single-skill-content{padding-top: 25px;}
+
+.skills .row-legend {
+    padding-top: 15px;
+    justify-content: left;
+    margin-left: 15px;
+}
+
+.row-legend .single-skill-content {
+    padding-bottom: 0;
+}
 
 .single-progress-txt {
     display: flex;
