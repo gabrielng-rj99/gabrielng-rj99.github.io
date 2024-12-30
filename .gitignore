@@ -5,4 +5,8 @@
 /ignore/
 
 .env
-.vscode/
+/.vscode/
+/*.user
+/*.suo
+
+assets/images/originals
