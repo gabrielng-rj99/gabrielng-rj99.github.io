@@ -1,7 +1,7 @@
 # README - gabrielng-rj99.github.io
 my personal portifolio website as long i dont buy my own domain
 
-This bootstrap 3 based on Browny from ThemeSINE for Resume/Portfolio.
+This bootstrap 3 based on Browny from ThemeSINE for Resume/Portfolio.<br>
 Was modified a lot by me, with bug and layout fixes.
 
 ### Template Info:
