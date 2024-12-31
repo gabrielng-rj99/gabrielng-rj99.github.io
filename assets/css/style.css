@@ -309,7 +309,7 @@ nav.navbar.bootsnav .navbar-toggle i{
 .single-about-txt p {
     font-size: 16px;
     color: #999fb3;
-    padding: 15px 0 20px;
+    padding: 15px 0 20px 10px;
     border-bottom: 1px solid #999fb3;
 }
 .single-about-add-info {
