@@ -477,8 +477,8 @@ nav.navbar.bootsnav .navbar-toggle i{
 /*-------------------------------------
         6.  Skills
 --------------------------------------*/
-.skill-content{padding: 0 0 80px;}
-.single-skill-content{padding-top: 25px;}
+.skill-content{padding: 0 0 50px;}
+.single-skill-content{padding-top: 50px;}
 
 .skills .row-legend {
     padding-top: 15px;
