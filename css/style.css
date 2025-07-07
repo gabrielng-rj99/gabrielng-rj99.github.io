@@ -1,0 +1,275 @@
+/* ======================================== */
+/* ================ Index ================= */
+/* ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+header {
+  background: #004466;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; /* Distribui os links uniformemente */
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+header nav a:hover {
+  color: #ffcc00;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+h1, h2 {
+  margin-bottom: 10px;
+  color: #004466;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+.profile-pic {
+  float: left;
+  margin-right: 20px;
+  width: 200x;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #f0f0f0;
+  margin-top: 40px;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+form button {
+  background: #004466;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: #003355;
+}
+
+
+
+/* ======================================== */
+/* ========= Formação e Educação ========== */
+/* ======================================== */
+.columns-block {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-left: 4px solid #333;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.columns-left, .columns-right {
+  flex: 1 1 50%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.columns-left {
+  border-right: 2px dashed #ccc;
+}
+
+.columns-period {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.columns-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.columns-institution {
+  color: #444;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+
+.columns-location {
+  color: #777;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.columns-right ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.columns-right li {
+  margin-bottom: 0.5rem;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 30px;
+}
+
+.skill-column {
+  flex: 1 1 300px;
+  min-width: 250px;
+}
+
+.skill-column h3 {
+  color: #004466;
+  margin-bottom: 10px;
+}
+
+.skill-column ul {
+  list-style: disc inside;
+  padding-left: 0;
+}
+
+.skill-column ul li {
+  margin-bottom: 5px;
+}
+
+
+
+/* ======================================= */
+/* ============== Contatos =============== */
+/* ======================================= */
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 40px 0;
+}
+
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease;
+  width: 100px;
+}
+
+.contact-box img {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.contact-box:hover img {
+  transform: scale(1.15);
+}
+
+.contact-box span {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ======================================== */
+/* ============== Portfolio =============== */
+/* ======================================== */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.portfolio-item video,
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.portfolio-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.portfolio-item:hover .overlay {
+  opacity: 1;
+}
+
