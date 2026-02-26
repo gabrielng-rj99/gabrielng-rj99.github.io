@@ -40,7 +40,7 @@ export default function Education() {
                 <div className="relative">
                     {/* Horizontal line connecting cards — desktop */}
                     <div
-                        className="hidden lg:block absolute top-[72px] left-[10%] right-[10%] h-px z-0"
+                        className="hidden lg:block absolute top-18 left-[10%] right-[10%] h-px z-0"
                         style={{ background: "var(--border-muted)" }}
                     />
 

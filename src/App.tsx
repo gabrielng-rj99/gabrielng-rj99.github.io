@@ -17,7 +17,7 @@ export default function App() {
             <Navigation />
 
             {/* Page sections */}
-            <main className="relative z-10">
+            <main className="relative z-10 w-full">
                 <About />
                 <Experience />
                 <Skills />

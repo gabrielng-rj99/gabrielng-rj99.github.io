@@ -113,7 +113,7 @@ export default function Contact() {
 
                                 {/* Label */}
                                 <span
-                                    className="text-sm md:text-base font-semibold transition-colors duration-300 group-hover:text-[var(--accent-purple)]"
+                                    className="text-sm md:text-base font-semibold transition-colors duration-300 group-hover:text-(--accent-purple)"
                                     style={{ color: "var(--text-secondary)" }}
                                 >
                                     {social.name}

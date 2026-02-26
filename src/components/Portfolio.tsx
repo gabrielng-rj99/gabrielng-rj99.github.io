@@ -176,7 +176,7 @@ function FeaturedCard({
                     </h3>
                     <HiExternalLink
                         size={18}
-                        className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{ color: "var(--accent-purple)" }}
                     />
                 </div>
@@ -266,7 +266,7 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
                     </h3>
                     <HiExternalLink
                         size={16}
-                        className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         style={{ color: "var(--accent-purple)" }}
                     />
                 </div>

@@ -28,8 +28,7 @@ export default function ParticleBackground() {
 
         return {
             fullScreen: {
-                enable: true,
-                zIndex: 0,
+                enable: false,
             },
             fpsLimit: 60,
             interactivity: {

@@ -27,7 +27,7 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                 onClick={() => hasChildren && setIsOpen(!isOpen)}
                 className={`flex items-center gap-2 w-full text-left py-1.5 px-2 rounded-md transition-colors duration-200 ${
                     hasChildren
-                        ? "cursor-pointer hover:bg-[var(--bg-card-hover)]"
+                        ? "cursor-pointer hover:bg-(--bg-card-hover)"
                         : "cursor-default"
                 }`}
                 disabled={!hasChildren}
@@ -39,14 +39,14 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                         initial={false}
                         animate={{ rotate: isOpen ? 90 : 0 }}
                         transition={{ duration: 0.2 }}
-                        className="flex-shrink-0"
+                        className="shrink-0"
                         style={{ color: "var(--accent-purple)" }}
                     >
                         <HiChevronRight size={14} />
                     </motion.span>
                 ) : (
                     <span
-                        className="flex-shrink-0 w-1.5 h-1.5 rounded-full ml-0.5 mr-0.5"
+                        className="shrink-0 w-1.5 h-1.5 rounded-full ml-0.5 mr-0.5"
                         style={{
                             background: "var(--accent-purple)",
                             opacity: 0.6,
@@ -71,7 +71,7 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                 {/* Learning badge */}
                 {item.learning && (
                     <span
-                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium flex-shrink-0"
+                        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium shrink-0"
                         style={{
                             background: "rgba(159, 0, 255, 0.1)",
                             color: "var(--accent-purple)",
