@@ -1,6 +1,5 @@
 import ParticleBackground from "./components/ParticleBackground";
 import Navigation from "./components/Navigation";
-import Hero from "./components/Hero";
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Skills from "./components/Skills";
@@ -19,7 +18,6 @@ export default function App() {
 
             {/* Page sections */}
             <main className="relative z-10">
-                <Hero />
                 <About />
                 <Experience />
                 <Skills />
