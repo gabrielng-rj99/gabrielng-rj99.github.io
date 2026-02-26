@@ -17,7 +17,7 @@ export default function App() {
             <Navigation />
 
             {/* Page sections */}
-            <main className="relative z-10 w-full">
+            <main className="relative z-10 w-full flex flex-col items-center overflow-x-hidden">
                 <About />
                 <Experience />
                 <Skills />

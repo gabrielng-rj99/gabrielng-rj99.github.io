@@ -24,7 +24,7 @@ export default function ParticleBackground() {
             ? "rgba(180, 77, 255, 0.12)"
             : "rgba(159, 0, 255, 0.15)";
         const particleCount =
-            typeof window !== "undefined" && window.innerWidth < 768 ? 30 : 60;
+            typeof window !== "undefined" && window.innerWidth < 768 ? 60 : 150;
 
         return {
             fullScreen: {
