@@ -1,0 +1,73 @@
+[
+  {
+    "id": "compass-uol",
+    "role": "DevSecOps Engineer",
+    "company": "Compass UOL",
+    "period": "Nov/2024 - Present",
+    "location": "Remote",
+    "description": [
+      "Designed and configured web servers, focusing on security and performance.",
+      "Managed user access controls using Samba on Linux servers for Active Directory.",
+      "Automated CI/CD pipelines with AWS, Docker, and Kubernetes for efficient updates. (On Progress)",
+      "Used Prometheus, Grafana, and Zabbix for improved monitoring and deployment. (On Progress)",
+      "Strengthened web security through penetration testing and vulnerability scanning. (On Progress)"
+    ]
+  },
+  {
+    "id": "election-campaign",
+    "role": "Data Specialist",
+    "company": "Election Campaign",
+    "period": "Jun/2024 - Oct/2024",
+    "location": "Private",
+    "description": [
+      "SQL Database modeling from scratch using Entity-Relationship Diagrams.",
+      "ETL in compliance with LGPD and TSE Resolution 23610.",
+      "Data analysis for reports and automation of PDF report generation.",
+      "Data protection and governance in accordance with LGPD and TSE Resolution 23610.",
+      "Application software for data management, monitoring, and manipulation.",
+      "Monolithic architecture."
+    ]
+  },
+  {
+    "id": "life-plan",
+    "role": "Automation Specialist and Broker",
+    "company": "Life Plan Insurance and Health Brokerage",
+    "period": "Mar/2023 - Aug/2023",
+    "location": "Rio de Janeiro, Brasil",
+    "description": [
+      "ETL and data cleaning automation to be used by the brokers.",
+      "Automated messaging system via WhatsApp (discontinued):",
+      "  - Accelerated the initial communication process with clients by 1500%.",
+      "  - Monolithic architecture.",
+      "  - Service blocked due to WhatsApp Business, even for non-SPAM cases."
+    ]
+  },
+  {
+    "id": "forca-motriz",
+    "role": "Technical Consultor",
+    "company": "Third Sector - Coletivo Força Motriz",
+    "period": "2019 - 2021",
+    "location": "Rio de Janeiro, Brasil",
+    "description": [
+      "A team focused on engineering and security in occupations in RJ.",
+      "In partnership with Senge-RJ, UFRJ, UERJ, architects, lawyers, and politicians, we managed to:",
+      "  - Regularize 3 occupations, which we officially \"transformed\" into \"favelas.\"",
+      "  - Extension Project NATEP-UFRJ, which continues to operate today (also at UERJ).",
+      "  - Create a space (donated by a former resident DJ) for education in Rocinha known as Só Cria."
+    ]
+  },
+  {
+    "id": "freelancer",
+    "role": "FreeLancer",
+    "company": "FreeLancer",
+    "period": "2015 - Present",
+    "location": "Rio de Janeiro, Brasil",
+    "description": [
+      "Website and Landing Page development projects.",
+      "Cost, Financial and Management Accounting consulting.",
+      "Scheduling system project with Excel (+VBA).",
+      "Provided consulting for PC assembly, purchasing, sales, repairs, and installation.",
+      "Offered private math tutoring students (ages 10 and up)."
+    ]
+  }
+]

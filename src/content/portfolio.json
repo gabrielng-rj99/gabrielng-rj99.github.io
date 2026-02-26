@@ -1,0 +1,74 @@
+[
+  {
+    "id": "2048",
+    "title": "2048 CLI Game",
+    "description": "A command-line implementation of the classic 2048 puzzle game.",
+    "tags": ["Python", "CLI", "Game"],
+    "link": "https://github.com/gabrielng-rj99/2048",
+    "media": {
+      "type": "video",
+      "src": "/assets/images/portfolio/2048.mp4"
+    },
+    "featured": true
+  },
+  {
+    "id": "website",
+    "title": "Web Development",
+    "description": "Personal portfolio website — the very site you're viewing right now.",
+    "tags": ["React", "TypeScript", "Tailwind CSS"],
+    "link": "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io",
+    "media": {
+      "type": "video",
+      "src": "/assets/images/portfolio/website.mp4"
+    },
+    "featured": true
+  },
+  {
+    "id": "brasileirao",
+    "title": "Statistics and Data Analysis",
+    "description": "Statistical analysis and data visualization of Brasileirão championship data.",
+    "tags": ["Python", "Pandas", "Data Analysis", "Statistics"],
+    "link": "https://drive.google.com/file/d/1I1GDrJ2dbHAhiWR2j7tE8QQeMKUvVZ31/view",
+    "media": {
+      "type": "image",
+      "src": "/assets/images/portfolio/brasileirao_sq.png"
+    },
+    "featured": false
+  },
+  {
+    "id": "rinha-alg",
+    "title": "Mathematics & Hard Coding",
+    "description": "Algorithm challenges focused on mathematical problem solving and optimization.",
+    "tags": ["Algorithms", "Mathematics", "Problem Solving"],
+    "link": "https://github.com/gabrielng-rj99/rinha-de-algoritmos",
+    "media": {
+      "type": "image",
+      "src": "/assets/images/portfolio/rinha-alg_sq.png"
+    },
+    "featured": false
+  },
+  {
+    "id": "election-campaign",
+    "title": "Software Development",
+    "description": "Full-stack application built for data management during an election campaign, including ETL pipelines compliant with LGPD and TSE regulations.",
+    "tags": ["Python", "SQL", "ETL", "LGPD"],
+    "link": "https://youtu.be/JziopgNKHR4",
+    "media": {
+      "type": "image",
+      "src": "/assets/images/portfolio/election-campaign.png"
+    },
+    "featured": false
+  },
+  {
+    "id": "engenhumanas",
+    "title": "Logo Design + YouTube",
+    "description": "Brand identity design and YouTube channel content creation for EngenHumanas.",
+    "tags": ["Design", "Branding", "YouTube"],
+    "link": "https://www.youtube.com/@EngenHumanas",
+    "media": {
+      "type": "image",
+      "src": "/assets/images/portfolio/EngenHumanas.png"
+    },
+    "featured": false
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ufrj",
+    "name": "UFRJ - Federal University of Rio de Janeiro",
+    "url": "https://www.ufrj.br/",
+    "logo": "/assets/images/acknowledgments/ufrj-horizontal.svg"
+  },
+  {
+    "id": "uninter",
+    "name": "UNINTER - International University Center",
+    "url": "https://www.uninter.com/",
+    "logo": "/assets/images/acknowledgments/uninter-horizontal.svg"
+  },
+  {
+    "id": "udemy",
+    "name": "Udemy",
+    "url": "https://www.udemy.com/",
+    "logo": "/assets/images/acknowledgments/udemy-horizontal.svg"
+  },
+  {
+    "id": "cisco",
+    "name": "Cisco",
+    "url": "https://www.cisco.com/",
+    "logo": "/assets/images/acknowledgments/cisco.svg"
+  }
+]

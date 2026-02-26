@@ -1,0 +1,135 @@
+[
+  {
+    "id": "infra-sec-devops",
+    "title": "Infra, Sec & DevOps",
+    "items": [
+      {
+        "name": "System Administration",
+        "children": [
+          { "name": "Samba & Active Directory" },
+          {
+            "name": "Linux Distributions",
+            "children": [
+              { "name": "Debian & Ubuntu" },
+              { "name": "Oracle & Red Hat" },
+              { "name": "Kali", "learning": true }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Virtualization & Cloud",
+        "children": [
+          { "name": "VirtualBox & VMWare" },
+          { "name": "Docker & Kubernetes", "learning": true },
+          { "name": "AWS (Amazon Web Services)" }
+        ]
+      },
+      {
+        "name": "Network & Security",
+        "children": [
+          { "name": "VPN, VPC & Firewall" },
+          { "name": "IDS, IPS, IAM & WAF", "learning": true },
+          { "name": "Penetration Testing", "learning": true }
+        ]
+      },
+      {
+        "name": "SRE, Observability & Monitoring",
+        "children": [
+          { "name": "Zabbix, Prometheus & Grafana", "learning": true },
+          { "name": "CI/CD Pipelines", "learning": true }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "software-development",
+    "title": "Software Development",
+    "items": [
+      {
+        "name": "Methodologies",
+        "children": [
+          { "name": "Requirements Analysis" },
+          { "name": "Agile (Scrum) & Waterfall" }
+        ]
+      },
+      {
+        "name": "Version Control",
+        "children": [
+          { "name": "Git & GitHub" }
+        ]
+      },
+      {
+        "name": "Languages",
+        "children": [
+          { "name": "SQL" },
+          { "name": "Python" },
+          { "name": "JavaScript (Node.js)" },
+          { "name": "HTML & CSS" }
+        ]
+      },
+      {
+        "name": "APIs & Web Development",
+        "children": [
+          { "name": "REST/RESTful APIs" },
+          { "name": "JSON" }
+        ]
+      },
+      {
+        "name": "Testing & Performance",
+        "children": [
+          { "name": "Unit Testing" },
+          { "name": "Load Testing", "learning": true },
+          { "name": "Jest (JS) & Pytest (Python)" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "data-and-math",
+    "title": "Data and Math Knowledge",
+    "items": [
+      {
+        "name": "Mathematics",
+        "children": [
+          { "name": "Probability & Statistics" },
+          { "name": "Calculus & Linear Algebra" },
+          { "name": "Optimization" }
+        ]
+      },
+      {
+        "name": "Data Analysis & Visualization",
+        "children": [
+          { "name": "NumPy, SciPy & Matplotlib" },
+          { "name": "Pandas & Excel (+VBA)" }
+        ]
+      },
+      {
+        "name": "Databases",
+        "children": [
+          { "name": "NoSQL Databases", "learning": true },
+          {
+            "name": "SQL Databases",
+            "children": [
+              { "name": "SQLite" },
+              { "name": "MySQL / MariaDB" },
+              { "name": "PostgreSQL", "learning": true }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Data Engineering",
+        "children": [
+          {
+            "name": "Data Mining",
+            "children": [
+              { "name": "ETL (Extract, Transform, Load)" },
+              { "name": "Web Scraping (Selenium)" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "id": "pedro-ii",
+    "period": "2010 - 2016",
+    "degree": "Basic Education and High School",
+    "institution": "Colégio Pedro II - São Cristóvão",
+    "location": "Rio de Janeiro, Brasil",
+    "description": [
+      "A high-level school where I had the opportunity to study and participate in olympics.",
+      "Bronze Medalist.",
+      "Other extracurricular activities, such as arts, theater, sports, production, music, events, etc."
+    ]
+  },
+  {
+    "id": "ufrj",
+    "period": "2017 - 2022",
+    "degree": "Bachelor of Mechanical Engineering",
+    "institution": "Federal University of Rio de Janeiro",
+    "location": "Rio de Janeiro, Brasil",
+    "description": [
+      "Discrete math, linear algebra, calculus, etc.",
+      "First contact with programming focused on data analysis, visualization and manipulation with Python, Excel and Qtiplot.",
+      "Third Sector activities."
+    ]
+  },
+  {
+    "id": "uninter",
+    "period": "2024 - 2028",
+    "degree": "Bachelor of Software Engineering",
+    "institution": "International University Center",
+    "location": "Rio de Janeiro, Brasil",
+    "description": [
+      "Computer Science basics, but focused on Project Delivery and Management.",
+      "Tech Events, Hackathons, Networking.",
+      "Tech Laws, Legal, Ethics and Dilemmas.",
+      "Ongoing..."
+    ]
+  }
+]
