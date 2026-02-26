@@ -1,57 +1,86 @@
-# Relatório de Refatoração — Análise, Plano e Checklist
+# Gabriel Gomes — Portfolio
 
-## Análise da tarefa original
-Objetivo: refatorar completamente o site com React, remover a licença do template, dar mais foco ao portfólio mantendo todos os textos do projeto e deixar o conteúdo fácil de editar. Extras solicitados: dark/light mode automático baseado no sistema + botão tipo pílula para alternar manualmente + background com partículas “conectadas” que reagem ao mouse.
+Personal portfolio built with **React 19**, **TypeScript**, **Tailwind CSS v4**, and **Vite**.
 
-## Plano de ação (alto nível)
-1. **Setup React + tooling** (Vite, TypeScript, Tailwind).
-2. **Migração de assets** para estrutura pública do projeto.
-3. **Conteúdo editável** em JSON para texto/portfólio/experiência/skills/etc.
-4. **Layout novo com foco em Portfólio** (featured + grid).
-5. **Dark/Light mode** com detecção automática + persistência + toggle pílula.
-6. **Partículas interativas** com conexões e interação por mouse.
-7. **Atualização do README** com instruções de edição e uso.
+## Stack
 
----
+| Layer | Tech |
+|-------|------|
+| UI | React 19 + TypeScript |
+| Styling | Tailwind CSS v4 (Vite plugin) |
+| Animations | Framer Motion |
+| Particles | tsParticles (slim preset) |
+| Icons | react-icons |
+| Build | Vite 7 |
 
-## Checklist (com status)
+## Project Structure
 
-### 1) Base técnica
-- [x] Criar projeto React com Vite + TypeScript.
-- [x] Configurar Tailwind CSS v4 no Vite.
-- [x] Garantir build de produção funcionando.
+```
+src/
+├── components/         # React section components
+│   ├── About.tsx       # Hero banner + About Me (merged)
+│   ├── Contact.tsx     # Contact cards + Acknowledgments + Footer
+│   ├── Education.tsx   # Education timeline
+│   ├── Experience.tsx  # Experience alternating timeline
+│   ├── Navigation.tsx  # Fixed navbar with mobile menu
+│   ├── ParticleBackground.tsx  # tsParticles full-screen background
+│   ├── Portfolio.tsx   # Featured + regular project cards
+│   ├── Skills.tsx      # Expandable skill tree cards
+│   └── ThemeToggle.tsx # Light/dark pill toggle
+├── content/            # Editable JSON data (no hardcoded text)
+│   ├── about.json
+│   ├── acknowledgments.json
+│   ├── education.json
+│   ├── experience.json
+│   ├── portfolio.json
+│   └── skills.json
+├── context/
+│   ├── ThemeContext.tsx   # Theme context definition
+│   └── ThemeProvider.tsx  # Theme provider with system detection
+├── hooks/
+│   └── useTheme.ts     # Theme hook
+├── App.tsx
+├── index.css           # CSS variables, themes, utilities
+├── main.tsx
+└── vite-env.d.ts
 
-### 2) Estrutura e assets
-- [x] Migrar assets antigos para `public/assets`.
-- [x] Ajustar `index.html` para Vite/React.
-- [x] Remover referências ao template original.
+public/assets/          # Static assets served at /assets/
+├── download/           # Resume PDF
+├── images/             # Section images (about, portfolio, contact, etc.)
+└── logo/               # Favicon SVG
+```
 
-### 3) Conteúdo editável
-- [x] Criar `src/content/*.json` para texto e dados.
-- [x] Usar JSONs nas seções do site (sem hardcode no JSX).
+## Editing Content
 
-### 4) Layout / UX
-- [x] Portfólio como seção principal com destaque.
-- [x] Hero, About, Experience, Skills, Education, Contact mantidos.
-- [x] Responsivo e com animações suaves.
+All visible text lives in `src/content/*.json`. Edit those files to update the site — no JSX changes needed for content updates.
 
-### 5) Dark/Light Mode
-- [x] Detectar tema do sistema automaticamente.
-- [x] Persistir escolha no localStorage.
-- [x] Botão tipo pílula no topo para alternar.
+### Key files
 
-### 6) Background interativo
-- [x] Partículas flutuantes com conexões.
-- [x] Interação por mouse (hover/click).
+- **about.json** — Name, headline, subtitle, greeting, bio, social links, profile image, resume URL.
+- **experience.json** — Work history entries (role, company, period, description bullets).
+- **skills.json** — Skill categories with nested tree structure and optional `learning` badges.
+- **education.json** — Degrees with institution, period, location, and description.
+- **portfolio.json** — Projects with media (image or video), tags, featured flag.
+- **acknowledgments.json** — Institution logos shown in the footer area.
 
-### 7) Documentação
-- [x] README reescrito com guia de conteúdo.
-- [x] Licença do template removida.
+## Development
 
----
+```bash
+npm install
+npm run dev       # http://localhost:5173
+```
 
-## Resultado geral
-**Status:** ✅ Concluído conforme o escopo solicitado  
-**Observação:** O build funciona e os assets estão integrados corretamente ao `public/`.
+## Production Build
 
-Se você quiser, posso ajustar textos, cores, animações ou trocar a lib de partículas por uma versão mais leve.
+```bash
+npm run build     # outputs to dist/
+npm run preview   # preview the build locally
+```
+
+## Features
+
+- **Dark / Light mode** — auto-detects system preference, persists manual choice in localStorage.
+- **Particle background** — interactive tsParticles with grab and push effects, visible in the hero area.
+- **Smooth animations** — Framer Motion scroll-triggered and entrance animations.
+- **Responsive** — mobile-first with adaptive layouts for all sections.
+- **Code-split build** — vendor chunks for React, Framer Motion, tsParticles, and icons.
