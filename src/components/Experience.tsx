@@ -83,20 +83,23 @@ export default function Experience() {
                             {/* ===== Desktop Layout (alternating sides) ===== */}
                             <motion.div
                                 variants={itemVariants(index)}
-                                className="hidden md:grid md:grid-cols-2 md:gap-12 items-start"
+                                className="hidden md:grid md:grid-cols-[1fr_auto_1fr] items-start"
                             >
-                                {/* Left side */}
                                 {index % 2 === 0 ? (
                                     <>
                                         <TimelineHeader
                                             job={job}
                                             align="right"
                                         />
+                                        {/* Center dot — desktop */}
+                                        <TimelineDot />
                                         <TimelineBody job={job} />
                                     </>
                                 ) : (
                                     <>
                                         <TimelineBody job={job} align="right" />
+                                        {/* Center dot — desktop */}
+                                        <TimelineDot />
                                         <TimelineHeader
                                             job={job}
                                             align="left"
@@ -104,22 +107,6 @@ export default function Experience() {
                                     </>
                                 )}
                             </motion.div>
-
-                            {/* Center dot — desktop */}
-                            <div
-                                className="hidden md:flex absolute left-1/2 top-2 -translate-x-1/2 w-4 h-4 rounded-full border-2 items-center justify-center z-10"
-                                style={{
-                                    borderColor: "var(--accent-purple)",
-                                    background: "var(--bg-secondary)",
-                                }}
-                            >
-                                <div
-                                    className="w-2 h-2 rounded-full"
-                                    style={{
-                                        background: "var(--accent-purple)",
-                                    }}
-                                />
-                            </div>
 
                             {/* ===== Mobile Layout (single column) ===== */}
                             <motion.div
@@ -224,6 +211,27 @@ export default function Experience() {
 
 /* ─── Sub-components ────────────────────────────────────────────────── */
 
+function TimelineDot() {
+    return (
+        <div className="flex justify-center px-4 pt-1">
+            <div
+                className="w-4 h-4 rounded-full border-2 flex items-center justify-center z-10"
+                style={{
+                    borderColor: "var(--accent-purple)",
+                    background: "var(--bg-secondary)",
+                }}
+            >
+                <div
+                    className="w-2 h-2 rounded-full"
+                    style={{
+                        background: "var(--accent-purple)",
+                    }}
+                />
+            </div>
+        </div>
+    );
+}
+
 interface TimelineHeaderProps {
     job: (typeof experienceData)[number];
     align?: "left" | "right";
@@ -233,7 +241,7 @@ function TimelineHeader({ job, align = "left" }: TimelineHeaderProps) {
     const isRight = align === "right";
 
     return (
-        <div className={`${isRight ? "text-right pr-8" : "text-left pl-8"}`}>
+        <div className={`${isRight ? "text-right pr-4" : "text-left pl-4"}`}>
             <div
                 className={`flex items-center gap-2 mb-2 ${
                     isRight ? "justify-end" : "justify-start"
@@ -287,7 +295,7 @@ function TimelineBody({ job, align = "left" }: TimelineBodyProps) {
     const isRight = align === "right";
 
     return (
-        <div className={`${isRight ? "pr-8" : "pl-8"}`}>
+        <div className={`${isRight ? "pr-4" : "pl-4"}`}>
             <div
                 className="rounded-xl p-6 border card-hover"
                 style={{
