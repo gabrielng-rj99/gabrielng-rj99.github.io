@@ -9,20 +9,21 @@ export default function ThemeToggle() {
     return (
         <motion.button
             onClick={toggleTheme}
-            className="no-theme-transition flex items-center gap-2 rounded-full px-3 py-2 cursor-pointer shadow-lg backdrop-blur-md border"
+            className="no-theme-transition flex items-center gap-2 rounded-full px-3 py-2 cursor-pointer backdrop-blur-md"
             style={{
                 background: isDark
-                    ? "rgba(26, 26, 46, 0.8)"
-                    : "rgba(255, 255, 255, 0.8)",
-                borderColor: isDark
-                    ? "var(--border-muted)"
-                    : "var(--border-primary)",
+                    ? "rgba(26, 26, 46, 0.9)"
+                    : "rgba(255, 255, 255, 0.9)",
+                border: `2px solid ${isDark ? "var(--accent-purple)" : "var(--accent-purple)"}`,
+                boxShadow: isDark
+                    ? "0 0 12px rgba(180, 77, 255, 0.25), 0 4px 24px rgba(180, 77, 255, 0.15)"
+                    : "0 0 12px rgba(159, 0, 255, 0.15), 0 4px 24px rgba(159, 0, 255, 0.1)",
             }}
             initial={false}
             animate={{
                 boxShadow: isDark
-                    ? "0 4px 24px rgba(180, 77, 255, 0.15)"
-                    : "0 4px 24px rgba(159, 0, 255, 0.1)",
+                    ? "0 0 12px rgba(180, 77, 255, 0.25), 0 4px 24px rgba(180, 77, 255, 0.15)"
+                    : "0 0 12px rgba(159, 0, 255, 0.15), 0 4px 24px rgba(159, 0, 255, 0.1)",
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

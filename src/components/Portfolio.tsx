@@ -42,8 +42,8 @@ function ProjectMedia({
     const [isLoaded, setIsLoaded] = useState(false);
 
     const heightClass = featured
-        ? "h-64 sm:h-72 md:h-80 lg:h-96"
-        : "h-48 sm:h-56 md:h-64";
+        ? "h-48 md:h-64"
+        : "h-40 md:h-48";
 
     if (media.type === "video") {
         return (
@@ -92,11 +92,11 @@ function ProjectMedia({
 function TagPill({ label }: { label: string }) {
     return (
         <span
-            className="inline-block px-2.5 py-1 rounded-full text-[11px] font-medium tracking-wide"
+            className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm"
             style={{
-                background: "rgba(159, 0, 255, 0.1)",
-                color: "var(--accent-purple)",
-                border: "1px solid rgba(159, 0, 255, 0.15)",
+                background: "var(--bg-tertiary)",
+                color: "var(--text-primary)",
+                border: "1px solid var(--border-primary)",
             }}
         >
             {label}
@@ -221,7 +221,7 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
             rel="noopener noreferrer"
             variants={cardVariants}
             whileHover={{ y: -4 }}
-            className="group relative block rounded-xl overflow-hidden border cursor-pointer"
+            className="group relative flex flex-col rounded-xl overflow-hidden border cursor-pointer h-full"
             style={{
                 background: "var(--bg-card)",
                 borderColor: "var(--border-primary)",
@@ -251,7 +251,7 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
 
             {/* Info */}
             <div
-                className="p-4 md:p-5 border-t"
+                className="p-4 md:p-5 border-t flex flex-col flex-1"
                 style={{
                     background: "var(--bg-card)",
                     borderColor: "var(--border-secondary)",
@@ -272,7 +272,7 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
                 </div>
 
                 <p
-                    className="text-xs mb-3 line-clamp-2 leading-relaxed"
+                    className="text-sm mb-3 line-clamp-2 leading-relaxed"
                     style={{ color: "var(--text-tertiary)" }}
                 >
                     {project.description}
@@ -297,8 +297,8 @@ export default function Portfolio() {
     return (
         <section
             id="portfolio"
-            className="relative py-20 md:py-28"
-            style={{ background: "var(--bg-secondary)" }}
+            className="portfolio-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
+
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -307,7 +307,7 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-6"
+                    className="text-center mb-20 md:mb-32"
                 >
                     <h2 className="section-heading">Portfolio</h2>
                     <div className="section-divider mt-3" />

@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-import aboutData from "../content/about.json";
-import acknowledgmentsData from "../content/acknowledgments.json";
-
-const containerVariants = {
+import aboutData from "../content/about.json"; const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -23,36 +20,22 @@ const cardVariants = {
     },
 };
 
-const logoVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: (index: number) => ({
-        opacity: 1,
-        scale: 1,
-        transition: {
-            duration: 0.4,
-            delay: index * 0.1,
-            ease: "easeOut" as const,
-        },
-    }),
-};
-
 export default function Contact() {
     return (
         <>
             {/* ─── Contact Section ─────────────────────────────────────── */}
             <section
                 id="contact"
-                className="relative py-20 md:py-28"
-                style={{ background: "var(--bg-primary)" }}
+                className="contact-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
             >
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="contact-wrapper max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.5 }}
-                        className="text-center mb-14"
+                        className="text-center mb-20 md:mb-32"
                     >
                         <h2 className="section-heading">Contact Me</h2>
                         <div className="section-divider mt-3" />
@@ -80,128 +63,39 @@ export default function Contact() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 variants={cardVariants}
-                                whileHover={{ y: -6, scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
-                                className="group flex flex-col items-center gap-4 p-6 md:p-8 rounded-xl border cursor-pointer card-hover text-center"
+                                whileHover={{ y: -4, scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="group flex items-center justify-center gap-4 p-5 md:p-6 rounded-2xl border cursor-pointer transition-all duration-300 hover:shadow-xl relative overflow-hidden"
                                 style={{
                                     background: "var(--bg-card)",
                                     borderColor: "var(--border-primary)",
                                 }}
                             >
-                                {/* Icon Container */}
+                                {/* Hover background light sweep */}
                                 <div
-                                    className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg"
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                     style={{
-                                        background: "var(--bg-tertiary)",
-                                    }}
-                                >
-                                    {/* Glow effect on hover */}
-                                    <div
-                                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                        style={{
-                                            background:
-                                                "radial-gradient(circle, rgba(159, 0, 255, 0.15) 0%, transparent 70%)",
-                                        }}
-                                    />
-                                    <img
-                                        src={social.image}
-                                        alt={`${social.name} icon`}
-                                        className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
-                                        loading="lazy"
-                                    />
-                                </div>
-
-                                {/* Label */}
-                                <span
-                                    className="text-sm md:text-base font-semibold transition-colors duration-300 group-hover:text-(--accent-purple)"
-                                    style={{ color: "var(--text-secondary)" }}
-                                >
-                                    {social.name}
-                                </span>
-
-                                {/* Hover underline accent */}
-                                <div
-                                    className="w-0 group-hover:w-8 h-0.5 rounded-full transition-all duration-300"
-                                    style={{
-                                        background:
-                                            "linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end))",
+                                        background: "linear-gradient(135deg, rgba(159,0,255,0.05) 0%, transparent 100%)"
                                     }}
                                 />
-                            </motion.a>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
 
-            {/* ─── Acknowledgments Section ─────────────────────────────── */}
-            <section
-                className="relative py-16 md:py-20"
-                style={{ background: "var(--bg-secondary)" }}
-            >
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Section Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-80px" }}
-                        transition={{ duration: 0.5 }}
-                        className="text-center mb-12"
-                    >
-                        <h2 className="section-heading text-lg md:text-xl">
-                            Courses Offered by
-                        </h2>
-                        <div className="section-divider mt-3" />
-                    </motion.div>
-
-                    {/* Logos Grid */}
-                    <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
-                        {acknowledgmentsData.map((ack, index) => (
-                            <motion.a
-                                key={ack.id}
-                                href={ack.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                custom={index}
-                                variants={logoVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-40px" }}
-                                whileHover={{ scale: 1.08 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group relative flex items-center justify-center h-12 md:h-14 px-4 transition-all duration-300"
-                                title={ack.name}
-                            >
                                 <img
-                                    src={ack.logo}
-                                    alt={ack.name}
-                                    className="h-full w-auto object-contain transition-all duration-300 opacity-60 group-hover:opacity-100"
-                                    style={{
-                                        filter: "grayscale(40%)",
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        (
-                                            e.currentTarget as HTMLImageElement
-                                        ).style.filter = "grayscale(0%)";
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        (
-                                            e.currentTarget as HTMLImageElement
-                                        ).style.filter = "grayscale(40%)";
-                                    }}
+                                    src={social.image}
+                                    alt={`${social.name} icon`}
+                                    className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
                                     loading="lazy"
                                 />
 
-                                {/* Subtle glow on hover */}
-                                <div
-                                    className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
-                                    style={{
-                                        background:
-                                            "radial-gradient(ellipse at center, rgba(159, 0, 255, 0.06) 0%, transparent 70%)",
-                                    }}
-                                />
+                                {/* Label */}
+                                <span
+                                    className="text-base md:text-lg font-semibold relative z-10 transition-colors duration-300 group-hover:text-(--accent-purple)"
+                                    style={{ color: "var(--text-primary)" }}
+                                >
+                                    {social.name}
+                                </span>
                             </motion.a>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
