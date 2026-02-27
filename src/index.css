@@ -457,21 +457,67 @@ img {
 }
 
 /* ============================================
+   Navigation — CV Download Button
+   ============================================ */
+
+.nav-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.9rem;
+    border: 2px solid var(--accent-purple);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--accent-purple);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.nav-download-btn:hover {
+    background: var(--accent-purple);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(159, 0, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.nav-download-btn:active {
+    transform: translateY(0);
+}
+
+/* ============================================
    Section base styling
    ============================================ */
 
+/* Offset fixed navbar height when navigating to anchors */
+section[id] {
+    scroll-margin-top: 12rem;
+}
+
+@media (min-width: 768px) {
+    section[id] {
+        scroll-margin-top: 16rem;
+    }
+}
+
 .section-heading {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
     color: var(--text-primary);
     text-transform: capitalize;
-    margin-bottom: 0.75rem;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
 }
 
 .section-subheading {
-    font-size: 1rem;
+    font-size: 1.125rem;
     color: var(--text-tertiary);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -532,4 +578,29 @@ img {
     #tsparticles {
         display: none;
     }
+}
+/* ============================================
+   Section Glow Background
+   ============================================ */
+
+.section-glow-bg {
+    position: relative;
+    z-index: 1;
+}
+
+.section-glow-bg::before {
+    content: "";
+    position: absolute;
+    top: 5rem;
+    bottom: 5rem;
+    left: 50%;
+    width: 95vw;
+    max-width: 1600px;
+    transform: translateX(-50%);
+    background: var(--bg-primary);
+    filter: blur(120px);
+    border-radius: 200px;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.98;
 }
