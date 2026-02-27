@@ -20,8 +20,8 @@ export default function Education() {
     return (
         <section
             id="education"
-            className="relative py-20 md:py-28"
-            style={{ background: "var(--bg-secondary)" }}
+            className="education-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
+            
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -30,7 +30,7 @@ export default function Education() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
+                    className="text-center mb-20 md:mb-32"
                 >
                     <h2 className="section-heading">Education</h2>
                     <div className="section-divider mt-3" />
@@ -45,7 +45,7 @@ export default function Education() {
                     />
 
                     {/* Cards Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-12 relative z-10">
                         {educationData.map((edu, index) => (
                             <motion.div
                                 key={edu.id}

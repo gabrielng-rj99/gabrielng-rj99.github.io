@@ -167,15 +167,15 @@ export default function About() {
             </div>
 
             {/* ─── About Me Content ──────────────────────────────── */}
-            <div style={{ background: "var(--bg-primary)" }}>
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+            <div className="about-me-container w-full relative mt-32 md:mt-48 section-glow-bg">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-40 md:py-64">
                     {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.5 }}
-                        className="text-center mb-14"
+                        className="text-center mb-20 md:mb-32"
                     >
                         <h2 className="section-heading">About Me</h2>
                         <div className="section-divider mt-3" />
@@ -219,7 +219,7 @@ export default function About() {
                                                 style={{
                                                     color:
                                                         i ===
-                                                        greetingLines.length - 1
+                                                            greetingLines.length - 1
                                                             ? "var(--accent-purple)"
                                                             : "var(--text-secondary)",
                                                 }}
