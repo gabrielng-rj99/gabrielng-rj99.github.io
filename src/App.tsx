@@ -2,6 +2,7 @@ import ParticleBackground from "./components/ParticleBackground";
 import Navigation from "./components/Navigation";
 import About from "./components/About";
 import Experience from "./components/Experience";
+import Certifications from "./components/Certifications";
 import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Portfolio from "./components/Portfolio";
@@ -20,6 +21,7 @@ export default function App() {
             <main className="relative z-10 w-full flex flex-col items-center overflow-x-hidden">
                 <About />
                 <Experience />
+                <Certifications />
                 <Skills />
                 <Education />
                 <Portfolio />

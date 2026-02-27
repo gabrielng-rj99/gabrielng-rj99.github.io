@@ -1,0 +1,18 @@
+[
+    {
+        "id": "compass-uol-devsecops",
+        "title": "DevSecOps Program",
+        "issuer": "Compass UOL",
+        "date": "2024",
+        "credentialUrl": "",
+        "description": "Intensive program covering DevSecOps practices, CI/CD, cloud infrastructure, and security."
+    },
+    {
+        "id": "ufrj-mechanical-engineering",
+        "title": "Bachelor of Mechanical Engineering",
+        "issuer": "Federal University of Rio de Janeiro (UFRJ)",
+        "date": "2017 - 2022",
+        "credentialUrl": "",
+        "description": "Discrete math, linear algebra, calculus, data analysis and visualization with Python."
+    }
+]

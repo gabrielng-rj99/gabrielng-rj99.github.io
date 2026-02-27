@@ -1,0 +1,20 @@
+[
+    {
+        "id": "aws-cloud-practitioner",
+        "title": "AWS Certified Cloud Practitioner",
+        "issuer": "Amazon Web Services",
+        "date": "",
+        "badgeImage": "/assets/images/certifications/aws-cloud-practitioner.png",
+        "credentialUrl": "",
+        "status": "planned"
+    },
+    {
+        "id": "comptia-security-plus",
+        "title": "CompTIA Security+",
+        "issuer": "CompTIA",
+        "date": "",
+        "badgeImage": "/assets/images/certifications/comptia-security-plus.png",
+        "credentialUrl": "",
+        "status": "planned"
+    }
+]
