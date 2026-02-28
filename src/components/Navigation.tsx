@@ -21,6 +21,11 @@ export default function Navigation() {
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
+
+            // Force contact as active if user scrolled to the absolute bottom
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+                setActiveSection("contact");
+            }
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -109,8 +114,8 @@ export default function Navigation() {
                                     href={link.href}
                                     onClick={(e) => handleNavClick(e, link.href)}
                                     className={`app-nav-item relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 whitespace-nowrap ${isActive
-                                            ? "text-accent-purple"
-                                            : "text-text-tertiary hover:text-text-primary hover:bg-bg-card-hover"
+                                        ? "text-accent-purple"
+                                        : "text-text-tertiary hover:text-text-primary hover:bg-bg-card-hover"
                                         }`}
                                 >
                                     {link.label}
