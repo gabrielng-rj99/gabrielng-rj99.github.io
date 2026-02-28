@@ -57,10 +57,9 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                 <button
                     type="button"
                     onClick={() => hasChildren && setIsOpen(!isOpen)}
-                    className={`flex items-center gap-2 w-full text-left transition-colors duration-200 ${hasChildren
-                        ? "cursor-pointer"
-                        : "cursor-default"
-                        }`}
+                    className={`flex items-center gap-2 w-full text-left transition-colors duration-200 ${
+                        hasChildren ? "cursor-pointer" : "cursor-default"
+                    }`}
                     disabled={!hasChildren}
                     aria-expanded={hasChildren ? isOpen : undefined}
                 >
@@ -85,8 +84,9 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                     )}
 
                     <span
-                        className={`text-sm md:text-base leading-snug ${hasChildren ? "font-bold" : "font-medium"
-                            }`}
+                        className={`text-sm md:text-base leading-snug ${
+                            hasChildren ? "font-bold" : "font-medium"
+                        }`}
                         style={{
                             color: hasChildren
                                 ? "var(--text-primary)"
@@ -112,12 +112,26 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                         >
                             <div className="flex flex-wrap gap-2 pt-1 pb-2">
                                 {item.children!.map((child, i) => {
-                                    if (!child.children || child.children.length === 0) {
-                                        return <SkillTag key={`${child.name}-${i}`} item={child} />;
+                                    if (
+                                        !child.children ||
+                                        child.children.length === 0
+                                    ) {
+                                        return (
+                                            <SkillTag
+                                                key={`${child.name}-${i}`}
+                                                item={child}
+                                            />
+                                        );
                                     }
                                     return (
-                                        <div key={`${child.name}-${i}`} className="w-full mt-2">
-                                            <SkillNode item={child} depth={depth + 1} />
+                                        <div
+                                            key={`${child.name}-${i}`}
+                                            className="w-full mt-2"
+                                        >
+                                            <SkillNode
+                                                item={child}
+                                                depth={depth + 1}
+                                            />
                                         </div>
                                     );
                                 })}
@@ -132,11 +146,7 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
 
 /* ─── Unified Skill Card ──────────────────────────────────────────── */
 
-function SkillCard({
-    category,
-}: {
-    category: SkillCategory;
-}) {
+function SkillCard({ category }: { category: SkillCategory }) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -193,7 +203,6 @@ export default function Skills() {
         <section
             id="skills"
             className="skills-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -210,11 +219,8 @@ export default function Skills() {
 
                 {/* Skills Grid — unified cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {categories.map((category, index) => (
-                        <SkillCard
-                            key={category.title}
-                            category={category}
-                        />
+                    {categories.map((category) => (
+                        <SkillCard key={category.title} category={category} />
                     ))}
                 </div>
 
