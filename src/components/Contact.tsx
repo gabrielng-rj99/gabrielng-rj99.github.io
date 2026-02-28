@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import aboutData from "../content/about.json"; const containerVariants = {
+import aboutData from "../content/about.json";
+const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -63,33 +64,21 @@ export default function Contact() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 variants={cardVariants}
-                                whileHover={{ y: -4, scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="group flex items-center justify-center gap-4 p-5 md:p-6 rounded-2xl border cursor-pointer transition-all duration-300 hover:shadow-xl relative overflow-hidden"
-                                style={{
-                                    background: "var(--bg-card)",
-                                    borderColor: "var(--border-primary)",
-                                }}
+                                whileHover={{ y: -6, scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group flex flex-col items-center justify-center gap-3 p-4 cursor-pointer transition-all duration-300"
                             >
-                                {/* Hover background light sweep */}
-                                <div
-                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    style={{
-                                        background: "linear-gradient(135deg, rgba(159,0,255,0.05) 0%, transparent 100%)"
-                                    }}
-                                />
-
                                 <img
                                     src={social.image}
                                     alt={`${social.name} icon`}
-                                    className="w-8 h-8 md:w-10 md:h-10 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
+                                    className="w-10 h-10 md:w-14 md:h-14 object-contain transition-transform duration-300 group-hover:scale-110"
                                     loading="lazy"
                                 />
 
                                 {/* Label */}
                                 <span
-                                    className="text-base md:text-lg font-semibold relative z-10 transition-colors duration-300 group-hover:text-(--accent-purple)"
-                                    style={{ color: "var(--text-primary)" }}
+                                    className="text-sm md:text-base font-medium transition-colors duration-300 group-hover:text-(--accent-purple)"
+                                    style={{ color: "var(--text-secondary)" }}
                                 >
                                     {social.name}
                                 </span>
@@ -108,39 +97,15 @@ export default function Contact() {
                 }}
             >
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex flex-col items-center justify-center gap-4">
                         {/* Copyright */}
                         <p
-                            className="text-xs md:text-sm text-center md:text-left leading-relaxed"
+                            className="text-xs md:text-sm text-center leading-relaxed"
                             style={{ color: "var(--text-muted)" }}
                         >
                             &copy; {new Date().getFullYear()} Gabriel Gomes. All
                             Rights Reserved.
                         </p>
-
-                        {/* Social Icons in Footer */}
-                        <div className="flex items-center gap-3">
-                            {aboutData.socials.map((social) => (
-                                <a
-                                    key={social.name}
-                                    href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={social.name}
-                                    title={social.name}
-                                    className="flex items-center justify-center w-8 h-8 rounded-full transition-all duration-300 hover:scale-110"
-                                    style={{
-                                        background: "var(--bg-tertiary)",
-                                    }}
-                                >
-                                    <img
-                                        src={social.image}
-                                        alt={social.name}
-                                        className="w-4 h-4 object-contain opacity-50 hover:opacity-100 transition-opacity duration-300"
-                                    />
-                                </a>
-                            ))}
-                        </div>
                     </div>
 
                     {/* Scroll to Top */}
