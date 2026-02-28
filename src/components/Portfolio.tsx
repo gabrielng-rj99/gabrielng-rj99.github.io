@@ -62,7 +62,7 @@ function ProjectMedia({
                     muted
                     playsInline
                     onLoadedData={() => setIsLoaded(true)}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
                 />
             </div>
         );
@@ -81,7 +81,7 @@ function ProjectMedia({
                 alt={title}
                 loading="lazy"
                 onLoad={() => setIsLoaded(true)}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
             />
         </div>
     );
