@@ -42,7 +42,6 @@ export default function Experience() {
         <section
             id="experience"
             className="experience-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-
         >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -65,12 +64,12 @@ export default function Experience() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="relative"
                 >
-                    {/* Vertical line — slightly offset to mimic the Bootstrap 5/7 split */}
+                    {/* Vertical line — desktop */}
                     <div
                         className="hidden md:block absolute top-0 bottom-0 w-px"
                         style={{
                             background: "var(--border-primary)",
-                            left: "35%", /* Roughly where col-md-5 ends */
+                            left: "35%",
                         }}
                     />
 
@@ -80,68 +79,104 @@ export default function Experience() {
                         style={{ background: "var(--border-primary)" }}
                     />
 
-                    {experienceData.map((job, index) => (
-                        <div key={job.id} className="relative mb-14 last:mb-0">
-                            {/* ===== Desktop Layout (Always Header Left, Body Right) ===== */}
+                    {experienceData.map((job) => (
+                        <div
+                            key={job.id}
+                            className="relative mb-14 last:mb-0 group cursor-default"
+                        >
+                            {/* ===== Desktop Layout ===== */}
                             <motion.div
                                 variants={itemVariants}
                                 className="hidden md:flex items-start"
                             >
-                                {/* Left side (Header) - approx 35% width */}
-                                <div className="w-[35%] text-right pr-10 flex flex-col items-end">
-                                    <h2 className="text-xl font-bold tracking-tight mb-1" style={{ color: "var(--text-primary)" }}>
+                                {/* Left side (Header) - 35% width */}
+                                <div className="w-[35%] text-right pr-12 flex flex-col items-end transition-transform duration-300 group-hover:-translate-x-3">
+                                    <h2
+                                        className="text-xl font-bold tracking-tight mb-1"
+                                        style={{ color: "var(--text-primary)" }}
+                                    >
                                         {job.role}
                                     </h2>
-                                    <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text-secondary)" }}>
+                                    <h3
+                                        className="text-base font-semibold mb-2"
+                                        style={{
+                                            color: "var(--text-secondary)",
+                                        }}
+                                    >
                                         {job.company}
                                     </h3>
-                                    <h4 className="text-sm font-medium mb-1" style={{ color: "var(--accent-purple)" }}>
+                                    <h4
+                                        className="text-sm font-medium mb-1"
+                                        style={{
+                                            color: "var(--accent-purple)",
+                                        }}
+                                    >
                                         {job.period}
                                     </h4>
-                                    <h5 className="text-sm" style={{ color: "var(--text-muted)" }}>
+                                    <h5
+                                        className="text-sm"
+                                        style={{ color: "var(--text-muted)" }}
+                                    >
                                         {job.location}
                                     </h5>
                                 </div>
 
                                 {/* Center dot — desktop */}
                                 <div
-                                    className="absolute w-4 h-4 rounded-full border-2 flex items-center justify-center z-10"
+                                    className="absolute w-4 h-4 rounded-full border-2 flex items-center justify-center z-20 transition-all duration-300 group-hover:scale-150 group-hover:shadow-[0_0_15px_rgba(159,0,255,0.6)]"
                                     style={{
                                         borderColor: "var(--accent-purple)",
                                         background: "var(--bg-secondary)",
                                         left: "35%",
                                         transform: "translateX(-50%)",
-                                        top: "6px"
+                                        top: "6px",
                                     }}
                                 >
                                     <div
-                                        className="w-2 h-2 rounded-full"
-                                        style={{ background: "var(--accent-purple)" }}
+                                        className="w-2 h-2 rounded-full transition-colors duration-300 group-hover:bg-accent-magenta"
+                                        style={{
+                                            background: "var(--accent-purple)",
+                                        }}
                                     />
                                 </div>
 
-                                {/* Right side (Body) - approx 65% width */}
-                                <div className="w-[65%] pl-12">
-                                    <ul className="space-y-3 list-none p-0 m-0">
+                                {/* Right side (Body) - 65% width */}
+                                <div className="w-[65%] pl-12 transition-transform duration-300 group-hover:translate-x-2">
+                                    {/* Highlight box on hover */}
+                                    <div
+                                        className="absolute -inset-x-6 -inset-y-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+                                        style={{
+                                            background: "var(--bg-card-hover)",
+                                        }}
+                                    />
+
+                                    <ul className="space-y-3 list-none p-0 m-0 relative">
                                         {job.description.map((item, i) => {
-                                            const isSubItem = item.startsWith("  -") || item.startsWith("  ");
-                                            const cleanText = item.replace(/^\s+-\s*/, "").trim();
+                                            const isSubItem =
+                                                item.startsWith("  -") ||
+                                                item.startsWith("  ");
+                                            const cleanText = item
+                                                .replace(/^\s+-\s*/, "")
+                                                .trim();
 
                                             return (
                                                 <li
                                                     key={i}
-                                                    className="text-[15px] leading-relaxed flex items-start gap-3"
+                                                    className="text-[15px] leading-relaxed flex items-start gap-3 transition-colors duration-300 group-hover:text-[var(--text-primary)]"
                                                     style={{
                                                         color: "var(--text-secondary)",
-                                                        paddingLeft: isSubItem ? "1.5rem" : "0",
+                                                        paddingLeft: isSubItem
+                                                            ? "1.5rem"
+                                                            : "0",
                                                     }}
                                                 >
                                                     <span
-                                                        className="mt-2 w-1.5 h-1.5 rounded-full shrink-0"
+                                                        className="mt-2 w-1.5 h-1.5 rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"
                                                         style={{
-                                                            background: isSubItem
-                                                                ? "var(--accent-magenta)"
-                                                                : "var(--accent-purple)",
+                                                            background:
+                                                                isSubItem
+                                                                    ? "var(--accent-magenta)"
+                                                                    : "var(--accent-purple)",
                                                         }}
                                                     />
                                                     <span>{cleanText}</span>
@@ -155,54 +190,91 @@ export default function Experience() {
                             {/* ===== Mobile Layout (single column) ===== */}
                             <motion.div
                                 variants={mobileItemVariants}
-                                className="md:hidden relative pl-14"
+                                className="md:hidden relative pl-14 group"
                             >
                                 {/* Left dot — mobile */}
                                 <div
-                                    className="absolute left-6 top-2 w-4 h-4 rounded-full border-2 flex items-center justify-center z-10 -translate-x-1/2"
+                                    className="absolute left-6 top-2 w-4 h-4 rounded-full border-2 flex items-center justify-center z-10 -translate-x-1/2 transition-all duration-300 group-hover:scale-150 group-hover:shadow-[0_0_10px_rgba(159,0,255,0.5)]"
                                     style={{
                                         borderColor: "var(--accent-purple)",
                                         background: "var(--bg-secondary)",
                                     }}
                                 >
                                     <div
-                                        className="w-2 h-2 rounded-full"
-                                        style={{ background: "var(--accent-purple)" }}
+                                        className="w-2 h-2 rounded-full transition-colors duration-300 group-hover:bg-accent-magenta"
+                                        style={{
+                                            background: "var(--accent-purple)",
+                                        }}
                                     />
                                 </div>
 
                                 {/* Content */}
-                                <div className="mb-4">
-                                    <h2 className="text-lg font-bold mb-1" style={{ color: "var(--text-primary)" }}>
+                                <div className="mb-4 relative">
+                                    {/* Highlight box on hover - mobile */}
+                                    <div
+                                        className="absolute -inset-x-4 -inset-y-4 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+                                        style={{
+                                            background: "var(--bg-card-hover)",
+                                        }}
+                                    />
+
+                                    <h2
+                                        className="text-lg font-bold mb-1"
+                                        style={{ color: "var(--text-primary)" }}
+                                    >
                                         {job.role}
                                     </h2>
-                                    <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text-secondary)" }}>
+                                    <h3
+                                        className="text-base font-semibold mb-2"
+                                        style={{
+                                            color: "var(--text-secondary)",
+                                        }}
+                                    >
                                         {job.company}
                                     </h3>
                                     <div className="flex gap-4 mb-4 text-sm font-medium">
-                                        <span style={{ color: "var(--accent-purple)" }}>{job.period}</span>
-                                        <span style={{ color: "var(--text-muted)" }}>{job.location}</span>
+                                        <span
+                                            style={{
+                                                color: "var(--accent-purple)",
+                                            }}
+                                        >
+                                            {job.period}
+                                        </span>
+                                        <span
+                                            style={{
+                                                color: "var(--text-muted)",
+                                            }}
+                                        >
+                                            {job.location}
+                                        </span>
                                     </div>
                                     <ul className="space-y-3 list-none p-0 m-0">
                                         {job.description.map((item, i) => {
-                                            const isSubItem = item.startsWith("  -") || item.startsWith("  ");
-                                            const cleanText = item.replace(/^\s+-\s*/, "").trim();
+                                            const isSubItem =
+                                                item.startsWith("  -") ||
+                                                item.startsWith("  ");
+                                            const cleanText = item
+                                                .replace(/^\s+-\s*/, "")
+                                                .trim();
 
                                             return (
                                                 <li
                                                     key={i}
-                                                    className="text-sm leading-relaxed flex items-start gap-2.5"
+                                                    className="text-sm leading-relaxed flex items-start gap-2.5 transition-colors duration-300 group-hover:text-[var(--text-primary)]"
                                                     style={{
                                                         color: "var(--text-secondary)",
-                                                        paddingLeft: isSubItem ? "1rem" : "0",
+                                                        paddingLeft: isSubItem
+                                                            ? "1rem"
+                                                            : "0",
                                                     }}
                                                 >
                                                     <span
-                                                        className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
+                                                        className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 transition-transform duration-300 group-hover:scale-125"
                                                         style={{
-                                                            background: isSubItem
-                                                                ? "var(--accent-magenta)"
-                                                                : "var(--accent-purple)",
+                                                            background:
+                                                                isSubItem
+                                                                    ? "var(--accent-magenta)"
+                                                                    : "var(--accent-purple)",
                                                         }}
                                                     />
                                                     <span>{cleanText}</span>
@@ -219,5 +291,3 @@ export default function Experience() {
         </section>
     );
 }
-
-
