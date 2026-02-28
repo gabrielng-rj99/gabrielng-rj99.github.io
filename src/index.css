@@ -616,9 +616,6 @@ section[id] {
    ============================================ */
 
 .experience-section {
-    position: relative;
-    margin-top: 8rem;
-    margin-bottom: 8rem;
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
