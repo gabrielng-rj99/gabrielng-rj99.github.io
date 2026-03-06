@@ -12,6 +12,7 @@ build/
 .env.test.local
 .env.production.local
 
+
 # IDE / Editor
 .vscode/
 .idea/
@@ -35,3 +36,6 @@ vite.config.ts.timestamp-*
 
 # Old assets (migrated to public/)
 /assets/
+
+# IA files
+CLAUDE.md
