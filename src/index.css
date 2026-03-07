@@ -280,7 +280,6 @@ img {
 }
 
 @keyframes pulse-glow {
-
     0%,
     100% {
         box-shadow:
@@ -296,7 +295,6 @@ img {
 }
 
 @keyframes float {
-
     0%,
     100% {
         transform: translateY(0);
@@ -327,20 +325,24 @@ img {
 
 /* Gradient text */
 .text-gradient {
-    background: linear-gradient(135deg,
-            var(--accent-gradient-start) 0%,
-            var(--accent-gradient-end) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--accent-gradient-start) 0%,
+        var(--accent-gradient-end) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-animated {
-    background: linear-gradient(270deg,
-            var(--accent-gradient-start),
-            var(--accent-purple),
-            var(--accent-magenta),
-            var(--accent-purple));
+    background: linear-gradient(
+        270deg,
+        var(--accent-gradient-start),
+        var(--accent-purple),
+        var(--accent-magenta),
+        var(--accent-purple)
+    );
     background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -350,9 +352,11 @@ img {
 
 /* Gradient backgrounds */
 .bg-accent-gradient {
-    background: linear-gradient(to right,
-            var(--accent-gradient-start) 0%,
-            var(--accent-gradient-end) 100%);
+    background: linear-gradient(
+        to right,
+        var(--accent-gradient-start) 0%,
+        var(--accent-gradient-end) 100%
+    );
 }
 
 /* Glass morphism effect */
@@ -367,7 +371,8 @@ img {
     background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    border-top: 1px solid color-mix(in srgb, var(--border-primary) 50%, transparent);
+    border-top: 1px solid
+        color-mix(in srgb, var(--border-primary) 50%, transparent);
 }
 
 /* Section divider */
@@ -375,9 +380,11 @@ img {
     width: 60px;
     height: 4px;
     border-radius: 2px;
-    background: linear-gradient(to right,
-            var(--accent-gradient-start),
-            var(--accent-gradient-end));
+    background: linear-gradient(
+        to right,
+        var(--accent-gradient-start),
+        var(--accent-gradient-end)
+    );
     margin: 0 auto;
 }
 
@@ -385,6 +392,7 @@ img {
 .btn-accent {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 2rem;
     background: var(--accent-purple);
@@ -395,6 +403,7 @@ img {
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .btn-accent:hover {
@@ -409,6 +418,7 @@ img {
 .btn-outline {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 2rem;
     background: transparent;
@@ -419,6 +429,7 @@ img {
     font-size: 0.875rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .btn-outline:hover {
@@ -562,7 +573,6 @@ section[id] {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -592,28 +602,42 @@ section[id] {
 .section-glow-bg::before {
     content: "";
     position: absolute;
-    top: -4rem;
-    bottom: -4rem;
+    top: -2rem;
+    bottom: -2rem;
     left: 50%;
-    width: 95vw;
-    max-width: 1600px;
+    width: 60vw;
+    max-width: 800px;
     transform: translateX(-50%);
     background: var(--bg-primary);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    filter: blur(80px);
-    border-radius: 200px;
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 20%,
+        black 80%,
+        transparent 100%
+    );
+    filter: blur(40px);
+    border-radius: 100px;
     z-index: -1;
     pointer-events: none;
-    opacity: var(--glow-opacity, 0.85);
+    opacity: var(--glow-opacity, 0.5);
 }
 
 .contact-section.section-glow-bg::before {
-    --glow-opacity: 1;
-    background: radial-gradient(ellipse at center,
-            var(--bg-primary) 30%,
-            rgba(159, 0, 255, 0.12) 100%);
-    filter: blur(100px);
+    --glow-opacity: 0.6;
+    background: radial-gradient(
+        ellipse at center,
+        var(--bg-primary) 30%,
+        rgba(159, 0, 255, 0.08) 100%
+    );
+    filter: blur(50px);
 }
 
 /* ============================================

@@ -1,35 +1,35 @@
 /* Education Section */
 .educationSection {
     position: relative;
-    margin-top: 8rem;
-    padding: 5rem 0;
+    margin-top: 2rem;
+    padding: 3rem 0;
     z-index: 1;
 }
 
 @media (min-width: 768px) {
     .educationSection {
-        margin-top: 12rem;
-        padding: 8rem 0;
+        margin-top: 3rem;
+        padding: 4rem 0;
     }
 }
 
 .educationSection::before {
     content: "";
     position: absolute;
-    top: -4rem;
-    bottom: -4rem;
+    top: -2rem;
+    bottom: -2rem;
     left: 50%;
-    width: 95vw;
-    max-width: 1600px;
+    width: 70vw;
+    max-width: 800px;
     transform: translateX(-50%);
     background: var(--bg-primary);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    filter: blur(80px);
-    border-radius: 200px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    filter: blur(40px);
+    border-radius: 100px;
     z-index: -1;
     pointer-events: none;
-    opacity: var(--glow-opacity, 0.85);
+    opacity: var(--glow-opacity, 0.5);
 }
 
 /* Container */

@@ -1,16 +1,16 @@
 /* Certifications Section */
 .section {
     position: relative;
-    margin-top: 8rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    margin-top: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .section {
-        margin-top: 12rem;
-        padding-top: 8rem;
-        padding-bottom: 8rem;
+        margin-top: 3rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 }
 
@@ -26,12 +26,12 @@
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    max-width: 900px;
-    max-height: 600px;
+    max-width: 600px;
+    max-height: 400px;
     background: radial-gradient(
         ellipse at center,
-        rgba(159, 0, 255, 0.08) 0%,
-        rgba(139, 92, 246, 0.04) 40%,
+        rgba(159, 0, 255, 0.05) 0%,
+        rgba(139, 92, 246, 0.02) 40%,
         transparent 70%
     );
     pointer-events: none;
@@ -92,21 +92,11 @@
 /* Badges Grid */
 .badgesGrid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-}
-
-@media (min-width: 640px) {
-    .badgesGrid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .badgesGrid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-    }
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -118,21 +108,11 @@
 /* Certificates Grid */
 .certificatesGrid {
     display: grid;
-    grid-template-columns: 1fr;
     gap: 1.25rem;
-}
-
-@media (min-width: 768px) {
-    .certificatesGrid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (min-width: 1024px) {
-    .certificatesGrid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-    }
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 /* Legend */
@@ -236,7 +216,9 @@
 }
 
 .certCard:hover .badgeImageContainer {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Glow on hover */

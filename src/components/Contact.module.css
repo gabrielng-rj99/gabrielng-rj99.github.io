@@ -1,16 +1,16 @@
 /* Contact Section */
 .section {
     position: relative;
-    margin-top: 8rem;
-    padding-top: 5rem;
-    padding-bottom: 8rem;
+    margin-top: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
 }
 
 @media (min-width: 768px) {
     .section {
-        margin-top: 12rem;
-        padding-top: 5rem;
-        padding-bottom: 8rem;
+        margin-top: 3rem;
+        padding-top: 4rem;
+        padding-bottom: 5rem;
     }
 }
 
@@ -39,7 +39,7 @@
 /* Section Header */
 .header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .divider {
@@ -48,7 +48,7 @@
 
 @media (min-width: 768px) {
     .header {
-        margin-bottom: 8rem;
+        margin-bottom: 4rem;
     }
 }
 
@@ -82,7 +82,7 @@
 
 @media (min-width: 768px) {
     .grid {
-        gap: 1.5rem;
+        gap: 1rem;
     }
 }
 
@@ -92,7 +92,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     padding: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;

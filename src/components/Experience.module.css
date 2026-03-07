@@ -1,16 +1,16 @@
 /* Experience Section Styles */
 .experienceSection {
     position: relative;
-    margin-top: 8rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    margin-top: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .experienceSection {
-        margin-top: 12rem;
-        padding-top: 8rem;
-        padding-bottom: 8rem;
+        margin-top: 3rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 }
 
@@ -34,7 +34,7 @@
 
 .header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .headerTitle {
