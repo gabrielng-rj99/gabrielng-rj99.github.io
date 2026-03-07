@@ -24,8 +24,15 @@ export default function Navigation() {
             setIsScrolled(window.scrollY > 50);
 
             // Force contact as active if user scrolled to the absolute bottom
-            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+            if (
+                window.innerHeight + window.scrollY >=
+                document.documentElement.scrollHeight - 50
+            ) {
                 setActiveSection("contact");
+            }
+            // Forcehome "" active when at top (before hero ends)
+            else if (window.scrollY < 300) {
+                setActiveSection("");
             }
         };
 
@@ -38,6 +45,27 @@ export default function Navigation() {
         const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
         const observers: IntersectionObserver[] = [];
 
+        // Don't set About as active when hero is visible
+        const heroEl = document.getElementById("hero");
+        let heroVisible = true;
+
+        if (heroEl) {
+            const heroObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        heroVisible = entry.isIntersecting;
+                        // If hero is visible, don't mark About as active
+                        if (heroVisible) {
+                            setActiveSection("");
+                        }
+                    });
+                },
+                { rootMargin: "0px 0px -70% 0px", threshold: 0 },
+            );
+            heroObserver.observe(heroEl);
+            observers.push(heroObserver);
+        }
+
         sectionIds.forEach((id) => {
             const el = document.getElementById(id);
             if (!el) return;
@@ -45,6 +73,10 @@ export default function Navigation() {
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
+                        // Don't mark About when hero is still visible
+                        if (id === "#" && heroVisible) {
+                            return;
+                        }
                         if (entry.isIntersecting) {
                             setActiveSection(id);
                         }
@@ -71,9 +103,19 @@ export default function Navigation() {
             const targetPosition =
                 target.getBoundingClientRect().top + window.scrollY - navHeight;
             window.scrollTo({ top: targetPosition, behavior: "smooth" });
+            // For Home link, set activeSection to empty to show it's active
+            if (href === "#") {
+                setActiveSection("");
+            }
         }
         setIsMobileMenuOpen(false);
     };
+
+    // Check if Home should be active (when at top of page)
+    const isHomeActive =
+        activeSection === "" &&
+        typeof window !== "undefined" &&
+        window.scrollY < 300;
 
     return (
         <motion.nav
@@ -85,7 +127,6 @@ export default function Navigation() {
             <div className={styles.navContainer}>
                 {/* Use a simple CSS Grid with 3 equal columns for perfect centering */}
                 <div className={styles.navGrid}>
-
                     {/* Column 1: Logo / Home */}
                     <div className={styles.navHome}>
                         <a
@@ -95,9 +136,20 @@ export default function Navigation() {
                                 window.scrollTo({ top: 0, behavior: "smooth" });
                                 setIsMobileMenuOpen(false);
                             }}
-                            className={styles.logo}
+                            className={`${styles.logo} ${isHomeActive ? styles.navItemActive : ""}`}
                         >
                             Home
+                            {isHomeActive && (
+                                <motion.span
+                                    layoutId="nav-indicator"
+                                    className={styles.navIndicator}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 350,
+                                        damping: 30,
+                                    }}
+                                />
+                            )}
                         </a>
                     </div>
 
@@ -111,7 +163,9 @@ export default function Navigation() {
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href)}
+                                    onClick={(e) =>
+                                        handleNavClick(e, link.href)
+                                    }
                                     className={`${styles.navItem} ${isActive ? styles.navItemActive : ""}`}
                                 >
                                     {link.label}

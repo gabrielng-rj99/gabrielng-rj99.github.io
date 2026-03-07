@@ -50,7 +50,7 @@ function SkillTag({ item }: { item: SkillItem }) {
 
 function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
     const hasChildren = item.children && item.children.length > 0;
-    const [isOpen, setIsOpen] = useState(depth < 1);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <li className={styles.skillNode}>

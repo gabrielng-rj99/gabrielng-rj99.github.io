@@ -56,7 +56,9 @@ export default function About() {
                         className={styles.aboutHeader}
                     >
                         <h2 className="section-heading">About Me</h2>
-                        <div className={`${styles.sectionDivider} section-divider`} />
+                        <div
+                            className={`${styles.sectionDivider} section-divider`}
+                        />
                     </motion.div>
 
                     {/* Content Grid */}
@@ -82,7 +84,11 @@ export default function About() {
                                         {i === 0 ? (
                                             <>
                                                 {line.split(",")[0]},
-                                                <span className={styles.textGradient}>
+                                                <span
+                                                    className={
+                                                        styles.textGradient
+                                                    }
+                                                >
                                                     {line
                                                         .split(",")
                                                         .slice(1)
@@ -115,10 +121,7 @@ export default function About() {
                             {/* Bio */}
                             <div className={styles.aboutBio}>
                                 {bioParas.map((para, i) => (
-                                    <p
-                                        key={i}
-                                        className={styles.aboutBioText}
-                                    >
+                                    <p key={i} className={styles.aboutBioText}>
                                         {para}
                                     </p>
                                 ))}
@@ -160,14 +163,10 @@ export default function About() {
                         >
                             <div className={styles.aboutImageWrapper}>
                                 {/* Decorative border/glow */}
-                                <div
-                                    className={styles.aboutImageGlow}
-                                />
+                                <div className={styles.aboutImageGlow} />
 
                                 {/* Image container */}
-                                <div
-                                    className={styles.aboutImageContainer}
-                                >
+                                <div className={styles.aboutImageContainer}>
                                     <motion.img
                                         src={aboutData.profileImage}
                                         alt={`${aboutData.name} profile photo`}
@@ -181,9 +180,7 @@ export default function About() {
                                     />
 
                                     {/* Overlay gradient on bottom */}
-                                    <div
-                                        className={styles.aboutImageOverlay}
-                                    />
+                                    <div className={styles.aboutImageOverlay} />
                                 </div>
                             </div>
                         </motion.div>

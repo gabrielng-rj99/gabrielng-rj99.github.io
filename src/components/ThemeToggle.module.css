@@ -1,21 +1,71 @@
+/* Theme Toggle Button - Pill Style */
 .button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 72px;
+    height: 32px;
     border-radius: 9999px;
     cursor: pointer;
-    background-color: transparent;
-    border: 1px solid transparent;
-    color: var(--accent-purple);
-    position: relative;
+    background: transparent;
+    border: 1px solid var(--border-primary);
+    padding: 0;
+    overflow: hidden;
 }
 
-.iconContainer {
+/* Track de fundo */
+.track {
     position: absolute;
-    inset: 0;
+    inset: 2px;
+    display: flex;
+    border-radius: 9999px;
+    background: var(--bg-tertiary);
+    overflow: hidden;
+}
+
+/* Indicador deslizante */
+.indicator {
+    width: 32px;
+    height: 28px;
+    border-radius: 9999px;
+    background: var(--accent-purple);
+    box-shadow: 0 2px 8px rgba(159, 0, 255, 0.4);
+}
+
+/* Container de ícones */
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 8px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Ícones */
+.icon {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 9999px;
+    color: var(--text-muted);
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.iconActive {
+    color: #ffffff;
+}
+
+/* No modo escuro, o botão tem cores diferentes */
+[data-theme="dark"] .track {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .indicator {
+    background: var(--accent-purple);
+    box-shadow: 0 2px 8px rgba(180, 77, 255, 0.5);
 }

@@ -11,36 +11,36 @@ export default function ThemeToggle() {
         <motion.button
             onClick={toggleTheme}
             className={styles.button}
-            whileHover={{ scale: 1.1, background: "rgba(159, 0, 255, 0.1)" }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             title={isDark ? "Switch to light mode" : "Switch to dark mode"}
         >
-            <motion.div
-                initial={false}
-                animate={{
-                    scale: isDark ? 1 : 0,
-                    opacity: isDark ? 1 : 0,
-                    rotate: isDark ? 0 : 90
-                }}
-                transition={{ duration: 0.3 }}
-                className={styles.iconContainer}
-            >
-                <FiMoon size={20} />
-            </motion.div>
+            {/* Track de fundo */}
+            <div className={styles.track}>
+                {/* Indicador deslizante */}
+                <motion.div
+                    className={styles.indicator}
+                    animate={{
+                        x: isDark ? 28 : 0,
+                    }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                    }}
+                />
+            </div>
 
-            <motion.div
-                initial={false}
-                animate={{
-                    scale: isDark ? 0 : 1,
-                    opacity: isDark ? 0 : 1,
-                    rotate: isDark ? -90 : 0
-                }}
-                transition={{ duration: 0.3 }}
-                className={styles.iconContainer}
-            >
-                <FiSun size={20} />
-            </motion.div>
+            {/* Ícones - sempre visíveis mas com opacidade variável */}
+            <div className={styles.icons}>
+                <span className={`${styles.icon} ${!isDark ? styles.iconActive : ''}`}>
+                    <FiSun size={16} />
+                </span>
+                <span className={`${styles.icon} ${isDark ? styles.iconActive : ''}`}>
+                    <FiMoon size={16} />
+                </span>
+            </div>
         </motion.button>
     );
 }
