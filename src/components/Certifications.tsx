@@ -274,6 +274,29 @@ export default function Certifications() {
     const hasCertifications = certifications.length > 0;
     const hasCertificates = certificates.length > 0;
 
+    // Calculate columns: max 6, but use actual count if less
+    // If more than 6, calculate equal distribution across rows
+    const MAX_COLS = 6;
+    const calcCols = (count: number) => {
+        if (count <= MAX_COLS) return count;
+        // For 7-8 items: use 4 cols (4+3 or 4+4)
+        // For 9-12 items: use 6 cols (distribute evenly)
+        const rows = Math.ceil(count / MAX_COLS);
+        return Math.ceil(count / rows);
+    };
+
+    const badgeCols = calcCols(certifications.length);
+    const certCols = calcCols(certificates.length);
+
+    // Build grid style dynamically
+    const badgeGridStyle = {
+        gridTemplateColumns: `repeat(${badgeCols}, 1fr)`,
+    } as React.CSSProperties;
+
+    const certGridStyle = {
+        gridTemplateColumns: `repeat(${certCols}, 1fr)`,
+    } as React.CSSProperties;
+
     return (
         <>
             {/* ─── Certifications (Badges) ───────────────────────────── */}
@@ -309,6 +332,7 @@ export default function Certifications() {
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
                             className={styles.badgesGrid}
+                            style={badgeGridStyle}
                         >
                             {certifications.map((cert) => (
                                 <CertificationCard
@@ -382,6 +406,7 @@ export default function Certifications() {
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
                             className={styles.certificatesGrid}
+                            style={certGridStyle}
                         >
                             {certificates.map((cert) => (
                                 <CertificateCard
