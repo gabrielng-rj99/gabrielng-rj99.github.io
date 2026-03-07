@@ -26,6 +26,37 @@ export default function ParticleBackground() {
         const particleCount =
             typeof window !== "undefined" && window.innerWidth < 768 ? 60 : 150;
 
+        // Configurações de limite de partículas
+        const limitValue = 180; // Limite máximo de partículas
+        const limitMode = "delete" as const; // "delete" ou "bounce"
+
+        // ============================================================
+        // MOVIMENTO (attract - efeito gravitacional/elástico)
+        // ============================================================
+        // O attract cria um campo de força que atrai partículas para o
+        // centro da tela, criando um movimento orbital/elástico.
+        //
+        // MATEMÁTICA DO ATTRACT:
+        // - Usa coordenadas polares: cada partícula tem um ângulo (θ) e raio (r)
+        // - O movimento é calculado com:
+        //   x = centerX + r * cos(θ + speed * t) * (rotateX / maxDistance)
+        //   y = centerY + r * sin(θ + speed * t) * (rotateY / maxDistance)
+        // - rotateX/rotateY = raio máximo de oscilação em cada eixo (px)
+        // - moveSpeed = velocidade angular (quanto maior = mais rápido gira)
+        //
+        // EXEMPLO (Monitor 500x-500y, rotateX=250, rotateY=250, speed=1.5):
+        // - Partícula a 100px do centro (θ = 45° = π/4 rad)
+        // - Em t=0:  x = 250 + 100 * cos(π/4) = 320.7,  y = 320.7
+        // - Em t=1:  x = 250 + 100 * cos(π/4 + 1.5) = 176.3, y = 323.7
+        // - Em t=2:  x = 250 + 100 * cos(π/4 + 3.0) = 100.0, y = 250.0
+        // - Resultado: a partícula gira 1.5 radianos (~86°) por segundo
+        //   Completando uma volta (2π rad) em ~4.2 segundos
+        // ============================================================
+        const moveSpeed = 2; // Velocidade angular da órbita (1-2 = divertido, não muito rápido)
+        const attractEnable = false; // true = ativa / false = desativa
+        const attractRotateX = 1000; // Raio máximo de oscilação no eixo X (px)
+        const attractRotateY = 1000; // Raio máximo de oscilação no eixo Y (px)
+
         return {
             fullScreen: {
                 enable: false,
@@ -35,7 +66,7 @@ export default function ParticleBackground() {
                 events: {
                     onHover: {
                         enable: true,
-                        mode: ["grab", "bubble"] as string[],
+                        mode: ["grab", "bubble", "slow"] as string[],
                     },
                     onClick: {
                         enable: true,
@@ -61,10 +92,18 @@ export default function ParticleBackground() {
                     },
                     push: {
                         quantity: 3,
+                        scatter: {
+                            enable: true,
+                            spread: 120, // Espalha em 120° entre cada partícula
+                        },
                     },
                     repulse: {
                         distance: 150,
                         duration: 0.4,
+                    },
+                    slow: {
+                        factor: 1.1,
+                        radius: 100,
                     },
                 },
             },
@@ -81,7 +120,7 @@ export default function ParticleBackground() {
                 },
                 move: {
                     enable: true,
-                    speed: 0.8,
+                    speed: moveSpeed,
                     direction: "none" as const,
                     random: true,
                     straight: false,
@@ -89,10 +128,10 @@ export default function ParticleBackground() {
                         default: "bounce" as const,
                     },
                     attract: {
-                        enable: true,
+                        enable: attractEnable,
                         rotate: {
-                            x: 600,
-                            y: 1200,
+                            x: attractRotateX,
+                            y: attractRotateY,
                         },
                     },
                 },
@@ -103,6 +142,10 @@ export default function ParticleBackground() {
                         height: 1080,
                     },
                     value: particleCount,
+                    limit: {
+                        value: limitValue,
+                        mode: limitMode,
+                    },
                 },
                 opacity: {
                     value: { min: 0.2, max: 0.5 },
