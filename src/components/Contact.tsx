@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import aboutData from "../content/about.json";
+import styles from "./Contact.module.css";
+
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -24,24 +26,21 @@ const cardVariants = {
 export default function Contact() {
     return (
         <>
-            {/* ─── Contact Section ─────────────────────────────────────── */}
-            <section
-                id="contact"
-                className="contact-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-            >
-                <div className="contact-wrapper max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Contact Section */}
+            <section id="contact" className={`${styles.section} section-glow-bg`}>
+                <div className={styles.wrapper}>
                     {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.5 }}
-                        className="text-center mb-20 md:mb-32"
+                        className={styles.header}
                     >
                         <h2 className="section-heading">Contact Me</h2>
-                        <div className="section-divider mt-3" />
+                        <div className={`section-divider ${styles.divider}`} />
                         <p
-                            className="mt-4 text-sm md:text-base max-w-lg mx-auto leading-relaxed"
+                            className={styles.description}
                             style={{ color: "var(--text-tertiary)" }}
                         >
                             Feel free to reach out — whether it's about a
@@ -55,7 +54,7 @@ export default function Contact() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-60px" }}
-                        className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6"
+                        className={styles.grid}
                     >
                         {aboutData.socials.map((social) => (
                             <motion.a
@@ -66,18 +65,18 @@ export default function Contact() {
                                 variants={cardVariants}
                                 whileHover={{ y: -6, scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group flex flex-col items-center justify-center gap-3 p-4 cursor-pointer transition-all duration-300"
+                                className={styles.card}
                             >
                                 <img
                                     src={social.image}
                                     alt={`${social.name} icon`}
-                                    className="w-10 h-10 md:w-14 md:h-14 object-contain transition-transform duration-300 group-hover:scale-110"
+                                    className={styles.icon}
                                     loading="lazy"
                                 />
 
                                 {/* Label */}
                                 <span
-                                    className="text-sm md:text-base font-medium transition-colors duration-300 group-hover:text-(--accent-purple)"
+                                    className={styles.label}
                                     style={{ color: "var(--text-secondary)" }}
                                 >
                                     {social.name}
@@ -88,19 +87,13 @@ export default function Contact() {
                 </div>
             </section>
 
-            {/* ─── Footer ──────────────────────────────────────────────── */}
-            <footer
-                className="relative py-8 md:py-10 border-t"
-                style={{
-                    background: "var(--bg-primary)",
-                    borderColor: "var(--border-primary)",
-                }}
-            >
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col items-center justify-center gap-4">
+            {/* Footer */}
+            <footer className={styles.footer}>
+                <div className={styles.footerWrapper}>
+                    <div className={styles.footerContent}>
                         {/* Copyright */}
                         <p
-                            className="text-xs md:text-sm text-center leading-relaxed"
+                            className={styles.copyright}
                             style={{ color: "var(--text-muted)" }}
                         >
                             &copy; {new Date().getFullYear()} Gabriel Gomes. All
@@ -109,19 +102,14 @@ export default function Contact() {
                     </div>
 
                     {/* Scroll to Top */}
-                    <div className="flex justify-center mt-6">
+                    <div className={styles.scrollButtonContainer}>
                         <motion.button
                             onClick={() =>
                                 window.scrollTo({ top: 0, behavior: "smooth" })
                             }
                             whileHover={{ y: -3, scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            className="flex items-center justify-center w-10 h-10 rounded-full border cursor-pointer transition-all duration-300"
-                            style={{
-                                borderColor: "var(--border-muted)",
-                                color: "var(--text-muted)",
-                                background: "var(--bg-card)",
-                            }}
+                            className={styles.scrollButton}
                             aria-label="Scroll to top"
                             title="Back to top"
                         >
@@ -131,7 +119,7 @@ export default function Contact() {
                                 viewBox="0 0 24 24"
                                 strokeWidth={2.5}
                                 stroke="currentColor"
-                                className="w-4 h-4"
+                                className={styles.arrowIcon}
                             >
                                 <path
                                     strokeLinecap="round"

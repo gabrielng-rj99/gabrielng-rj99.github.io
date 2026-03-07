@@ -1,0 +1,415 @@
+/* Experience Section Styles */
+.experienceSection {
+    position: relative;
+    margin-top: 8rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .experienceSection {
+        margin-top: 12rem;
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.headerTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+}
+
+@media (min-width: 768px) {
+    .headerTitle {
+        font-size: 2.5rem;
+    }
+}
+
+.divider {
+    width: 5rem;
+    height: 0.25rem;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-magenta));
+    margin: 0.75rem auto 0;
+    border-radius: 9999px;
+}
+
+.timeline {
+    position: relative;
+}
+
+/* Timeline lines */
+.timelineLineDesktop {
+    position: absolute;
+    top: 24px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-primary);
+    left: 35%;
+    display: none;
+}
+
+.timelineLineMobile {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-primary);
+    left: 24px;
+}
+
+@media (min-width: 768px) {
+    .timelineLineDesktop {
+        display: block;
+    }
+
+    .timelineLineMobile {
+        display: none;
+    }
+}
+
+/* Job item */
+.job {
+    margin-bottom: 3.5rem;
+    cursor: default;
+}
+
+.job:last-child {
+    margin-bottom: 0;
+}
+
+/* Desktop layout */
+.jobDesktop {
+    display: none;
+    align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+    .jobDesktop {
+        display: flex;
+    }
+}
+
+/* Left side - job info */
+.jobLeft {
+    width: 35%;
+    padding-right: 2rem;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transition: transform 0.3s ease;
+}
+
+.job:hover .jobLeft {
+    transform: translateX(-12px);
+}
+
+.jobRole {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.jobCompany {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.jobPeriod {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--accent-purple);
+}
+
+.jobLocation {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Timeline dot - desktop */
+.timelineDot {
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-purple);
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+    margin-left: -10px;
+    transform-origin: center;
+}
+
+.timelineDotInner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    transition: background 0.3s ease;
+}
+
+.job:hover .timelineDotInner {
+    background: var(--accent-magenta);
+}
+
+/* Right side - job description */
+.jobRight {
+    width: 65%;
+    padding-left: 3rem;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.job:hover .jobRight {
+    transform: translateX(8px);
+}
+
+/* Dot counter-movement to stay centered */
+.job:hover .timelineDot {
+    transform: scale(1.4) translateX(-6px);
+    box-shadow: 0 0 15px rgba(159, 0, 255, 0.6);
+}
+
+/* Highlight box */
+.highlight {
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    border-radius: 0.5rem;
+    background: var(--bg-card-hover);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -10;
+}
+
+.job:hover .highlight {
+    opacity: 1;
+}
+
+/* Description list */
+.jobList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jobListItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.jobListItem.subItem {
+    padding-left: 1.5rem;
+}
+
+.job:hover .jobListItem {
+    color: var(--text-primary);
+}
+
+/* Bullets */
+.jobBullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.jobBullet.subBullet {
+    background: var(--accent-magenta);
+}
+
+.job:hover .jobBullet {
+    transform: scale(1.25);
+}
+
+/* Description text */
+.jobText {
+    word-wrap: break-word;
+}
+
+/* ============================================
+   Mobile Layout
+   ============================================ */
+
+.jobMobile {
+    display: block;
+    position: relative;
+    padding-left: 3.5rem;
+}
+
+@media (min-width: 768px) {
+    .jobMobile {
+        display: none;
+    }
+}
+
+/* Mobile dot */
+.timelineDotMobile {
+    position: absolute;
+    left: 24px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-purple);
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.job:hover .timelineDotMobile {
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(159, 0, 255, 0.5);
+}
+
+/* Mobile content */
+.jobContentMobile {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.highlightMobile {
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    border-radius: 0.5rem;
+    background: var(--bg-card-hover);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -10;
+}
+
+.job:hover .highlightMobile {
+    opacity: 1;
+}
+
+/* Mobile job info */
+.jobRoleMobile {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.jobCompanyMobile {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.jobMetaMobile {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.jobPeriodMobile {
+    color: var(--accent-purple);
+}
+
+.jobLocationMobile {
+    color: var(--text-muted);
+}
+
+/* Mobile list */
+.jobListMobile {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jobListItemMobile {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.jobListItemMobile.subItem {
+    padding-left: 1rem;
+}
+
+.job:hover .jobListItemMobile {
+    color: var(--text-primary);
+}
+
+/* Mobile bullets */
+.jobBulletMobile {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    margin-top: 0.375rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.jobBulletMobile.subBullet {
+    background: var(--accent-magenta);
+}
+
+.job:hover .jobBulletMobile {
+    transform: scale(1.25);
+}
+
+.jobTextMobile {
+    word-wrap: break-word;
+}

@@ -3,6 +3,7 @@ import { HiExternalLink, HiBadgeCheck } from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
 import certificationsData from "../content/certifications.json";
 import certificatesData from "../content/certificates.json";
+import styles from "./Certifications.module.css";
 
 interface Certification {
     id: string;
@@ -73,20 +74,19 @@ function CertificationCard({
             variants={cardVariants}
             whileHover={{ y: -4, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`group relative flex flex-col items-center gap-3 p-4 text-center ${hasCredential ? "cursor-pointer" : "cursor-default"
-                }`}
+            className={`${styles.certCard} ${hasCredential ? styles.certCardClickable : styles.certCardStatic}`}
         >
             {/* Status Badge */}
             <div
-                className="absolute top-3 right-3 inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide"
+                className={styles.statusBadge}
                 style={{
                     background: isEarned
                         ? "rgba(0, 200, 83, 0.1)"
                         : "rgba(159, 0, 255, 0.1)",
                     color: isEarned ? "#00c853" : "var(--accent-purple)",
                     border: `1px solid ${isEarned
-                            ? "rgba(0, 200, 83, 0.2)"
-                            : "rgba(159, 0, 255, 0.2)"
+                        ? "rgba(0, 200, 83, 0.2)"
+                        : "rgba(159, 0, 255, 0.2)"
                         }`,
                 }}
             >
@@ -105,14 +105,14 @@ function CertificationCard({
 
             {/* Badge Image */}
             <div
-                className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg"
+                className={styles.badgeImageContainer}
                 style={{
                     background: "var(--bg-tertiary)",
                 }}
             >
                 {/* Glow on hover */}
                 <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className={styles.badgeGlow}
                     style={{
                         background:
                             "radial-gradient(circle, rgba(159, 0, 255, 0.15) 0%, transparent 70%)",
@@ -121,17 +121,16 @@ function CertificationCard({
                 <img
                     src={certification.badgeImage}
                     alt={`${certification.title} badge`}
-                    className={`w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 transition-all duration-300 group-hover:scale-110 ${!isEarned ? "opacity-40 grayscale" : ""
-                        }`}
+                    className={`${styles.badgeImage} ${!isEarned ? styles.badgeImageUnearned : ""}`}
                     loading="lazy"
                     onError={(e) => {
                         const target = e.currentTarget;
                         target.style.display = "none";
                         const parent = target.parentElement;
-                        if (parent && !parent.querySelector(".badge-fallback")) {
+                        if (parent && !parent.querySelector("[data-badge-fallback]")) {
                             const fallback = document.createElement("div");
-                            fallback.className =
-                                "badge-fallback flex items-center justify-center w-16 h-16 md:w-20 md:h-20 relative z-10";
+                            fallback.setAttribute("data-badge-fallback", "true");
+                            fallback.className = styles.badgeFallback;
                             fallback.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-purple); opacity: 0.4;"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.77 4 4 0 0 1 0 6.76 4 4 0 0 1-4.78 4.77 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>`;
                             parent.appendChild(fallback);
                         }
@@ -141,7 +140,7 @@ function CertificationCard({
 
             {/* Title */}
             <h3
-                className="text-sm md:text-base font-bold leading-snug"
+                className={styles.certTitle}
                 style={{ color: "var(--text-primary)" }}
             >
                 {certification.title}
@@ -149,7 +148,7 @@ function CertificationCard({
 
             {/* Issuer */}
             <p
-                className="text-xs font-medium -mt-2"
+                className={styles.certIssuer}
                 style={{ color: "var(--text-muted)" }}
             >
                 {certification.issuer}
@@ -158,7 +157,7 @@ function CertificationCard({
             {/* Date (if earned) */}
             {isEarned && certification.date && (
                 <p
-                    className="text-xs -mt-2"
+                    className={styles.certDate}
                     style={{ color: "var(--text-tertiary)" }}
                 >
                     {certification.date}
@@ -168,7 +167,7 @@ function CertificationCard({
             {/* Credential link indicator */}
             {hasCredential && (
                 <div
-                    className="flex items-center gap-1 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className={styles.credentialLink}
                     style={{ color: "var(--accent-purple)" }}
                 >
                     <span>Verify</span>
@@ -178,7 +177,7 @@ function CertificationCard({
 
             {/* Hover accent line */}
             <div
-                className="w-0 group-hover:w-10 h-0.5 rounded-full transition-all duration-300"
+                className={styles.accentLine}
                 style={{
                     background:
                         "linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end))",
@@ -198,60 +197,70 @@ function CertificateCard({ certificate }: { certificate: Certificate }) {
         <motion.div
             variants={cardVariants}
             whileHover={{ y: -3 }}
-            className="group rounded-xl border p-5 md:p-6 card-hover"
+            className={styles.certificateCard}
             style={{
                 background: "var(--bg-card)",
                 borderColor: "var(--border-primary)",
             }}
         >
-            <div className="flex items-start justify-between gap-3 mb-2">
-                <h4
-                    className="text-sm md:text-base font-bold leading-snug"
-                    style={{ color: "var(--text-primary)" }}
-                >
-                    {certificate.title}
-                </h4>
-                {hasCredential && (
-                    <a
-                        href={certificate.credentialUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full transition-all duration-300 opacity-50 group-hover:opacity-100"
-                        style={{
-                            background: "var(--bg-tertiary)",
-                            color: "var(--accent-purple)",
-                        }}
-                        title="View credential"
-                    >
-                        <HiExternalLink size={14} />
-                    </a>
-                )}
-            </div>
+            {/* Title */}
+            <h4
+                className={styles.certName}
+                style={{ color: "var(--text-primary)" }}
+            >
+                {certificate.title}
+            </h4>
 
+            {/* Issuer */}
             <p
-                className="text-xs font-medium mb-1"
+                className={styles.certIssuingOrg}
                 style={{ color: "var(--accent-purple)" }}
             >
                 {certificate.issuer}
             </p>
 
+            {/* Date */}
             {certificate.date && (
                 <p
-                    className="text-xs mb-3"
+                    className={styles.certDate2}
                     style={{ color: "var(--text-muted)" }}
                 >
                     {certificate.date}
                 </p>
             )}
 
+            {/* Description */}
             {certificate.description && (
                 <p
-                    className="text-sm leading-relaxed"
+                    className={styles.certDescription}
                     style={{ color: "var(--text-tertiary)" }}
                 >
                     {certificate.description}
                 </p>
             )}
+
+            {/* Credential link indicator */}
+            {hasCredential && (
+                <a
+                    href={certificate.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.certCredentialLink}
+                    style={{ color: "var(--accent-purple)" }}
+                >
+                    <span>View</span>
+                    <HiExternalLink size={12} />
+                </a>
+            )}
+
+            {/* Hover accent line */}
+            <div
+                className={styles.certAccentLine}
+                style={{
+                    background:
+                        "linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end))",
+                }}
+            />
         </motion.div>
     );
 }
@@ -271,22 +280,21 @@ export default function Certifications() {
             {hasCertifications && (
                 <section
                     id="certifications"
-                    className="certifications-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-                    
+                    className={`${styles.section} ${styles.sectionGlowBg}`}
                 >
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className={styles.container}>
                         {/* Section Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.5 }}
-                            className="text-center mb-20 md:mb-32"
+                            className={styles.header}
                         >
                             <h2 className="section-heading">Certifications</h2>
-                            <div className="section-divider mt-3" />
+                            <div className="section-divider" />
                             <p
-                                className="mt-4 text-sm md:text-base max-w-xl mx-auto leading-relaxed"
+                                className={styles.descriptionText}
                                 style={{ color: "var(--text-tertiary)" }}
                             >
                                 Industry certifications and professional badges
@@ -300,7 +308,7 @@ export default function Certifications() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
-                            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+                            className={styles.badgesGrid}
                         >
                             {certifications.map((cert) => (
                                 <CertificationCard
@@ -316,43 +324,23 @@ export default function Certifications() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.4 }}
-                            className="flex flex-wrap items-center justify-center gap-4 mt-10"
+                            className={styles.legend}
                         >
-                            <div className="flex items-center gap-1.5">
-                                <span
-                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-semibold"
-                                    style={{
-                                        background: "rgba(0, 200, 83, 0.1)",
-                                        color: "#00c853",
-                                        border: "1px solid rgba(0, 200, 83, 0.2)",
-                                    }}
-                                >
+                            <div className={styles.legendItem}>
+                                <span className={`${styles.legendBadge} ${styles.legendBadgeEarned}`}>
                                     <HiBadgeCheck size={10} />
                                     Earned
                                 </span>
-                                <span
-                                    className="text-xs"
-                                    style={{ color: "var(--text-muted)" }}
-                                >
+                                <span className={styles.legendText}>
                                     — certified
                                 </span>
                             </div>
-                            <div className="flex items-center gap-1.5">
-                                <span
-                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-semibold"
-                                    style={{
-                                        background: "rgba(159, 0, 255, 0.1)",
-                                        color: "var(--accent-purple)",
-                                        border: "1px solid rgba(159, 0, 255, 0.2)",
-                                    }}
-                                >
+                            <div className={styles.legendItem}>
+                                <span className={`${styles.legendBadge} ${styles.legendBadgePlanned}`}>
                                     <FiClock size={10} />
                                     Planned
                                 </span>
-                                <span
-                                    className="text-xs"
-                                    style={{ color: "var(--text-muted)" }}
-                                >
+                                <span className={styles.legendText}>
                                     — in progress or next goal
                                 </span>
                             </div>
@@ -365,22 +353,21 @@ export default function Certifications() {
             {hasCertificates && (
                 <section
                     id="certificates"
-                    className="certifications-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-                    
+                    className={`${styles.section} ${styles.sectionGlowBg}`}
                 >
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className={styles.container}>
                         {/* Section Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.5 }}
-                            className="text-center mb-20 md:mb-32"
+                            className={styles.header}
                         >
                             <h2 className="section-heading">Certificates</h2>
-                            <div className="section-divider mt-3" />
+                            <div className="section-divider" />
                             <p
-                                className="mt-4 text-sm md:text-base max-w-xl mx-auto leading-relaxed"
+                                className={styles.descriptionText}
                                 style={{ color: "var(--text-tertiary)" }}
                             >
                                 Courses, programs, and training completed
@@ -394,7 +381,7 @@ export default function Certifications() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
+                            className={styles.certificatesGrid}
                         >
                             {certificates.map((cert) => (
                                 <CertificateCard

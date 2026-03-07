@@ -280,6 +280,7 @@ img {
 }
 
 @keyframes pulse-glow {
+
     0%,
     100% {
         box-shadow:
@@ -295,6 +296,7 @@ img {
 }
 
 @keyframes float {
+
     0%,
     100% {
         transform: translateY(0);
@@ -325,24 +327,20 @@ img {
 
 /* Gradient text */
 .text-gradient {
-    background: linear-gradient(
-        135deg,
-        var(--accent-gradient-start) 0%,
-        var(--accent-gradient-end) 100%
-    );
+    background: linear-gradient(135deg,
+            var(--accent-gradient-start) 0%,
+            var(--accent-gradient-end) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-animated {
-    background: linear-gradient(
-        270deg,
-        var(--accent-gradient-start),
-        var(--accent-purple),
-        var(--accent-magenta),
-        var(--accent-purple)
-    );
+    background: linear-gradient(270deg,
+            var(--accent-gradient-start),
+            var(--accent-purple),
+            var(--accent-magenta),
+            var(--accent-purple));
     background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -352,11 +350,9 @@ img {
 
 /* Gradient backgrounds */
 .bg-accent-gradient {
-    background: linear-gradient(
-        to right,
-        var(--accent-gradient-start) 0%,
-        var(--accent-gradient-end) 100%
-    );
+    background: linear-gradient(to right,
+            var(--accent-gradient-start) 0%,
+            var(--accent-gradient-end) 100%);
 }
 
 /* Glass morphism effect */
@@ -371,8 +367,7 @@ img {
     background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    border-top: 1px solid
-        color-mix(in srgb, var(--border-primary) 50%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--border-primary) 50%, transparent);
 }
 
 /* Section divider */
@@ -380,11 +375,9 @@ img {
     width: 60px;
     height: 4px;
     border-radius: 2px;
-    background: linear-gradient(
-        to right,
-        var(--accent-gradient-start),
-        var(--accent-gradient-end)
-    );
+    background: linear-gradient(to right,
+            var(--accent-gradient-start),
+            var(--accent-gradient-end));
     margin: 0 auto;
 }
 
@@ -569,6 +562,7 @@ section[id] {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -585,6 +579,7 @@ section[id] {
         display: none;
     }
 }
+
 /* ============================================
    Section Glow Background
    ============================================ */
@@ -597,18 +592,28 @@ section[id] {
 .section-glow-bg::before {
     content: "";
     position: absolute;
-    top: 5rem;
-    bottom: 5rem;
+    top: -4rem;
+    bottom: -4rem;
     left: 50%;
     width: 95vw;
     max-width: 1600px;
     transform: translateX(-50%);
     background: var(--bg-primary);
-    filter: blur(120px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    filter: blur(80px);
     border-radius: 200px;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.98;
+    opacity: var(--glow-opacity, 0.85);
+}
+
+.contact-section.section-glow-bg::before {
+    --glow-opacity: 1;
+    background: radial-gradient(ellipse at center,
+            var(--bg-primary) 30%,
+            rgba(159, 0, 255, 0.12) 100%);
+    filter: blur(100px);
 }
 
 /* ============================================
@@ -663,6 +668,7 @@ section[id] {
     .timeline-line-desktop {
         display: block;
     }
+
     .timeline-line-mobile {
         display: none;
     }
@@ -737,8 +743,8 @@ section[id] {
     position: absolute;
     left: 0;
     top: 0.35rem;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid var(--accent-purple);
     background: var(--bg-secondary);
@@ -747,7 +753,7 @@ section[id] {
     justify-content: center;
     z-index: 100;
     transition: all 0.3s ease;
-    margin-left: -8px;
+    margin-left: -10px;
     transform-origin: center;
 }
 

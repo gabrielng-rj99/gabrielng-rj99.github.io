@@ -1,3 +1,4 @@
+import styles from "./App.module.css";
 import ParticleBackground from "./components/ParticleBackground";
 import Navigation from "./components/Navigation";
 import About from "./components/About";
@@ -18,7 +19,7 @@ export default function App() {
             <Navigation />
 
             {/* Page sections */}
-            <main className="relative z-10 w-full flex flex-col items-center overflow-x-hidden">
+            <main className={styles.main}>
                 <About />
                 <Experience />
                 <Certifications />

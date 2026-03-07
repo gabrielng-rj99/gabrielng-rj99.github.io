@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { HiExternalLink } from "react-icons/hi";
 import { useRef, useState } from "react";
 import portfolioData from "../content/portfolio.json";
+import styles from "./Portfolio.module.css";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -41,16 +42,14 @@ function ProjectMedia({
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const heightClass = featured
-        ? "h-48 md:h-64"
-        : "h-40 md:h-48";
+    const heightClass = featured ? styles.mediaFeatured : styles.mediaRegular;
 
     if (media.type === "video") {
         return (
-            <div className={`relative w-full overflow-hidden ${heightClass}`}>
+            <div className={`${styles.mediaContainer} ${heightClass}`}>
                 {!isLoaded && (
                     <div
-                        className="absolute inset-0 animate-pulse"
+                        className={`${styles.mediaPlaceholder} ${styles.pulse}`}
                         style={{ background: "var(--bg-tertiary)" }}
                     />
                 )}
@@ -62,17 +61,17 @@ function ProjectMedia({
                     muted
                     playsInline
                     onLoadedData={() => setIsLoaded(true)}
-                    className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
+                    className={styles.media}
                 />
             </div>
         );
     }
 
     return (
-        <div className={`relative w-full overflow-hidden ${heightClass}`}>
+        <div className={`${styles.mediaContainer} ${heightClass}`}>
             {!isLoaded && (
                 <div
-                    className="absolute inset-0 animate-pulse"
+                    className={`${styles.mediaPlaceholder} ${styles.pulse}`}
                     style={{ background: "var(--bg-tertiary)" }}
                 />
             )}
@@ -81,7 +80,7 @@ function ProjectMedia({
                 alt={title}
                 loading="lazy"
                 onLoad={() => setIsLoaded(true)}
-                className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
+                className={styles.media}
             />
         </div>
     );
@@ -92,11 +91,11 @@ function ProjectMedia({
 function TagPill({ label }: { label: string }) {
     return (
         <span
-            className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold shadow-sm"
+            className={styles.tag}
             style={{
                 background: "var(--bg-tertiary)",
                 color: "var(--text-primary)",
-                border: "1px solid var(--border-primary)",
+                borderColor: "var(--border-primary)",
             }}
         >
             {label}
@@ -118,7 +117,7 @@ function FeaturedCard({
             rel="noopener noreferrer"
             variants={cardVariants}
             whileHover={{ y: -6 }}
-            className="group relative block rounded-2xl overflow-hidden border shadow-lg cursor-pointer"
+            className={`${styles.card} ${styles.cardFeatured}`}
             style={{
                 background: "var(--bg-card)",
                 borderColor: "var(--border-primary)",
@@ -133,7 +132,7 @@ function FeaturedCard({
 
             {/* Hover overlay */}
             <div
-                className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                className={`${styles.overlay} ${styles.overlayFeatured}`}
                 style={{
                     background:
                         "linear-gradient(to top, rgba(10, 10, 20, 0.92) 0%, rgba(10, 10, 20, 0.6) 50%, rgba(10, 10, 20, 0.3) 100%)",
@@ -142,18 +141,18 @@ function FeaturedCard({
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     whileHover={{ y: 0, opacity: 1 }}
-                    className="flex flex-col items-center gap-3 px-6"
+                    className={styles.overlayContent}
                 >
                     <div
-                        className="w-12 h-12 rounded-full flex items-center justify-center border"
+                        className={`${styles.iconButton} ${styles.iconButtonFeatured}`}
                         style={{
                             background: "rgba(159, 0, 255, 0.2)",
                             borderColor: "var(--accent-purple)",
                         }}
                     >
-                        <HiExternalLink size={22} className="text-white" />
+                        <HiExternalLink size={22} color="white" />
                     </div>
-                    <p className="text-white text-base font-semibold max-w-xs">
+                    <p className={styles.overlayText}>
                         {project.description}
                     </p>
                 </motion.div>
@@ -161,34 +160,34 @@ function FeaturedCard({
 
             {/* Bottom info bar */}
             <div
-                className="relative z-10 p-5 md:p-6 border-t"
+                className={`${styles.cardInfo} ${styles.cardInfoFeatured}`}
                 style={{
                     background: "var(--bg-card)",
                     borderColor: "var(--border-secondary)",
                 }}
             >
-                <div className="flex items-center justify-between gap-4 mb-3">
+                <div className={`${styles.titleRow} ${styles.titleRowFeatured}`}>
                     <h3
-                        className="text-lg md:text-xl font-bold truncate"
+                        className={`${styles.title} ${styles.titleFeatured}`}
                         style={{ color: "var(--text-primary)" }}
                     >
                         {project.title}
                     </h3>
                     <HiExternalLink
                         size={18}
-                        className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className={styles.externalIcon}
                         style={{ color: "var(--accent-purple)" }}
                     />
                 </div>
 
                 <p
-                    className="text-sm mb-4 line-clamp-2 leading-relaxed"
+                    className={`${styles.description} ${styles.descriptionFeatured}`}
                     style={{ color: "var(--text-tertiary)" }}
                 >
                     {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5">
+                <div className={styles.tags}>
                     {project.tags.map((tag) => (
                         <TagPill key={tag} label={tag} />
                     ))}
@@ -196,12 +195,11 @@ function FeaturedCard({
 
                 {/* Featured badge */}
                 <div
-                    className="absolute top-0 right-0 -translate-y-1/2 mr-5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase"
+                    className={styles.featuredBadge}
                     style={{
                         background:
                             "linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end))",
                         color: "#ffffff",
-                        boxShadow: "0 2px 12px rgba(159, 0, 255, 0.3)",
                     }}
                 >
                     Featured
@@ -221,7 +219,7 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
             rel="noopener noreferrer"
             variants={cardVariants}
             whileHover={{ y: -4 }}
-            className="group relative flex flex-col rounded-xl overflow-hidden border cursor-pointer h-full"
+            className={`${styles.card} ${styles.cardRegular}`}
             style={{
                 background: "var(--bg-card)",
                 borderColor: "var(--border-primary)",
@@ -232,53 +230,53 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
 
             {/* Hover overlay */}
             <div
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                className={`${styles.overlay} ${styles.overlayRegular}`}
                 style={{
                     background:
                         "linear-gradient(to top, rgba(10, 10, 20, 0.9) 0%, rgba(10, 10, 20, 0.5) 60%, transparent 100%)",
                 }}
             >
                 <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center border"
+                    className={`${styles.iconButton} ${styles.iconButtonRegular}`}
                     style={{
                         background: "rgba(159, 0, 255, 0.2)",
                         borderColor: "var(--accent-purple)",
                     }}
                 >
-                    <HiExternalLink size={18} className="text-white" />
+                    <HiExternalLink size={18} color="white" />
                 </div>
             </div>
 
             {/* Info */}
             <div
-                className="p-4 md:p-5 border-t flex flex-col flex-1"
+                className={`${styles.cardInfo} ${styles.cardInfoRegular}`}
                 style={{
                     background: "var(--bg-card)",
                     borderColor: "var(--border-secondary)",
                 }}
             >
-                <div className="flex items-center justify-between gap-3 mb-2">
+                <div className={`${styles.titleRow} ${styles.titleRowRegular}`}>
                     <h3
-                        className="text-base font-bold truncate"
+                        className={`${styles.title} ${styles.titleRegular}`}
                         style={{ color: "var(--text-primary)" }}
                     >
                         {project.title}
                     </h3>
                     <HiExternalLink
                         size={16}
-                        className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className={styles.externalIcon}
                         style={{ color: "var(--accent-purple)" }}
                     />
                 </div>
 
                 <p
-                    className="text-sm mb-3 line-clamp-2 leading-relaxed"
+                    className={`${styles.description} ${styles.descriptionRegular}`}
                     style={{ color: "var(--text-tertiary)" }}
                 >
                     {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5">
+                <div className={styles.tags}>
                     {project.tags.map((tag) => (
                         <TagPill key={tag} label={tag} />
                     ))}
@@ -295,24 +293,20 @@ export default function Portfolio() {
     const regular = portfolioData.filter((p) => !p.featured);
 
     return (
-        <section
-            id="portfolio"
-            className="portfolio-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="portfolio" className={`${styles.section} ${styles.sectionGlowBg}`}>
+            <div className={styles.container}>
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-20 md:mb-32"
+                    className={styles.header}
                 >
                     <h2 className="section-heading">Portfolio</h2>
-                    <div className="section-divider mt-3" />
+                    <div className={`section-divider ${styles.mt3}`} />
                     <p
-                        className="mt-4 text-sm md:text-base max-w-2xl mx-auto leading-relaxed"
+                        className={styles.descriptionText}
                         style={{ color: "var(--text-tertiary)" }}
                     >
                         A selection of projects that showcase my skills across
@@ -328,7 +322,7 @@ export default function Portfolio() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-8 lg:mb-10"
+                        className={styles.featuredGrid}
                     >
                         {featured.map((project) => (
                             <FeaturedCard key={project.id} project={project} />
@@ -343,7 +337,7 @@ export default function Portfolio() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-50px" }}
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
+                        className={styles.regularGrid}
                     >
                         {regular.map((project) => (
                             <ProjectCard key={project.id} project={project} />
@@ -357,13 +351,17 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.5 }}
-                    className="text-center mt-12"
+                    className={styles.viewMore}
                 >
                     <a
                         href="https://github.com/gabrielng-rj99"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-outline text-sm"
+                        className={`${styles.btnOutline} ${styles.textSm}`}
+                        style={{
+                            borderColor: "var(--border-primary)",
+                            color: "var(--text-primary)",
+                        }}
                     >
                         View More on GitHub
                         <HiExternalLink size={16} />

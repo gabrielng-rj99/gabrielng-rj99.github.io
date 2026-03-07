@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX, HiDownload } from "react-icons/hi";
 import ThemeToggle from "./ThemeToggle";
+import styles from "./Navigation.module.css";
 
 const navLinks = [
-    { label: "About", href: "#about" },
+    { label: "About", href: "#about-me" },
     { label: "Experience", href: "#experience" },
     { label: "Certs", href: "#certifications" },
     { label: "Skills", href: "#skills" },
@@ -79,15 +80,14 @@ export default function Navigation() {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`app-nav fixed top-0 left-0 right-0 z-50 w-full flex justify-center transition-all duration-300 ${isScrolled ? "glass shadow-lg" : "bg-transparent"
-                }`}
+            className={`${styles.nav} glass ${isScrolled ? styles.navScrolled : ""}`}
         >
-            <div className="app-nav-container w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className={styles.navContainer}>
                 {/* Use a simple CSS Grid with 3 equal columns for perfect centering */}
-                <div className="app-nav-grid grid grid-cols-2 md:grid-cols-3 items-center h-16 md:h-20">
+                <div className={styles.navGrid}>
 
                     {/* Column 1: Logo / Home */}
-                    <div className="app-nav-home flex justify-start">
+                    <div className={styles.navHome}>
                         <a
                             href="#"
                             onClick={(e) => {
@@ -95,15 +95,14 @@ export default function Navigation() {
                                 window.scrollTo({ top: 0, behavior: "smooth" });
                                 setIsMobileMenuOpen(false);
                             }}
-                            className="text-lg font-bold tracking-tight no-theme-transition"
-                            style={{ color: "var(--accent-purple)" }}
+                            className={styles.logo}
                         >
                             Home
                         </a>
                     </div>
 
                     {/* Column 2: Centered Nav Links (Desktop) */}
-                    <div className="app-nav-links hidden md:flex justify-center gap-4 lg:gap-8">
+                    <div className={styles.navLinks}>
                         {navLinks.map((link) => {
                             const sectionId = link.href.replace("#", "");
                             const isActive = activeSection === sectionId;
@@ -113,19 +112,13 @@ export default function Navigation() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={(e) => handleNavClick(e, link.href)}
-                                    className={`app-nav-item relative px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 whitespace-nowrap ${isActive
-                                        ? "text-accent-purple"
-                                        : "text-text-tertiary hover:text-text-primary hover:bg-bg-card-hover"
-                                        }`}
+                                    className={`${styles.navItem} ${isActive ? styles.navItemActive : ""}`}
                                 >
                                     {link.label}
                                     {isActive && (
                                         <motion.span
                                             layoutId="nav-indicator"
-                                            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full"
-                                            style={{
-                                                background: "var(--accent-purple)",
-                                            }}
+                                            className={styles.navIndicator}
                                             transition={{
                                                 type: "spring",
                                                 stiffness: 350,
@@ -139,11 +132,11 @@ export default function Navigation() {
                     </div>
 
                     {/* Column 3: Right-aligned Tools (Desktop) */}
-                    <div className="app-nav-tools hidden md:flex justify-end items-center gap-4">
+                    <div className={styles.navTools}>
                         <a
                             href="/assets/download/Gabriel-Gomes_Curriculum-En.pdf"
                             download
-                            className="nav-download-btn"
+                            className={styles.downloadBtn}
                             title="Download CV"
                             aria-label="Download curriculum"
                         >
@@ -151,17 +144,17 @@ export default function Navigation() {
                             <span>CV</span>
                         </a>
 
-                        <div className="ml-1">
+                        <div className={styles.themeToggle}>
                             <ThemeToggle />
                         </div>
                     </div>
 
                     {/* Mobile: Tools + Hamburger */}
-                    <div className="flex md:hidden justify-end items-center gap-3">
+                    <div className={styles.mobileTools}>
                         <a
                             href="/assets/download/Gabriel-Gomes_Curriculum-En.pdf"
                             download
-                            className="nav-download-btn"
+                            className={styles.downloadBtn}
                             title="Download CV"
                             aria-label="Download curriculum"
                         >
@@ -173,8 +166,7 @@ export default function Navigation() {
                             onClick={() =>
                                 setIsMobileMenuOpen(!isMobileMenuOpen)
                             }
-                            className="p-1 rounded-lg transition-colors"
-                            style={{ color: "var(--text-secondary)" }}
+                            className={styles.menuToggle}
                             aria-label="Toggle mobile menu"
                         >
                             {isMobileMenuOpen ? (
@@ -195,10 +187,9 @@ export default function Navigation() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="md:hidden glass border-t overflow-hidden"
-                        style={{ borderColor: "var(--border-primary)" }}
+                        className={styles.mobileMenu}
                     >
-                        <div className="px-4 py-4 space-y-1">
+                        <div className={styles.mobileMenuContent}>
                             {navLinks.map((link, index) => {
                                 const sectionId = link.href.replace("#", "");
                                 const isActive = activeSection === sectionId;
@@ -213,10 +204,7 @@ export default function Navigation() {
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: index * 0.05 }}
-                                        className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive
-                                            ? "text-accent-purple bg-bg-card-hover"
-                                            : "text-text-tertiary hover:text-text-primary hover:bg-bg-card-hover"
-                                            }`}
+                                        className={`${styles.mobileNavItem} ${isActive ? styles.mobileNavItemActive : ""}`}
                                     >
                                         {link.label}
                                     </motion.a>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import experienceData from "../content/experience.json";
+import styles from "./Experience.module.css";
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -35,18 +36,18 @@ export default function Experience() {
     return (
         <section
             id="experience"
-            className="experience-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
+            className={styles.experienceSection}
         >
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={styles.container}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className="experience-header"
+                    className={styles.header}
                 >
-                    <h2 className="section-heading">Experience</h2>
-                    <div className="section-divider" />
+                    <h2 className={styles.headerTitle}>Experience</h2>
+                    <div className={styles.divider} />
                 </motion.div>
 
                 <motion.div
@@ -54,35 +55,35 @@ export default function Experience() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="experience-timeline"
+                    className={styles.timeline}
                 >
-                    <div className="timeline-line-desktop" />
-                    <div className="timeline-line-mobile" />
+                    <div className={styles.timelineLineDesktop} />
+                    <div className={styles.timelineLineMobile} />
 
                     {experienceData.map((job) => (
                         <motion.div
                             key={job.id}
                             variants={itemVariants}
-                            className="experience-job"
+                            className={styles.job}
                         >
-                            <div className="experience-job-desktop">
-                                <div className="experience-job-left">
-                                    <h3 className="job-role">{job.role}</h3>
-                                    <h4 className="job-company">
+                            <div className={styles.jobDesktop}>
+                                <div className={styles.jobLeft}>
+                                    <h3 className={styles.jobRole}>{job.role}</h3>
+                                    <h4 className={styles.jobCompany}>
                                         {job.company}
                                     </h4>
-                                    <h5 className="job-period">{job.period}</h5>
-                                    <h6 className="job-location">
+                                    <h5 className={styles.jobPeriod}>{job.period}</h5>
+                                    <h6 className={styles.jobLocation}>
                                         {job.location}
                                     </h6>
                                 </div>
 
-                                <div className="experience-job-right">
-                                    <div className="experience-timeline-dot">
-                                        <span className="experience-timeline-dot-inner" />
+                                <div className={styles.jobRight}>
+                                    <div className={styles.timelineDot}>
+                                        <span className={styles.timelineDotInner} />
                                     </div>
-                                    <div className="experience-highlight" />
-                                    <ul className="experience-list">
+                                    <div className={styles.highlight} />
+                                    <ul className={styles.jobList}>
                                         {job.description.map((item, i) => {
                                             const isSubItem =
                                                 item.startsWith("  -") ||
@@ -94,12 +95,12 @@ export default function Experience() {
                                             return (
                                                 <li
                                                     key={i}
-                                                    className={`experience-list-item ${isSubItem ? "sub-item" : ""}`}
+                                                    className={`${styles.jobListItem} ${isSubItem ? styles.subItem : ""}`}
                                                 >
                                                     <span
-                                                        className={`experience-bullet ${isSubItem ? "sub-bullet" : ""}`}
+                                                        className={`${styles.jobBullet} ${isSubItem ? styles.subBullet : ""}`}
                                                     />
-                                                    <span className="experience-text">
+                                                    <span className={styles.jobText}>
                                                         {cleanText}
                                                     </span>
                                                 </li>
@@ -111,28 +112,28 @@ export default function Experience() {
 
                             <motion.div
                                 variants={mobileItemVariants}
-                                className="experience-job-mobile"
+                                className={styles.jobMobile}
                             >
-                                <div className="experience-timeline-dot-mobile">
-                                    <span className="experience-timeline-dot-inner" />
+                                <div className={styles.timelineDotMobile}>
+                                    <span className={styles.timelineDotInner} />
                                 </div>
-                                <div className="experience-job-content-mobile">
-                                    <div className="experience-highlight-mobile" />
-                                    <h3 className="job-role-mobile">
+                                <div className={styles.jobContentMobile}>
+                                    <div className={styles.highlightMobile} />
+                                    <h3 className={styles.jobRoleMobile}>
                                         {job.role}
                                     </h3>
-                                    <h4 className="job-company-mobile">
+                                    <h4 className={styles.jobCompanyMobile}>
                                         {job.company}
                                     </h4>
-                                    <div className="job-meta-mobile">
-                                        <span className="job-period-mobile">
+                                    <div className={styles.jobMetaMobile}>
+                                        <span className={styles.jobPeriodMobile}>
                                             {job.period}
                                         </span>
-                                        <span className="job-location-mobile">
+                                        <span className={styles.jobLocationMobile}>
                                             {job.location}
                                         </span>
                                     </div>
-                                    <ul className="experience-list-mobile">
+                                    <ul className={styles.jobListMobile}>
                                         {job.description.map((item, i) => {
                                             const isSubItem =
                                                 item.startsWith("  -") ||
@@ -144,12 +145,12 @@ export default function Experience() {
                                             return (
                                                 <li
                                                     key={i}
-                                                    className={`experience-list-item-mobile ${isSubItem ? "sub-item" : ""}`}
+                                                    className={`${styles.jobListItemMobile} ${isSubItem ? styles.subItem : ""}`}
                                                 >
                                                     <span
-                                                        className={`experience-bullet-mobile ${isSubItem ? "sub-bullet" : ""}`}
+                                                        className={`${styles.jobBulletMobile} ${isSubItem ? styles.subBullet : ""}`}
                                                     />
-                                                    <span className="experience-text-mobile">
+                                                    <span className={styles.jobTextMobile}>
                                                         {cleanText}
                                                     </span>
                                                 </li>

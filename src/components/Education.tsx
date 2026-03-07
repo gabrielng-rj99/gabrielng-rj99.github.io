@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { HiAcademicCap, HiLocationMarker } from "react-icons/hi";
 import educationData from "../content/education.json";
+import styles from "./Education.module.css";
 
 const cardVariants = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -20,32 +21,31 @@ export default function Education() {
     return (
         <section
             id="education"
-            className="education-section section-glow-bg relative mt-32 md:mt-48 py-20 md:py-32"
-            
+            className={styles.educationSection}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={styles.container}>
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-20 md:mb-32"
+                    className={styles.header}
                 >
-                    <h2 className="section-heading">Education</h2>
-                    <div className="section-divider mt-3" />
+                    <h2 className={styles.heading}>Education</h2>
+                    <div className={`${styles.divider} ${styles.headerDivider}`} />
                 </motion.div>
 
                 {/* Horizontal Timeline */}
-                <div className="relative">
+                <div className={styles.timelineContainer}>
                     {/* Horizontal line connecting cards — desktop */}
                     <div
-                        className="hidden lg:block absolute top-18 left-[10%] right-[10%] h-px z-0"
+                        className={styles.horizontalLine}
                         style={{ background: "var(--border-muted)" }}
                     />
 
                     {/* Cards Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-12 relative z-10">
+                    <div className={styles.cardsGrid}>
                         {educationData.map((edu, index) => (
                             <motion.div
                                 key={edu.id}
@@ -54,11 +54,11 @@ export default function Education() {
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true, margin: "-60px" }}
-                                className="flex flex-col items-center"
+                                className={styles.cardWrapper}
                             >
                                 {/* Period Badge */}
                                 <div
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-4 shadow-sm"
+                                    className={styles.periodBadge}
                                     style={{
                                         background: "var(--accent-purple)",
                                         color: "#ffffff",
@@ -70,23 +70,23 @@ export default function Education() {
 
                                 {/* Degree */}
                                 <h3
-                                    className="text-center text-sm font-bold uppercase tracking-wide mb-4"
+                                    className={styles.degree}
                                     style={{ color: "var(--accent-purple)" }}
                                 >
                                     {edu.degree}
                                 </h3>
 
                                 {/* Timeline Dot — desktop only */}
-                                <div className="hidden lg:flex flex-col items-center mb-4">
+                                <div className={styles.timelineDotContainer}>
                                     <div
-                                        className="w-4 h-4 rounded-full border-2 flex items-center justify-center"
+                                        className={styles.timelineDotOuter}
                                         style={{
                                             borderColor: "var(--accent-purple)",
                                             background: "var(--bg-secondary)",
                                         }}
                                     >
                                         <div
-                                            className="w-2 h-2 rounded-full"
+                                            className={styles.timelineDotInner}
                                             style={{
                                                 background:
                                                     "var(--accent-purple)",
@@ -94,7 +94,7 @@ export default function Education() {
                                         />
                                     </div>
                                     <div
-                                        className="w-px h-5"
+                                        className={styles.timelineConnector}
                                         style={{
                                             background: "var(--border-muted)",
                                         }}
@@ -103,7 +103,7 @@ export default function Education() {
 
                                 {/* Card */}
                                 <div
-                                    className="w-full rounded-xl border p-5 md:p-6 card-hover flex-1"
+                                    className={styles.card}
                                     style={{
                                         background: "var(--bg-card)",
                                         borderColor: "var(--border-primary)",
@@ -111,7 +111,7 @@ export default function Education() {
                                 >
                                     {/* Institution */}
                                     <h4
-                                        className="text-base font-bold mb-1"
+                                        className={styles.institution}
                                         style={{ color: "var(--text-primary)" }}
                                     >
                                         {edu.institution}
@@ -119,27 +119,27 @@ export default function Education() {
 
                                     {/* Location */}
                                     <div
-                                        className="flex items-center gap-1.5 mb-4"
+                                        className={styles.location}
                                         style={{ color: "var(--text-muted)" }}
                                     >
                                         <HiLocationMarker size={14} />
-                                        <span className="text-xs">
+                                        <span className={styles.locationText}>
                                             {edu.location}
                                         </span>
                                     </div>
 
                                     {/* Description */}
-                                    <ul className="space-y-2 list-none p-0 m-0">
+                                    <ul className={styles.descriptionList}>
                                         {edu.description.map((item, i) => (
                                             <li
                                                 key={i}
-                                                className="text-sm leading-relaxed flex items-start gap-2.5"
+                                                className={styles.descriptionItem}
                                                 style={{
                                                     color: "var(--text-tertiary)",
                                                 }}
                                             >
                                                 <span
-                                                    className="mt-2 w-1.5 h-1.5 rounded-full shrink-0"
+                                                    className={styles.bullet}
                                                     style={{
                                                         background:
                                                             "var(--accent-purple)",
