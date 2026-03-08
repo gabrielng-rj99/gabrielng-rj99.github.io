@@ -19,23 +19,18 @@ const cardVariants = {
 
 export default function Education() {
     return (
-        <section
-            id="education"
-            className={`${styles.educationSection} section-glow-bg`}
-        >
-            <div className={`${styles.container} section-glow-bg`}>
+        <section id="education" className="section-wrapper section-glow-bg">
+            <div className="section-container section-glow-bg">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className={styles.header}
+                    className="section-header-lg"
                 >
-                    <h2 className={`${styles.heading}`}>Education</h2>
-                    <div
-                        className={`${styles.divider} ${styles.headerDivider}`}
-                    />
+                    <h2 className="section-heading">Education</h2>
+                    <div className="section-divider" />
                 </motion.div>
 
                 {/* Horizontal Timeline */}
@@ -60,7 +55,7 @@ export default function Education() {
                             >
                                 {/* Period Badge */}
                                 <div
-                                    className={styles.periodBadge}
+                                    className="period-text"
                                     style={{
                                         background: "var(--accent-purple)",
                                         color: "#ffffff",
@@ -105,7 +100,7 @@ export default function Education() {
 
                                 {/* Card */}
                                 <div
-                                    className={styles.card}
+                                    className="card-base"
                                     style={{
                                         background: "var(--bg-card)",
                                         borderColor: "var(--border-primary)",
@@ -113,7 +108,7 @@ export default function Education() {
                                 >
                                     {/* Institution */}
                                     <h4
-                                        className={styles.institution}
+                                        className="text-secondary"
                                         style={{ color: "var(--text-primary)" }}
                                     >
                                         {edu.institution}
@@ -135,15 +130,13 @@ export default function Education() {
                                         {edu.description.map((item, i) => (
                                             <li
                                                 key={i}
-                                                className={
-                                                    styles.descriptionItem
-                                                }
+                                                className="list-item-bullet"
                                                 style={{
                                                     color: "var(--text-tertiary)",
                                                 }}
                                             >
                                                 <span
-                                                    className={styles.bullet}
+                                                    className="list-bullet"
                                                     style={{
                                                         background:
                                                             "var(--accent-purple)",

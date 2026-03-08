@@ -36,18 +36,18 @@ export default function Experience() {
     return (
         <section
             id="experience"
-            className={`${styles.experienceSection}  section-glow-bg`}
+            className="section-wrapper section-glow-bg"
         >
-            <div className={styles.container}>
+            <div className="section-container">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className={styles.header}
+                    className="section-header"
                 >
-                    <h2 className={`${styles.headerTitle}`}>Experience</h2>
-                    <div className={styles.divider} />
+                    <h2 className="section-heading">Experience</h2>
+                    <div className="section-divider" />
                 </motion.div>
 
                 <motion.div
@@ -68,13 +68,13 @@ export default function Experience() {
                         >
                             <div className={styles.jobDesktop}>
                                 <div className={`${styles.jobLeft}`}>
-                                    <h3 className={styles.jobRole}>
+                                    <h3 className="role-title">
                                         {job.role}
                                     </h3>
-                                    <h4 className={styles.jobCompany}>
+                                    <h4 className="text-secondary">
                                         {job.company}
                                     </h4>
-                                    <h5 className={styles.jobPeriod}>
+                                    <h5 className="period-text">
                                         {job.period}
                                     </h5>
                                     <h6 className={styles.jobLocation}>
@@ -83,7 +83,7 @@ export default function Experience() {
                                 </div>
 
                                 <div className={`${styles.jobRight}`}>
-                                    <div className={styles.timelineDot}>
+                                    <div className={`timeline-dot ${styles.timelineDot}`}>
                                         <span
                                             className={styles.timelineDotInner}
                                         />
@@ -101,10 +101,10 @@ export default function Experience() {
                                             return (
                                                 <li
                                                     key={i}
-                                                    className={`${styles.jobListItem} ${isSubItem ? styles.subItem : ""}`}
+                                                    className={`list-item-bullet ${isSubItem ? styles.subItem : ""}`}
                                                 >
                                                     <span
-                                                        className={`${styles.jobBullet} ${isSubItem ? styles.subBullet : ""}`}
+                                                        className={`list-bullet ${isSubItem ? styles.subBullet : ""}`}
                                                     />
                                                     <span
                                                         className={
@@ -124,20 +124,20 @@ export default function Experience() {
                                 variants={mobileItemVariants}
                                 className={styles.jobMobile}
                             >
-                                <div className={styles.timelineDotMobile}>
+                                <div className={`timeline-dot ${styles.timelineDotMobile}`}>
                                     <span className={styles.timelineDotInner} />
                                 </div>
                                 <div className={styles.jobContentMobile}>
                                     <div className={styles.highlightMobile} />
-                                    <h3 className={styles.jobRoleMobile}>
+                                    <h3 className="role-title">
                                         {job.role}
                                     </h3>
-                                    <h4 className={styles.jobCompanyMobile}>
+                                    <h4 className="text-secondary">
                                         {job.company}
                                     </h4>
                                     <div className={styles.jobMetaMobile}>
                                         <span
-                                            className={styles.jobPeriodMobile}
+                                            className="period-text"
                                         >
                                             {job.period}
                                         </span>
@@ -159,10 +159,10 @@ export default function Experience() {
                                             return (
                                                 <li
                                                     key={i}
-                                                    className={`${styles.jobListItemMobile} ${isSubItem ? styles.subItem : ""}`}
+                                                    className={`list-item-bullet ${isSubItem ? styles.subItem : ""}`}
                                                 >
                                                     <span
-                                                        className={`${styles.jobBulletMobile} ${isSubItem ? styles.subBullet : ""}`}
+                                                        className={`list-bullet ${isSubItem ? styles.subBullet : ""}`}
                                                     />
                                                     <span
                                                         className={

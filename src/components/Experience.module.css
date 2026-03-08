@@ -1,62 +1,8 @@
-/* Experience Section Styles */
-.experienceSection {
-    position: relative;
-    margin-top: 2rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-}
+/* Experience Section Styles - Unique timeline-specific layout */
 
-@media (min-width: 768px) {
-    .experienceSection {
-        margin-top: 3rem;
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
-}
-
-.container {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-    .container {
-        padding: 0 1.5rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .container {
-        padding: 0 2rem;
-    }
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.headerTitle {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--text-primary);
-}
-
-@media (min-width: 768px) {
-    .headerTitle {
-        font-size: 2.5rem;
-    }
-}
-
-.divider {
-    width: 5rem;
-    height: 0.25rem;
-    background: linear-gradient(90deg, var(--accent-purple), var(--accent-magenta));
-    margin: 0.75rem auto 0;
-    border-radius: 9999px;
-}
+/* ============================================
+   Timeline Container
+   ============================================ */
 
 .timeline {
     position: relative;
@@ -92,7 +38,10 @@
     }
 }
 
-/* Job item */
+/* ============================================
+   Job Item
+   ============================================ */
+
 .job {
     margin-bottom: 3.5rem;
     cursor: default;
@@ -129,50 +78,19 @@
     transform: translateX(-12px);
 }
 
-.jobRole {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    margin-bottom: 0.25rem;
-    color: var(--text-primary);
-}
-
-.jobCompany {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
-
-.jobPeriod {
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-    color: var(--accent-purple);
-}
-
 .jobLocation {
     font-size: 0.875rem;
     color: var(--text-muted);
 }
 
-/* Timeline dot - desktop */
+/* Timeline dot positioning - desktop */
 .timelineDot {
     position: absolute;
     left: 0;
     top: 0.35rem;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-purple);
-    background: var(--bg-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    transition: all 0.3s ease;
     margin-left: -10px;
     transform-origin: center;
+    z-index: 100;
 }
 
 .timelineDotInner {
@@ -230,45 +148,6 @@
     margin: 0;
 }
 
-.jobListItem {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    transition: color 0.3s ease;
-}
-
-.jobListItem.subItem {
-    padding-left: 1.5rem;
-}
-
-.job:hover .jobListItem {
-    color: var(--text-primary);
-}
-
-/* Bullets */
-.jobBullet {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-purple);
-    margin-top: 0.5rem;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-.jobBullet.subBullet {
-    background: var(--accent-magenta);
-}
-
-.job:hover .jobBullet {
-    transform: scale(1.25);
-}
-
-/* Description text */
 .jobText {
     word-wrap: break-word;
 }
@@ -289,21 +168,12 @@
     }
 }
 
-/* Mobile dot */
+/* Mobile dot positioning */
 .timelineDotMobile {
     position: absolute;
     left: 24px;
     top: 8px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-purple);
-    background: var(--bg-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 100;
-    transition: all 0.3s ease;
 }
 
 .job:hover .timelineDotMobile {
@@ -334,31 +204,12 @@
     opacity: 1;
 }
 
-/* Mobile job info */
-.jobRoleMobile {
-    font-size: 1.125rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: var(--text-primary);
-}
-
-.jobCompanyMobile {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
-
 .jobMetaMobile {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
     font-size: 0.875rem;
     font-weight: 500;
-}
-
-.jobPeriodMobile {
-    color: var(--accent-purple);
 }
 
 .jobLocationMobile {
@@ -372,44 +223,31 @@
     margin: 0;
 }
 
-.jobListItemMobile {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.625rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    transition: color 0.3s ease;
+.jobTextMobile {
+    word-wrap: break-word;
 }
 
+/* ============================================
+   Sub-items (indented bullets)
+   ============================================ */
+
+.subItem {
+    padding-left: 1.5rem;
+}
+
+.subBullet {
+    background: var(--accent-magenta);
+}
+
+.job:hover .subBullet {
+    transform: scale(1.25);
+}
+
+/* Mobile sub-items */
 .jobListItemMobile.subItem {
     padding-left: 1rem;
 }
 
 .job:hover .jobListItemMobile {
     color: var(--text-primary);
-}
-
-/* Mobile bullets */
-.jobBulletMobile {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent-purple);
-    margin-top: 0.375rem;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-}
-
-.jobBulletMobile.subBullet {
-    background: var(--accent-magenta);
-}
-
-.job:hover .jobBulletMobile {
-    transform: scale(1.25);
-}
-
-.jobTextMobile {
-    word-wrap: break-word;
 }
