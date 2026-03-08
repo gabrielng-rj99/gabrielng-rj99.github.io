@@ -55,6 +55,7 @@
 .jobDesktop {
     display: none;
     align-items: flex-start;
+    position: relative;
 }
 
 @media (min-width: 768px) {
@@ -86,12 +87,12 @@
 /* Timeline dot positioning - desktop */
 .timelineDot {
     position: absolute;
-    left: 0;
+    left: 35%;
     top: 0.35rem;
     margin-left: -10px;
     transform-origin: center;
     z-index: 100;
-    transition: none;
+    transition: all 0.3s ease !important;
 }
 
 .timelineDotInner {
@@ -99,7 +100,7 @@
     height: 8px;
     border-radius: 50%;
     background: var(--accent-purple);
-    transition: none;
+    transition: all 0.3s ease !important;
 }
 
 .job:hover .timelineDotInner {
@@ -120,7 +121,7 @@
 
 /* Dot counter-movement to stay centered */
 .job:hover .timelineDot {
-    transform: scale(1.4) translateX(-6px);
+    transform: scale(1.4);
     box-shadow: 0 0 15px rgba(159, 0, 255, 0.6);
 }
 
@@ -177,11 +178,11 @@
     margin-left: -10px;
     transform-origin: center;
     z-index: 100;
-    transition: none;
+    transition: all 0.15s ease !important;
 }
 
 .job:hover .timelineDotMobile {
-    transform: scale(1.4) translateX(-6px);
+    transform: scale(1.4);
     box-shadow: 0 0 10px rgba(159, 0, 255, 0.5);
 }
 

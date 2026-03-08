@@ -82,12 +82,10 @@ export default function Experience() {
                                     </h6>
                                 </div>
 
+                                <div className={`timeline-dot ${styles.timelineDot}`}>
+                                    <span className={styles.timelineDotInner} />
+                                </div>
                                 <div className={`${styles.jobRight}`}>
-                                    <div className={`timeline-dot ${styles.timelineDot}`}>
-                                        <span
-                                            className={styles.timelineDotInner}
-                                        />
-                                    </div>
                                     <div className={styles.highlight} />
                                     <ul className={styles.jobList}>
                                         {job.description.map((item, i) => {
