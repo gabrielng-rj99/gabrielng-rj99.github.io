@@ -24,7 +24,7 @@ interface SkillCategory {
 function SkillTag({ item }: { item: SkillItem }) {
     return (
         <span
-            className={styles.tag}
+            className="badge"
             style={{
                 background: item.learning
                     ? "var(--bg-card)"
@@ -40,7 +40,7 @@ function SkillTag({ item }: { item: SkillItem }) {
         >
             {item.name}
             {item.learning && (
-                <FiBookOpen size={12} className={styles.tagIcon} />
+                <FiBookOpen size={12} style={{ opacity: 0.8 }} />
             )}
         </span>
     );
@@ -156,10 +156,11 @@ function SkillCard({ category }: { category: SkillCategory }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className={styles.card}
+            className="card-base"
             style={{
-                background: "var(--bg-card)",
-                borderColor: "var(--border-primary)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
             }}
         >
             <div
@@ -203,18 +204,18 @@ export default function Skills() {
     const categories = skillsData as SkillCategory[];
 
     return (
-        <section id="skills" className={styles.section}>
-            <div className={`${styles.container} section-glow-bg`}>
+        <section id="skills" className="section-wrapper">
+            <div className="section-container section-glow-bg">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className={styles.header}
+                    className="section-header-lg"
                 >
-                    <h2 className={`${styles.heading}`}>Skills</h2>
-                    <div className={styles.divider} />
+                    <h2 className="section-heading">Skills</h2>
+                    <div className="section-divider" />
                 </motion.div>
 
                 {/* Skills Grid — unified cards */}
