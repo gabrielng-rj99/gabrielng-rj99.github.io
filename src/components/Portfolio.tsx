@@ -90,14 +90,7 @@ function ProjectMedia({
 
 function TagPill({ label }: { label: string }) {
     return (
-        <span
-            className={styles.tag}
-            style={{
-                background: "var(--bg-tertiary)",
-                color: "var(--text-primary)",
-                borderColor: "var(--border-primary)",
-            }}
-        >
+        <span className="badge">
             {label}
         </span>
     );
@@ -144,7 +137,7 @@ function FeaturedCard({
                     className={styles.overlayContent}
                 >
                     <div
-                        className={`${styles.iconButton} ${styles.iconButtonFeatured}`}
+                        className="icon-btn"
                         style={{
                             background: "rgba(159, 0, 255, 0.2)",
                             borderColor: "var(--accent-purple)",
@@ -237,7 +230,7 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
                 }}
             >
                 <div
-                    className={`${styles.iconButton} ${styles.iconButtonRegular}`}
+                    className="icon-btn"
                     style={{
                         background: "rgba(159, 0, 255, 0.2)",
                         borderColor: "var(--accent-purple)",
@@ -293,20 +286,20 @@ export default function Portfolio() {
     const regular = portfolioData.filter((p) => !p.featured);
 
     return (
-        <section id="portfolio" className={`${styles.section} section-glow-bg`}>
-            <div className={`${styles.container}`}>
+        <section id="portfolio" className="section-wrapper section-glow-bg">
+            <div className="section-container">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.5 }}
-                    className={styles.header}
+                    className="section-header"
                 >
                     <h2 className="section-heading">Portfolio</h2>
                     <div className={`section-divider ${styles.mt3}`} />
                     <p
-                        className={`${styles.descriptionText}`}
+                        className="description-text"
                         style={{ color: "var(--text-tertiary)" }}
                     >
                         A selection of projects that showcase my skills across

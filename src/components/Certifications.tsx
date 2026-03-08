@@ -204,7 +204,7 @@ function CertificateCard({ certificate }: { certificate: Certificate }) {
         <motion.div
             variants={cardVariants}
             whileHover={{ y: -3 }}
-            className={`${styles.certificateCard}`}
+            className="card-base"
             style={{
                 background: "var(--bg-card)",
                 borderColor: "var(--border-primary)",
@@ -310,21 +310,21 @@ export default function Certifications() {
             {hasCertifications && (
                 <section
                     id="certifications"
-                    className={`${styles.section} section-glow-bg`}
+                    className="section-wrapper section-glow-bg"
                 >
-                    <div className={styles.container}>
+                    <div className="section-container">
                         {/* Section Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.5 }}
-                            className={styles.header}
+                            className="section-header-lg"
                         >
                             <h2 className="section-heading">Certifications</h2>
                             <div className="section-divider" />
                             <p
-                                className={`${styles.descriptionText}`}
+                                className="description-text"
                                 style={{ color: "var(--text-tertiary)" }}
                             >
                                 Industry certifications and professional badges
@@ -388,22 +388,22 @@ export default function Certifications() {
             {hasCertificates && (
                 <section
                     id="certificates"
-                    className={`${styles.section} section-glow-bg`}
+                    className="section-wrapper section-glow-bg"
                 >
-                    <div className={styles.container}>
+                    <div className="section-container">
                         {/* Section Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.5 }}
-                            className={styles.header}
+                            className="section-header-lg"
                         >
                             <h2 className="section-heading">Certificates</h2>
                             <div className="section-divider" />
 
                             <p
-                                className={`${styles.descriptionText}`}
+                                className="description-text"
                                 style={{ color: "var(--text-tertiary)" }}
                             >
                                 Courses, programs, and training completed
