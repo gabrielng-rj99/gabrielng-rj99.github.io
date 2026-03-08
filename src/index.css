@@ -451,6 +451,246 @@ img {
     box-shadow: 0 12px 40px var(--shadow-color);
 }
 
+/* ============================================
+   Global Component Patterns
+   ============================================ */
+
+/* Card base - common card styling */
+.card-base {
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--border-primary);
+    padding: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--bg-secondary);
+}
+
+.card-base:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--shadow-color);
+}
+
+@media (min-width: 768px) {
+    .card-base {
+        padding: 1.5rem;
+    }
+}
+
+/* Icon button - circular icon button */
+.icon-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-muted);
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+}
+
+/* Icon button arrow - icon inside icon button */
+.icon-btn-arrow {
+    width: 1rem;
+    height: 1rem;
+}
+
+@media (min-width: 768px) {
+    .icon-btn {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+/* Description text - centered description */
+.description-text {
+    font-size: 0.875rem;
+    line-height: 1.625;
+    text-align: center;
+    color: var(--text-tertiary);
+}
+
+@media (min-width: 768px) {
+    .description-text {
+        font-size: 1rem;
+    }
+}
+
+/* List item with bullet */
+.list-item-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.list-item-bullet:hover {
+    color: var(--text-primary);
+}
+
+/* Bullet point */
+.list-bullet {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Timeline dot */
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-purple);
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Badge / Pill */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border: 1px solid var(--border-muted);
+    color: var(--text-tertiary);
+}
+
+/* Role / Title text */
+.role-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+/* Secondary text (company/institution) */
+.text-secondary {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+/* Period / Meta text */
+.period-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent-purple);
+}
+
+/* ============================================
+   Global Section Patterns
+   ============================================ */
+
+/* Section wrapper - base for all sections */
+.section-wrapper {
+    position: relative;
+    margin-top: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .section-wrapper {
+        margin-top: 3rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
+/* Section container - main content container with responsive width */
+.section-container {
+    width: min(90vw, 72rem);
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+    .section-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+/* Section header - centered header with optional divider */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .section-header {
+        margin-bottom: 4rem;
+    }
+}
+
+/* Section header with large bottom margin */
+.section-header-lg {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .section-header-lg {
+        margin-bottom: 8rem;
+    }
+}
+
+/* Section glow background - subtle glow behind content */
+.section-glow-bg {
+    position: relative;
+}
+
+.section-glow-bg::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(139, 92, 246, 0.06) 0%,
+        rgba(139, 92, 246, 0.03) 40%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
 /* Hide scrollbar on specific containers */
 .hide-scrollbar {
     -ms-overflow-style: none;
@@ -601,10 +841,11 @@ section[id] {
 .section-glow-bg::before {
     content: "";
     position: absolute;
-    top: -1.5rem;
-    bottom: -1.5rem;
+    top: -2rem;
+    bottom: -2rem;
     left: 50%;
-    width: 100%;
+    width: 120%;
+    height: 110%;
     transform: translateX(-50%);
     background: var(--color-blue-600);
     -webkit-mask-image: linear-gradient(
@@ -621,7 +862,7 @@ section[id] {
         black 80%,
         transparent 100%
     );
-    filter: blur(100px);
+    filter: blur(80px);
     border-radius: 50px;
     z-index: -10;
     pointer-events: none;
