@@ -21,9 +21,9 @@ export default function Education() {
     return (
         <section
             id="education"
-            className={styles.educationSection}
+            className={`${styles.educationSection} section-glow-bg`}
         >
-            <div className={styles.container}>
+            <div className={`${styles.container} section-glow-bg`}>
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -32,8 +32,10 @@ export default function Education() {
                     transition={{ duration: 0.5 }}
                     className={styles.header}
                 >
-                    <h2 className={styles.heading}>Education</h2>
-                    <div className={`${styles.divider} ${styles.headerDivider}`} />
+                    <h2 className={`${styles.heading}`}>Education</h2>
+                    <div
+                        className={`${styles.divider} ${styles.headerDivider}`}
+                    />
                 </motion.div>
 
                 {/* Horizontal Timeline */}
@@ -133,7 +135,9 @@ export default function Education() {
                                         {edu.description.map((item, i) => (
                                             <li
                                                 key={i}
-                                                className={styles.descriptionItem}
+                                                className={
+                                                    styles.descriptionItem
+                                                }
                                                 style={{
                                                     color: "var(--text-tertiary)",
                                                 }}

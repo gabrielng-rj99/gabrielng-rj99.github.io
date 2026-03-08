@@ -99,7 +99,7 @@ export default function Navigation() {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-            const navHeight = window.innerWidth >= 768 ? 80 : 64;
+            const navHeight = window.innerWidth >= 768 ? 30 : 30;
             const targetPosition =
                 target.getBoundingClientRect().top + window.scrollY - navHeight;
             window.scrollTo({ top: targetPosition, behavior: "smooth" });

@@ -520,8 +520,8 @@ section[id] {
     font-weight: 800;
     color: var(--text-primary);
     text-transform: capitalize;
-    margin-top: 5rem;
-    margin-bottom: 3rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
     letter-spacing: -0.02em;
 }
 
@@ -593,7 +593,6 @@ section[id] {
 /* ============================================
    Section Glow Background
    ============================================ */
-
 .section-glow-bg {
     position: relative;
     z-index: 1;
@@ -602,32 +601,31 @@ section[id] {
 .section-glow-bg::before {
     content: "";
     position: absolute;
-    top: -2rem;
-    bottom: -2rem;
+    top: -1.5rem;
+    bottom: -1.5rem;
     left: 50%;
-    width: 60vw;
-    max-width: 800px;
+    width: 100%;
     transform: translateX(-50%);
-    background: var(--bg-primary);
+    background: var(--color-blue-600);
     -webkit-mask-image: linear-gradient(
-        to bottom,
+        ellipse at center,
         transparent 0%,
         black 20%,
         black 80%,
         transparent 100%
     );
     mask-image: linear-gradient(
-        to bottom,
+        ellipse at center,
         transparent 0%,
         black 20%,
         black 80%,
         transparent 100%
     );
-    filter: blur(40px);
-    border-radius: 100px;
-    z-index: -1;
+    filter: blur(100px);
+    border-radius: 50px;
+    z-index: -10;
     pointer-events: none;
-    opacity: var(--glow-opacity, 0.5);
+    opacity: var(--glow-opacity, 1);
 }
 
 .contact-section.section-glow-bg::before {

@@ -59,7 +59,9 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
                     type="button"
                     onClick={() => hasChildren && setIsOpen(!isOpen)}
                     className={`${styles.skillButton} ${
-                        hasChildren ? styles.skillButtonCursor : styles.skillButtonCursorDisabled
+                        hasChildren
+                            ? styles.skillButtonCursor
+                            : styles.skillButtonCursorDisabled
                     }`}
                     disabled={!hasChildren}
                     aria-expanded={hasChildren ? isOpen : undefined}
@@ -201,11 +203,8 @@ export default function Skills() {
     const categories = skillsData as SkillCategory[];
 
     return (
-        <section
-            id="skills"
-            className={styles.section}
-        >
-            <div className={styles.container}>
+        <section id="skills" className={styles.section}>
+            <div className={`${styles.container} section-glow-bg`}>
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -214,7 +213,7 @@ export default function Skills() {
                     transition={{ duration: 0.5 }}
                     className={styles.header}
                 >
-                    <h2 className={styles.heading}>Skills</h2>
+                    <h2 className={`${styles.heading}`}>Skills</h2>
                     <div className={styles.divider} />
                 </motion.div>
 
@@ -231,10 +230,10 @@ export default function Skills() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className={styles.legend}
+                    className={`${styles.legend} section-glow-bg`}
                 >
                     <span
-                        className={styles.legendTag}
+                        className={`${styles.legendTag}`}
                         style={{
                             background: "rgba(159, 0, 255, 0.07)",
                             color: "var(--accent-purple)",
@@ -245,7 +244,7 @@ export default function Skills() {
                         learning
                     </span>
                     <span
-                        className={styles.legendText}
+                        className={`${styles.legendText}`}
                         style={{ color: "var(--text-muted)" }}
                     >
                         — currently learning or never applied in production

@@ -138,8 +138,7 @@
     padding-top: 2rem;
     padding-bottom: 2.5rem;
     border-top: 1px solid;
-    background: var(--bg-primary);
-    border-color: var(--border-primary);
+    z-index: -100;
 }
 
 @media (min-width: 768px) {

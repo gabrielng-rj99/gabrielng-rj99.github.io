@@ -62,9 +62,11 @@
     width: 60px;
     height: 4px;
     border-radius: 2px;
-    background: linear-gradient(to right,
-            var(--accent-gradient-start),
-            var(--accent-gradient-end));
+    background: linear-gradient(
+        to right,
+        var(--accent-gradient-start),
+        var(--accent-gradient-end)
+    );
     margin: 0.75rem auto 0 auto;
 }
 
@@ -121,9 +123,11 @@
 
 /* Gradient text */
 .textGradient {
-    background: linear-gradient(135deg,
-            var(--accent-gradient-start) 0%,
-            var(--accent-gradient-end) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--accent-gradient-start) 0%,
+        var(--accent-gradient-end) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -200,8 +204,11 @@
     inset: -0.5rem;
     border-radius: 1rem;
     opacity: 0.4;
-    blur: 2rem;
-    background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+    background: linear-gradient(
+        135deg,
+        var(--accent-gradient-start),
+        var(--accent-gradient-end)
+    );
     transition: opacity 0.5s ease;
 }
 

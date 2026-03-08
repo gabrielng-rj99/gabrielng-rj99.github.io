@@ -27,7 +27,10 @@ export default function Contact() {
     return (
         <>
             {/* Contact Section */}
-            <section id="contact" className={`${styles.section} section-glow-bg`}>
+            <section
+                id="contact"
+                className={`${styles.section} section-glow-bg`}
+            >
                 <div className={styles.wrapper}>
                     {/* Section Header */}
                     <motion.div
@@ -40,7 +43,7 @@ export default function Contact() {
                         <h2 className="section-heading">Contact Me</h2>
                         <div className={`section-divider ${styles.divider}`} />
                         <p
-                            className={styles.description}
+                            className={`${styles.description}`}
                             style={{ color: "var(--text-tertiary)" }}
                         >
                             Feel free to reach out — whether it's about a
@@ -54,7 +57,7 @@ export default function Contact() {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-60px" }}
-                        className={styles.grid}
+                        className={`${styles.grid}`}
                     >
                         {aboutData.socials.map((social) => (
                             <motion.a
@@ -65,7 +68,7 @@ export default function Contact() {
                                 variants={cardVariants}
                                 whileHover={{ y: -6, scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={styles.card}
+                                className={`${styles.card}`}
                             >
                                 <img
                                     src={social.image}
@@ -88,7 +91,7 @@ export default function Contact() {
             </section>
 
             {/* Footer */}
-            <footer className={styles.footer}>
+            <footer className={`${styles.footer} section-glow-bg`}>
                 <div className={styles.footerWrapper}>
                     <div className={styles.footerContent}>
                         {/* Copyright */}

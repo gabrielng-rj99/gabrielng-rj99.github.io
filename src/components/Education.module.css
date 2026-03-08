@@ -1,35 +1,16 @@
 /* Education Section */
 .educationSection {
     position: relative;
-    margin-top: 2rem;
-    padding: 3rem 0;
+    margin-top: 4rem;
+    padding: 0rem 0;
     z-index: 1;
 }
 
 @media (min-width: 768px) {
     .educationSection {
-        margin-top: 3rem;
-        padding: 4rem 0;
+        margin-top: 4rem;
+        padding: 0rem 0;
     }
-}
-
-.educationSection::before {
-    content: "";
-    position: absolute;
-    top: -2rem;
-    bottom: -2rem;
-    left: 50%;
-    width: 70vw;
-    max-width: 800px;
-    transform: translateX(-50%);
-    background: var(--bg-primary);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-    filter: blur(40px);
-    border-radius: 100px;
-    z-index: -1;
-    pointer-events: none;
-    opacity: var(--glow-opacity, 0.5);
 }
 
 /* Container */
@@ -57,7 +38,7 @@
 /* Section Header */
 .header {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 0rem;
 }
 
 @media (min-width: 768px) {
@@ -72,9 +53,17 @@
     font-weight: 800;
     color: var(--text-primary);
     text-transform: capitalize;
-    margin-top: 5rem;
-    margin-bottom: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 0rem;
     letter-spacing: -0.02em;
+}
+
+.subheading {
+    font-size: 1.125rem;
+    color: var(--text-tertiary);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* Section Divider */
@@ -82,9 +71,11 @@
     width: 60px;
     height: 4px;
     border-radius: 2px;
-    background: linear-gradient(to right,
-            var(--accent-gradient-start),
-            var(--accent-gradient-end));
+    background: linear-gradient(
+        to right,
+        var(--accent-gradient-start),
+        var(--accent-gradient-end)
+    );
     margin: 0 auto;
 }
 

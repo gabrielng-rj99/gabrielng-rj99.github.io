@@ -1,14 +1,14 @@
 /* Portfolio Section */
 .section {
     position: relative;
-    margin-top: 2rem;
+    margin-top: 8rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .section {
-        margin-top: 3rem;
+        margin-top: 8rem;
         padding-top: 4rem;
         padding-bottom: 4rem;
     }

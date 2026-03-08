@@ -62,10 +62,10 @@ function CertificationCard({
     const Wrapper = hasCredential ? motion.a : motion.div;
     const wrapperProps = hasCredential
         ? {
-            href: certification.credentialUrl,
-            target: "_blank",
-            rel: "noopener noreferrer",
-        }
+              href: certification.credentialUrl,
+              target: "_blank",
+              rel: "noopener noreferrer",
+          }
         : {};
 
     return (
@@ -84,10 +84,11 @@ function CertificationCard({
                         ? "rgba(0, 200, 83, 0.1)"
                         : "rgba(159, 0, 255, 0.1)",
                     color: isEarned ? "#00c853" : "var(--accent-purple)",
-                    border: `1px solid ${isEarned
-                        ? "rgba(0, 200, 83, 0.2)"
-                        : "rgba(159, 0, 255, 0.2)"
-                        }`,
+                    border: `1px solid ${
+                        isEarned
+                            ? "rgba(0, 200, 83, 0.2)"
+                            : "rgba(159, 0, 255, 0.2)"
+                    }`,
                 }}
             >
                 {isEarned ? (
@@ -127,9 +128,15 @@ function CertificationCard({
                         const target = e.currentTarget;
                         target.style.display = "none";
                         const parent = target.parentElement;
-                        if (parent && !parent.querySelector("[data-badge-fallback]")) {
+                        if (
+                            parent &&
+                            !parent.querySelector("[data-badge-fallback]")
+                        ) {
                             const fallback = document.createElement("div");
-                            fallback.setAttribute("data-badge-fallback", "true");
+                            fallback.setAttribute(
+                                "data-badge-fallback",
+                                "true",
+                            );
                             fallback.className = styles.badgeFallback;
                             fallback.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-purple); opacity: 0.4;"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.77 4 4 0 0 1 0 6.76 4 4 0 0 1-4.78 4.77 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>`;
                             parent.appendChild(fallback);
@@ -197,7 +204,7 @@ function CertificateCard({ certificate }: { certificate: Certificate }) {
         <motion.div
             variants={cardVariants}
             whileHover={{ y: -3 }}
-            className={styles.certificateCard}
+            className={`${styles.certificateCard}`}
             style={{
                 background: "var(--bg-card)",
                 borderColor: "var(--border-primary)",
@@ -303,7 +310,7 @@ export default function Certifications() {
             {hasCertifications && (
                 <section
                     id="certifications"
-                    className={`${styles.section} ${styles.sectionGlowBg}`}
+                    className={`${styles.section} section-glow-bg`}
                 >
                     <div className={styles.container}>
                         {/* Section Header */}
@@ -317,7 +324,7 @@ export default function Certifications() {
                             <h2 className="section-heading">Certifications</h2>
                             <div className="section-divider" />
                             <p
-                                className={styles.descriptionText}
+                                className={`${styles.descriptionText}`}
                                 style={{ color: "var(--text-tertiary)" }}
                             >
                                 Industry certifications and professional badges
@@ -331,7 +338,7 @@ export default function Certifications() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
-                            className={styles.badgesGrid}
+                            className={`${styles.badgesGrid}`}
                             style={badgeGridStyle}
                         >
                             {certifications.map((cert) => (
@@ -348,23 +355,27 @@ export default function Certifications() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.4 }}
-                            className={styles.legend}
+                            className={`${styles.legend} section-glow-bg`}
                         >
                             <div className={styles.legendItem}>
-                                <span className={`${styles.legendBadge} ${styles.legendBadgeEarned}`}>
+                                <span
+                                    className={`${styles.legendBadge} ${styles.legendBadgeEarned}`}
+                                >
                                     <HiBadgeCheck size={10} />
                                     Earned
                                 </span>
-                                <span className={styles.legendText}>
+                                <span className={`${styles.legendText}`}>
                                     — certified
                                 </span>
                             </div>
                             <div className={styles.legendItem}>
-                                <span className={`${styles.legendBadge} ${styles.legendBadgePlanned}`}>
+                                <span
+                                    className={`${styles.legendBadge} ${styles.legendBadgePlanned}`}
+                                >
                                     <FiClock size={10} />
                                     Planned
                                 </span>
-                                <span className={styles.legendText}>
+                                <span className={`${styles.legendText}`}>
                                     — in progress or next goal
                                 </span>
                             </div>
@@ -377,7 +388,7 @@ export default function Certifications() {
             {hasCertificates && (
                 <section
                     id="certificates"
-                    className={`${styles.section} ${styles.sectionGlowBg}`}
+                    className={`${styles.section} section-glow-bg`}
                 >
                     <div className={styles.container}>
                         {/* Section Header */}
@@ -390,8 +401,9 @@ export default function Certifications() {
                         >
                             <h2 className="section-heading">Certificates</h2>
                             <div className="section-divider" />
+
                             <p
-                                className={styles.descriptionText}
+                                className={`${styles.descriptionText}`}
                                 style={{ color: "var(--text-tertiary)" }}
                             >
                                 Courses, programs, and training completed

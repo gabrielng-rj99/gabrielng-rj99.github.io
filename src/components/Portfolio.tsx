@@ -152,9 +152,7 @@ function FeaturedCard({
                     >
                         <HiExternalLink size={22} color="white" />
                     </div>
-                    <p className={styles.overlayText}>
-                        {project.description}
-                    </p>
+                    <p className={styles.overlayText}>{project.description}</p>
                 </motion.div>
             </div>
 
@@ -166,7 +164,9 @@ function FeaturedCard({
                     borderColor: "var(--border-secondary)",
                 }}
             >
-                <div className={`${styles.titleRow} ${styles.titleRowFeatured}`}>
+                <div
+                    className={`${styles.titleRow} ${styles.titleRowFeatured}`}
+                >
                     <h3
                         className={`${styles.title} ${styles.titleFeatured}`}
                         style={{ color: "var(--text-primary)" }}
@@ -293,8 +293,8 @@ export default function Portfolio() {
     const regular = portfolioData.filter((p) => !p.featured);
 
     return (
-        <section id="portfolio" className={`${styles.section} ${styles.sectionGlowBg}`}>
-            <div className={styles.container}>
+        <section id="portfolio" className={`${styles.section} section-glow-bg`}>
+            <div className={`${styles.container}`}>
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -306,7 +306,7 @@ export default function Portfolio() {
                     <h2 className="section-heading">Portfolio</h2>
                     <div className={`section-divider ${styles.mt3}`} />
                     <p
-                        className={styles.descriptionText}
+                        className={`${styles.descriptionText}`}
                         style={{ color: "var(--text-tertiary)" }}
                     >
                         A selection of projects that showcase my skills across

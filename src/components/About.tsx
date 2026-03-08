@@ -75,7 +75,7 @@ export default function About() {
                             className={styles.aboutTextColumn}
                         >
                             {/* Greeting */}
-                            <div className={styles.aboutGreeting}>
+                            <div className={`${styles.aboutGreeting}`}>
                                 {greetingLines.map((line, i) => (
                                     <h3
                                         key={i}
@@ -121,7 +121,10 @@ export default function About() {
                             {/* Bio */}
                             <div className={styles.aboutBio}>
                                 {bioParas.map((para, i) => (
-                                    <p key={i} className={styles.aboutBioText}>
+                                    <p
+                                        key={i}
+                                        className={`${styles.aboutBioText}`}
+                                    >
                                         {para}
                                     </p>
                                 ))}

@@ -36,7 +36,7 @@ export default function Experience() {
     return (
         <section
             id="experience"
-            className={styles.experienceSection}
+            className={`${styles.experienceSection}  section-glow-bg`}
         >
             <div className={styles.container}>
                 <motion.div
@@ -46,7 +46,7 @@ export default function Experience() {
                     transition={{ duration: 0.5 }}
                     className={styles.header}
                 >
-                    <h2 className={styles.headerTitle}>Experience</h2>
+                    <h2 className={`${styles.headerTitle}`}>Experience</h2>
                     <div className={styles.divider} />
                 </motion.div>
 
@@ -55,7 +55,7 @@ export default function Experience() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className={styles.timeline}
+                    className={`${styles.timeline}`}
                 >
                     <div className={styles.timelineLineDesktop} />
                     <div className={styles.timelineLineMobile} />
@@ -67,20 +67,26 @@ export default function Experience() {
                             className={styles.job}
                         >
                             <div className={styles.jobDesktop}>
-                                <div className={styles.jobLeft}>
-                                    <h3 className={styles.jobRole}>{job.role}</h3>
+                                <div className={`${styles.jobLeft}`}>
+                                    <h3 className={styles.jobRole}>
+                                        {job.role}
+                                    </h3>
                                     <h4 className={styles.jobCompany}>
                                         {job.company}
                                     </h4>
-                                    <h5 className={styles.jobPeriod}>{job.period}</h5>
+                                    <h5 className={styles.jobPeriod}>
+                                        {job.period}
+                                    </h5>
                                     <h6 className={styles.jobLocation}>
                                         {job.location}
                                     </h6>
                                 </div>
 
-                                <div className={styles.jobRight}>
+                                <div className={`${styles.jobRight}`}>
                                     <div className={styles.timelineDot}>
-                                        <span className={styles.timelineDotInner} />
+                                        <span
+                                            className={styles.timelineDotInner}
+                                        />
                                     </div>
                                     <div className={styles.highlight} />
                                     <ul className={styles.jobList}>
@@ -100,7 +106,11 @@ export default function Experience() {
                                                     <span
                                                         className={`${styles.jobBullet} ${isSubItem ? styles.subBullet : ""}`}
                                                     />
-                                                    <span className={styles.jobText}>
+                                                    <span
+                                                        className={
+                                                            styles.jobText
+                                                        }
+                                                    >
                                                         {cleanText}
                                                     </span>
                                                 </li>
@@ -126,10 +136,14 @@ export default function Experience() {
                                         {job.company}
                                     </h4>
                                     <div className={styles.jobMetaMobile}>
-                                        <span className={styles.jobPeriodMobile}>
+                                        <span
+                                            className={styles.jobPeriodMobile}
+                                        >
                                             {job.period}
                                         </span>
-                                        <span className={styles.jobLocationMobile}>
+                                        <span
+                                            className={styles.jobLocationMobile}
+                                        >
                                             {job.location}
                                         </span>
                                     </div>
@@ -150,7 +164,11 @@ export default function Experience() {
                                                     <span
                                                         className={`${styles.jobBulletMobile} ${isSubItem ? styles.subBullet : ""}`}
                                                     />
-                                                    <span className={styles.jobTextMobile}>
+                                                    <span
+                                                        className={
+                                                            styles.jobTextMobile
+                                                        }
+                                                    >
                                                         {cleanText}
                                                     </span>
                                                 </li>
