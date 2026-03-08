@@ -62,10 +62,10 @@ function CertificationCard({
     const Wrapper = hasCredential ? motion.a : motion.div;
     const wrapperProps = hasCredential
         ? {
-              href: certification.credentialUrl,
-              target: "_blank",
-              rel: "noopener noreferrer",
-          }
+            href: certification.credentialUrl,
+            target: "_blank",
+            rel: "noopener noreferrer",
+        }
         : {};
 
     return (
@@ -84,22 +84,19 @@ function CertificationCard({
                         ? "rgba(0, 200, 83, 0.1)"
                         : "rgba(159, 0, 255, 0.1)",
                     color: isEarned ? "#00c853" : "var(--accent-purple)",
-                    border: `1px solid ${
-                        isEarned
-                            ? "rgba(0, 200, 83, 0.2)"
-                            : "rgba(159, 0, 255, 0.2)"
-                    }`,
+                    border: `1px solid ${isEarned
+                        ? "rgba(0, 200, 83, 0.2)"
+                        : "rgba(159, 0, 255, 0.2)"
+                        }`,
                 }}
             >
                 {isEarned ? (
                     <>
                         <HiBadgeCheck size={12} />
-                        <span>Earned</span>
                     </>
                 ) : (
                     <>
                         <FiClock size={10} />
-                        <span>Planned</span>
                     </>
                 )}
             </div>
@@ -297,11 +294,11 @@ export default function Certifications() {
 
     // Build grid style dynamically
     const badgeGridStyle = {
-        gridTemplateColumns: `repeat(${badgeCols}, 1fr)`,
+        gridTemplateColumns: `repeat(${badgeCols}, auto)`,
     } as React.CSSProperties;
 
     const certGridStyle = {
-        gridTemplateColumns: `repeat(${certCols}, 1fr)`,
+        gridTemplateColumns: `repeat(${certCols}, minmax(280px, 1fr))`,
     } as React.CSSProperties;
 
     return (
