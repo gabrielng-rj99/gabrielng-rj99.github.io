@@ -278,27 +278,25 @@ export default function Certifications() {
     const hasCertifications = certifications.length > 0;
     const hasCertificates = certificates.length > 0;
 
-    // Calculate columns: max 6, but use actual count if less
-    // If more than 6, calculate equal distribution across rows
-    const MAX_COLS = 6;
-    const calcCols = (count: number) => {
-        if (count <= MAX_COLS) return count;
-        // For 7-8 items: use 4 cols (4+3 or 4+4)
-        // For 9-12 items: use 6 cols (distribute evenly)
-        const rows = Math.ceil(count / MAX_COLS);
+    // Calculate columns
+    // If more than max, calculate equal distribution across rows
+    const calcCols = (count: number, maxCols: number) => {
+        if (count <= maxCols) return count;
+        // Distribute evenly
+        const rows = Math.ceil(count / maxCols);
         return Math.ceil(count / rows);
     };
 
-    const badgeCols = calcCols(certifications.length);
-    const certCols = calcCols(certificates.length);
+    const badgeCols = calcCols(certifications.length, 6);
+    const certCols = calcCols(certificates.length, 4);
 
-    // Build grid style dynamically
+    // Build grid style dynamically via CSS Variables to allow media queries
     const badgeGridStyle = {
-        gridTemplateColumns: `repeat(${badgeCols}, auto)`,
+        "--grid-cols": badgeCols,
     } as React.CSSProperties;
 
     const certGridStyle = {
-        gridTemplateColumns: `repeat(${certCols}, minmax(280px, 1fr))`,
+        "--grid-cols": certCols,
     } as React.CSSProperties;
 
     return (

@@ -40,6 +40,11 @@ export default function Education() {
                         className={styles.horizontalLine}
                         style={{ background: "var(--border-muted)" }}
                     />
+                    {/* Vertical line connecting cards — mobile */}
+                    <div
+                        className={styles.verticalLine}
+                        style={{ background: "var(--border-muted)" }}
+                    />
 
                     {/* Cards Grid */}
                     <div className={styles.cardsGrid}>
@@ -53,25 +58,28 @@ export default function Education() {
                                 viewport={{ once: true, margin: "-60px" }}
                                 className={styles.cardWrapper}
                             >
-                                {/* Period Badge */}
-                                <div
-                                    className={`badge period-text ${styles.periodBadge}`}
-                                    style={{
-                                        background: "var(--accent-purple)",
-                                        color: "#ffffff",
-                                    }}
-                                >
-                                    <HiAcademicCap size={16} />
-                                    {edu.period}
-                                </div>
+                                {/* Header Area to align heights */}
+                                <div className={styles.cardHeader}>
+                                    {/* Period Badge */}
+                                    <div
+                                        className={`badge period-text ${styles.periodBadge}`}
+                                        style={{
+                                            background: "var(--accent-purple)",
+                                            color: "#ffffff",
+                                        }}
+                                    >
+                                        <HiAcademicCap size={16} />
+                                        {edu.period}
+                                    </div>
 
-                                {/* Degree */}
-                                <h3
-                                    className={styles.degree}
-                                    style={{ color: "var(--accent-purple)" }}
-                                >
-                                    {edu.degree}
-                                </h3>
+                                    {/* Degree */}
+                                    <h3
+                                        className={styles.degree}
+                                        style={{ color: "var(--accent-purple)" }}
+                                    >
+                                        {edu.degree}
+                                    </h3>
+                                </div>
 
                                 {/* Timeline Dot — desktop only */}
                                 <div className={styles.timelineDotContainer}>

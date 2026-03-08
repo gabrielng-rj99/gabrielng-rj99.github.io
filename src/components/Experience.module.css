@@ -91,6 +91,7 @@
     margin-left: -10px;
     transform-origin: center;
     z-index: 100;
+    transition: none;
 }
 
 .timelineDotInner {
@@ -98,7 +99,7 @@
     height: 8px;
     border-radius: 50%;
     background: var(--accent-purple);
-    transition: background 0.3s ease;
+    transition: none;
 }
 
 .job:hover .timelineDotInner {
@@ -173,11 +174,14 @@
     position: absolute;
     left: 24px;
     top: 8px;
+    margin-left: -10px;
+    transform-origin: center;
     z-index: 100;
+    transition: none;
 }
 
 .job:hover .timelineDotMobile {
-    transform: scale(1.5);
+    transform: scale(1.4) translateX(-6px);
     box-shadow: 0 0 10px rgba(159, 0, 255, 0.5);
 }
 

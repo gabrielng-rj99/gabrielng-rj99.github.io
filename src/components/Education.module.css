@@ -7,16 +7,31 @@
 .horizontalLine {
     display: none;
     position: absolute;
-    top: 4.5rem;
-    left: 10%;
+    top: 6.5rem;
+    left: 0;
     right: 10%;
     height: 1px;
+    z-index: 0;
+}
+
+/* Vertical Line - Mobile Only */
+.verticalLine {
+    display: block;
+    position: absolute;
+    top: 3rem;
+    bottom: 0;
+    left: 24px;
+    width: 1px;
     z-index: 0;
 }
 
 @media (min-width: 1024px) {
     .horizontalLine {
         display: block;
+    }
+
+    .verticalLine {
+        display: none;
     }
 }
 
@@ -46,7 +61,32 @@
 .cardWrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 3.5rem;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .cardWrapper {
+        align-items: center;
+        padding-left: 0;
+    }
+}
+
+/* Card Header Sync */
+.cardHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 4rem;
+}
+
+@media (min-width: 1024px) {
+    .cardHeader {
+        align-items: center;
+        height: 6rem;
+    }
 }
 
 /* Period Badge */
@@ -62,25 +102,37 @@
 
 /* Degree */
 .degree {
-    text-align: center;
+    text-align: left;
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Timeline Dot - Desktop Only */
+@media (min-width: 1024px) {
+    .degree {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Timeline Dot */
 .timelineDotContainer {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    position: absolute;
+    left: 24px;
+    top: 1rem;
+    margin-left: -8px;
 }
 
 @media (min-width: 1024px) {
     .timelineDotContainer {
-        display: flex;
+        position: static;
+        margin-left: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -101,8 +153,15 @@
 }
 
 .timelineConnector {
+    display: none;
     width: 1px;
     height: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+    .timelineConnector {
+        display: block;
+    }
 }
 
 /* Location */
