@@ -27,25 +27,19 @@ export default function Contact() {
     return (
         <>
             {/* Contact Section */}
-            <section
-                id="contact"
-                className={`${styles.section} section-glow-bg`}
-            >
-                <div className={styles.wrapper}>
+            <section id="contact" className="section-wrapper section-glow-bg">
+                <div className="section-container">
                     {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.5 }}
-                        className={styles.header}
+                        className="section-header"
                     >
                         <h2 className="section-heading">Contact Me</h2>
-                        <div className={`section-divider ${styles.divider}`} />
-                        <p
-                            className={`${styles.description}`}
-                            style={{ color: "var(--text-tertiary)" }}
-                        >
+                        <div className="section-divider" />
+                        <p className="description-text">
                             Feel free to reach out — whether it's about a
                             project, collaboration, or just to say hello.
                         </p>
@@ -92,7 +86,7 @@ export default function Contact() {
 
             {/* Footer */}
             <footer className={`${styles.footer} section-glow-bg`}>
-                <div className={styles.footerWrapper}>
+                <div className="section-container">
                     <div className={styles.footerContent}>
                         {/* Copyright */}
                         <p
@@ -112,7 +106,7 @@ export default function Contact() {
                             }
                             whileHover={{ y: -3, scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            className={styles.scrollButton}
+                            className="icon-btn"
                             aria-label="Scroll to top"
                             title="Back to top"
                         >
@@ -122,7 +116,7 @@ export default function Contact() {
                                 viewBox="0 0 24 24"
                                 strokeWidth={2.5}
                                 stroke="currentColor"
-                                className={styles.arrowIcon}
+                                className="icon-btn-arrow"
                             >
                                 <path
                                     strokeLinecap="round"
