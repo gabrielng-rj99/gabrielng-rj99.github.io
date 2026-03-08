@@ -12,62 +12,17 @@
     width: 100%;
     position: relative;
     margin-top: 2rem;
+    /* Vertical padding - horizontal handled by .section-container */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .aboutMeContainer {
         margin-top: 3rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
-}
-
-/* Inner container */
-.aboutMeInner {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 3rem 1rem 3rem 1.5rem;
-}
-
-@media (min-width: 640px) {
-    .aboutMeInner {
-        padding: 3rem 1.5rem 3rem 1.5rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .aboutMeInner {
-        padding: 4rem 1.5rem 4rem 1.5rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .aboutMeInner {
-        padding: 4rem 2rem 4rem 2rem;
-    }
-}
-
-/* Section header */
-.aboutHeader {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 768px) {
-    .aboutHeader {
-        margin-bottom: 4rem;
-    }
-}
-
-/* Section divider */
-.sectionDivider {
-    width: 60px;
-    height: 4px;
-    border-radius: 2px;
-    background: linear-gradient(
-        to right,
-        var(--accent-gradient-start),
-        var(--accent-gradient-end)
-    );
-    margin: 0.75rem auto 0 auto;
 }
 
 /* Content grid */
@@ -159,24 +114,6 @@
     align-items: center;
     gap: 0.75rem;
     margin-top: 2rem;
-}
-
-/* Social icon link */
-.aboutSocialLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    border: 1px solid var(--border-muted);
-    color: var(--text-muted);
-    transition: all 0.3s ease;
-}
-
-.aboutSocialLink:hover {
-    border-color: var(--accent-purple);
-    color: var(--accent-purple);
 }
 
 /* Image column */

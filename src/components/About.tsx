@@ -46,19 +46,17 @@ export default function About() {
                 id="about-me"
                 className={`${styles.aboutMeContainer} section-glow-bg`}
             >
-                <div className={styles.aboutMeInner}>
+                <div className="section-container">
                     {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-80px" }}
                         transition={{ duration: 0.5 }}
-                        className={styles.aboutHeader}
+                        className="section-header"
                     >
                         <h2 className="section-heading">About Me</h2>
-                        <div
-                            className={`${styles.sectionDivider} section-divider`}
-                        />
+                        <div className="section-divider" />
                     </motion.div>
 
                     {/* Content Grid */}
@@ -143,7 +141,7 @@ export default function About() {
                                         rel="noopener noreferrer"
                                         aria-label={social.name}
                                         title={social.name}
-                                        className={styles.aboutSocialLink}
+                                        className="icon-btn"
                                         whileHover={{
                                             scale: 1.15,
                                             borderColor: "var(--accent-purple)",
