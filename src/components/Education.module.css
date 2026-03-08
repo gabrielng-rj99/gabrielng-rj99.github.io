@@ -49,6 +49,17 @@
     align-items: center;
 }
 
+/* Period Badge */
+.periodBadge {
+    padding: 0.35rem 0.8rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
 /* Degree */
 .degree {
     text-align: center;

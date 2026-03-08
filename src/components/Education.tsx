@@ -55,7 +55,7 @@ export default function Education() {
                             >
                                 {/* Period Badge */}
                                 <div
-                                    className="period-text"
+                                    className={`badge period-text ${styles.periodBadge}`}
                                     style={{
                                         background: "var(--accent-purple)",
                                         color: "#ffffff",
