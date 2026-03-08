@@ -20,8 +20,7 @@
 
 /* Container */
 .navContainer {
-    width: 100%;
-    max-width: 80rem;
+    width: min(90vw, 72rem);
     padding-left: 1rem;
     padding-right: 1rem;
 }

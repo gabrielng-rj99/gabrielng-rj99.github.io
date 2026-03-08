@@ -39,9 +39,7 @@ function SkillTag({ item }: { item: SkillItem }) {
             title={item.learning ? `${item.name} (learning)` : item.name}
         >
             {item.name}
-            {item.learning && (
-                <FiBookOpen size={12} style={{ opacity: 0.8 }} />
-            )}
+            {item.learning && <FiBookOpen size={12} style={{ opacity: 0.8 }} />}
         </span>
     );
 }
@@ -204,8 +202,8 @@ export default function Skills() {
     const categories = skillsData as SkillCategory[];
 
     return (
-        <section id="skills" className="section-wrapper">
-            <div className="section-container section-glow-bg">
+        <section id="skills" className="section-wrapper section-glow-bg">
+            <div className="section-container">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

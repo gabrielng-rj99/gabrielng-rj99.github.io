@@ -462,7 +462,9 @@ img {
     border-style: solid;
     border-color: var(--border-primary);
     padding: 1.25rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     background: var(--bg-secondary);
 }
 
@@ -847,7 +849,7 @@ section[id] {
     width: 120%;
     height: 110%;
     transform: translateX(-50%);
-    background: var(--color-blue-600);
+    background: var(--bg-primary);
     -webkit-mask-image: linear-gradient(
         ellipse at center,
         transparent 0%,
