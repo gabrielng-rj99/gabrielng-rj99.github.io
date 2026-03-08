@@ -54,8 +54,8 @@ export default function ParticleBackground() {
         // ============================================================
         const moveSpeed = 2; // Velocidade angular da órbita (1-2 = divertido, não muito rápido)
         const attractEnable = false; // true = ativa / false = desativa
-        const attractRotateX = 1000; // Raio máximo de oscilação no eixo X (px)
-        const attractRotateY = 1000; // Raio máximo de oscilação no eixo Y (px)
+        const attractRotateX = 1200; // Raio máximo de oscilação no eixo X (px)
+        const attractRotateY = 600; // Raio máximo de oscilação no eixo Y (px)
 
         return {
             fullScreen: {
