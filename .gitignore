@@ -34,9 +34,6 @@ pnpm-debug.log*
 # Vite
 vite.config.ts.timestamp-*
 
-# Old assets (migrated to public/)
-/assets/
-
 # IA files
 CLAUDE.md
 .claude
