@@ -70,7 +70,16 @@
         {
             "name": "Client Hub Open Project (CHOP)",
             "description": "Plataforma de gestão de clientes e contratos com Backend em Go e Frontend em React. Destaques: Autenticação JWT com assinatura por usuário, Rate Limiting (Token Bucket), Logs de Auditoria com diffs, RBAC, Docker-first e testes com Pytest.",
-            "tech_stack": ["Go", "Golang", "React", "PostgreSQL", "Docker", "Dockerfile", "JWT", "Nginx"],
+            "tech_stack": [
+                "Go",
+                "Golang",
+                "React",
+                "PostgreSQL",
+                "Docker",
+                "Dockerfile",
+                "JWT",
+                "Nginx"
+            ],
             "links": [
                 "https://github.com/gabrielng-rj99/Client-Hub-Open-Project"
             ]
@@ -79,9 +88,7 @@
             "name": "pdf2md - PDF to Markdown",
             "description": "Conversão .pdf para .md preservando imagens com filtros, como em rodapés, imagens em branco, etc.",
             "tech_stack": ["Python", "Docker", "React"],
-            "links": [
-                "https://github.com/gabrielng-rj99/pdf2md"
-            ]
+            "links": ["https://github.com/gabrielng-rj99/pdf2md"]
         },
         {
             "name": "Self-hosting Homelab",
@@ -95,16 +102,22 @@
                 "Nextcloud",
                 "VLAN",
                 "Zero Trust",
-                "Nginx",
-                "Proxmox VE",
-                "TrueNAS Core"
+                "Nginx"
             ],
             "links": []
         },
         {
             "name": "Personal Website (GitHub Pages)",
             "description": "Portfolio pessoal desenvolvido em React 19 com TypeScript e CSS Modules. Deploy automatizado via GitHub Actions com lint, type-check e build. tsParticles para background interativo, Framer Motion para animações, e Theme Toggle para modo claro/escuro.",
-            "tech_stack": ["React", "TypeScript", "CSS Modules", "Vite", "GitHub Actions", "tsParticles", "Framer Motion"],
+            "tech_stack": [
+                "React",
+                "TypeScript",
+                "CSS Modules",
+                "Vite",
+                "GitHub Actions Workflow",
+                "tsParticles",
+                "Framer Motion"
+            ],
             "links": [
                 "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io"
             ]
@@ -148,109 +161,211 @@
         }
     ],
     "skills": {
-        "programming": [
-            "Golang",
-            "Python",
-            "JavaScript (React, Node.js)",
-            "Shell Script (Bash, PowerShell)",
-            "SQL (PostgreSQL, MySQL, MariaDB, SQLite)",
-            "HTML5/CSS3",
-            "API REST/RESTful",
-            "JSON/XML",
-            "JWT (JSON Web Tokens)",
-            "Expressões Regulares (Regex)",
-            "ETL",
-            "Unit Testing (Jest, Pytest)",
-            "Load Testing (Teste de Carga)",
-            "Web Scraping (Selenium, BeautifulSoup, Pillow (PIL), pytesseract)",
-            "Pandas, NumPy, SciPy, Matplotlib",
-            "Requirements Analysis",
-            "Agile (Scrum) & Waterfall"
-        ],
-        "DevOps & SRE": [
-            "AWS (EC2, S3, RDS, CloudWatch, VPC, IAM, FinOps, Cloud Practitioner)",
-            "Docker e Containerização",
-            "Kubernetes (Labs)",
-            "CI/CD Pipelines (GitHub Actions, Jenkins)",
-            "Terraform (IaC)",
-            "Ansible (Automação)",
-            "Git/GitFlow",
-            "ELK Stack (Elasticsearch, Logstash, Kibana)",
-            "Grafana",
-            "Prometheus",
-            "Zabbix (com Custom Scripts)",
-            "Graylog",
-            "Wazuh (SIEM/XDR)",
-            "Twingate (Zero Trust)",
-            "Nginx (Web Server & Reverse Proxy)",
-            "Apache (Web Server)",
-            "Caddy (Reverse Proxy com Auto-HTTPS)",
-            "Load Balancers (AWS ALB, Nginx)",
-            "OpenSSH",
-            "OpenVPN",
-            "WireGuard",
-            "Samba & Active Directory",
-            "Domain Controller",
-            "CIFS/SMB",
-            "FTP/SFTP",
-            "Cron Jobs/Systemd",
-            "LVM",
-            "File Permissions (Chmod/Chown)",
-            "TCP/IP",
-            "DNS & DNS Server (BIND, AdGuard Home)",
-            "DHCP",
-            "VPN/Zero Trust",
-            "SSL/TLS Certificates",
-            "Firewall (iptables, nftables, UFW)",
-            "WAF",
-            "IDS/IPS",
-            "IAM (Identity & Access Management)",
-            "Active Directory Hardening",
-            "Vulnerability Scanning",
-            "Penetration Testing",
-            "XSS/SQL Injection Protection"
-        ],
-        "databases": ["PostgreSQL", "MySQL", "MariaDB", "SQLite", "SQL Server", "MongoDB", "Redis"],
-        "tools": [
-            "Virtualização (VirtualBox, KVM, VMware ESXi, Proxmox VE, Hyper-V)",
-            "Linux (Ubuntu, Debian, RHEL/CentOS, Kali)",
-            "Windows Server",
-            "TrueNAS Core",
-            "Web Servers (Nginx, Apache, Caddy)",
-            "Reverse Proxy (Nginx, Caddy)",
-            "TCP/IP & Networking",
-            "DNS (BIND, AdGuard Home)",
-            "DHCP",
-            "VPN (WireGuard, OpenVPN, Twingate)",
-            "FTP/SFTP & SSH",
-            "Cron Jobs/Systemd",
-            "LVM & Storage",
-            "File Permissions (Chmod/Chown)",
-            "Samba & CIFS/SMB",
-            "GPO & Active Directory",
-            "Domain Controller",
-            "Zabbix (Custom Scripts)",
-            "Graylog (Log Management)",
-            "Prometheus & Grafana",
-            "ELK Stack",
-            "Tracing & Observability",
-            "Alerting & Incident Response",
-            "System Health Checks",
-            "Optimization & Mathematical Modeling",
-            "GLPI (Gestão de Serviços/Chamados)",
-            "MCP Servers (Model Context Protocol)",
-            "LLM Automation & Token Optimization"
-        ]
-    },
-    "languages": [
-        {
-            "language": "Português",
-            "level": "Nativo"
+        "programming": {
+            "backend": {
+                "Golang": "Client Hub Open Project (CHOP)",
+                "Python": "pdf2md, Aeontech, Campanha Eleitoral"
+            },
+            "api": {
+                "API REST/RESTful": "Client Hub Open Project (CHOP)",
+                "JSON/XML": "Client Hub Open Project (CHOP)"
+            },
+            "scripting": {
+                "Shell Script (Bash, PowerShell)": "Aeontech"
+            },
+            "frontend": {
+                "JavaScript (React)": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Personal Website (GitHub Pages)",
+                "HTML5/CSS3": "Personal Website (GitHub Pages)"
+            },
+            "query": {
+                "SQL": "Client Hub Open Project (CHOP), Campanha Eleitoral"
+            },
+            "data": {
+                "Pandas, NumPy, SciPy, Matplotlib": "Campanha Eleitoral",
+                "ETL": "Campanha Eleitoral"
+            },
+            "scraping": {
+                "Web Scraping": "pdf2md",
+                "Selenium, BeautifulSoup, Pillow (PIL), pytesseract": "pdf2md",
+                "Playwright": ""
+            },
+            "other": {
+                "Expressões Regulares (Regex)": "pdf2md"
+            },
+            "auth": {
+                "JWT (JSON Web Tokens)": "Client Hub Open Project (CHOP)"
+            },
+            "testing": {
+                "Unit Testing": "Client Hub Open Project",
+                "Pytest": "Client Hub Open Project",
+                "Jest": "Personal Website (GitHub Pages)",
+                "Load Testing(Teste de Carga)": ""
+            },
+            "methodology": {
+                "Requirements Analysis": "",
+                "Agile (Scrum) & Waterfall": ""
+            }
         },
-        {
-            "language": "Inglês",
-            "level": "C1"
-        }
-    ],
-    "certifications": ["AWS Cloud Practitioner"]
+
+        "databases": {
+            "sql": {
+                "PostgreSQL": "Client Hub Open Project (CHOP)",
+                "MySQL": "",
+                "MariaDB": "",
+                "SQLite": "",
+                "SQL Server": ""
+            },
+            "nosql": {
+                "MongoDB": "",
+                "Redis": ""
+            }
+        },
+        "infra": {
+            "hypervisors": {
+                "VirtualBox": "Self-hosting Homelab",
+                "KVM": "",
+                "VMware ESXi": "",
+                "Proxmox VE": "Self-hosting Homelab",
+                "Hyper-V": "",
+                "TrueNAS": "Self-hosting Homelab"
+            },
+            "os": {
+                "linux": {
+                    "Ubuntu": "Aeontech, Self-hosting Homelab",
+                    "Ubuntu LTS": "Aeontech, Self-hosting Homelab",
+                    "Debian": "Self-hosting Homelab",
+                    "CentOS": "",
+                    "RHEL": "",
+                    "Oracle Linux": "",
+                    "AlmaLinux": "",
+                    "Rocky Linux": "",
+                    "Kali Linux": ""
+                },
+                "windows": {
+                    "Windows Server 2008": "",
+                    "Windows Server 2012 R2": "Aeontech",
+                    "Windows Server 2016": "Aeontech",
+                    "Windows Server 2019": "Aeontech",
+                    "Windows Server 2022": "Aeontech",
+                    "Windows Server 2025": ""
+                }
+            },
+            "cloud": {
+                "aws": {
+                    "Cloud Practitioner": "certification",
+                    "AWS Cloud Practitioner": "certification",
+                    "EC2": "Compass UOL",
+                    "S3": "Compass UOL",
+                    "RDS": "Compass UOL",
+                    "CloudWatch": "Compass UOL",
+                    "VPC": "Aeontech",
+                    "IAM": "Aeontech",
+                    "FinOps": "Aeontech"
+                }
+            },
+            "containers": {
+                "Docker": "pdf2md - PDF to Markdown, Self-hosting Homelab, Aeontech",
+                "Podman": "",
+                "Kubernetes (EKS, K3s)": "Compass UOL"
+            },
+
+            "devops": {
+                "CI/CD Pipelines (GitHub Actions, Jenkins)": "Compass UOL, Personal Website",
+                "Terraform (IaC)": "",
+                "Ansible (Automação)": "",
+                "Git/GitFlow": "Compass UOL, Client Hub Open Project"
+            },
+            "monitoring": {
+                "logs": {
+                    "ELK Stack (Elasticsearch, Logstash, Kibana)": "",
+                    "Graylog": "Aeontech"
+                },
+                "metrics": {
+                    "Grafana": "Compass UOL",
+                    "Prometheus": "Compass UOL",
+                    "Zabbix (com Custom Scripts)": "Aeontech, Compass UOL"
+                },
+                "tracing": {
+                    "Tracing & Observability": "Compass UOL"
+                },
+                "alerting": {
+                    "Alerting & Incident Response": "Aeontech",
+                    "System Health Checks": "Aeontech, Compass UOL"
+                }
+            },
+            "security": {
+                "defensive": {
+                    "Wazuh (SIEM/XDR)": "Aeontech",
+                    "IAM (Identity & Access Management)": "Aeontech",
+                    "Active Directory Hardening": "Aeontech",
+                    "Vulnerability Scanning": "Aeontech"
+                },
+                "offensive": {
+                    "Penetration Testing": ""
+                },
+                "network": {
+                    "Firewall (iptables, nftables, UFW)": "Aeontech, Self-hosting Homelab",
+                    "WAF": "",
+                    "IDS/IPS": "Aeontech",
+                    "SSL/TLS Certificates": "Self-hosting Homelab"
+                },
+                "app": {
+                    "XSS/SQL Injection Protection": ""
+                }
+            },
+            "networking": {
+                "protocols": {
+                    "TCP/IP": "",
+                    "DNS & DNS Server (Active Directory, AdGuard Home)": "Aeontech, Self-hosting Homelab",
+                    "DHCP": "Aeontech"
+                },
+                "services": {
+                    "Nginx (Web Server & Reverse Proxy)": "Compass UOL, Client Hub Open Project",
+                    "Apache (Web Server)": "Compass UOL",
+                    "Caddy (Reverse Proxy com Auto-HTTPS)": "Self-hosting Homelab",
+                    "Load Balancers (AWS ALB, Nginx)": "Compass UOL"
+                },
+                "vpn": {
+                    "Twingate VPN (Zero Trust)": "Self-hosting Homelab",
+                    "OpenVPN": "",
+                    "WireGuard": ""
+                },
+                "remote_access": {
+                    "OpenSSH": "Aeontech, Self-hosting Homelab",
+                    "FTP/SFTP": "Aeontech"
+                },
+                "directory": {
+                    "GPO & Active Directory": "Aeontech",
+                    "Domain Controller": "Aeontech"
+                }
+            },
+            "storage": {
+                "file_sharing": {
+                    "Samba & CIFS/SMB": "Self-hosting Homelab"
+                },
+                "storage_sys": {
+                    "LVM & Storage": "Self-hosting Homelab",
+                    "TrueNAS": "Self-hosting Homelab"
+                },
+                "permissions": {
+                    "File Permissions (Chmod/Chown)": "Aeontech, Self-hosting Homelab"
+                },
+                "itsm": {
+                    "GLPI (Gestão de Serviços/Chamados)": "Aeontech"
+                }
+            }
+        },
+
+        "languages": [
+            {
+                "language": "Português",
+                "level": "Nativo"
+            },
+            {
+                "language": "Inglês",
+                "level": "C1"
+            }
+        ],
+        "certifications": ["AWS Cloud Practitioner"]
+    }
 }
