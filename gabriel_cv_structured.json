@@ -1,0 +1,256 @@
+{
+    "id": "gabriel-2026-03",
+    "meta": {
+        "source_pdf": "Gabriel-Gomes_Curriculo_Pt-Br.pdf",
+        "extraction_date": "2026-02-04T00:00:00Z"
+    },
+    "personal": {
+        "name": "Gabriel Gomes",
+        "title": "Engenheiro de Software",
+        "summary": "Este campo deve ser ajustado dinamicamente conforme a vaga alvo, destacando as competências e experiências mais relevantes para cada oportunidade. Exemplo: para vagas DevSecOps, enfatizar segurança e automação; para SRE, destacar observabilidade e infraestrutura escalável.",
+        "contact": {
+            "phone": "+55 21 99159-5073",
+            "email": "gabrielng-rj99@proton.me",
+            "website": "http://gabrielng-rj99.github.io/",
+            "linkedin": "https://www.linkedin.com/in/gabrielng-rj99/",
+            "whatsapp_link": "http://wa.me/5521991595073"
+        },
+        "location": ""
+    },
+    "experience": [
+        {
+            "company": "Aeontech",
+            "title": "Analista de TI II",
+            "start_date": "2025-05",
+            "end_date": "Atual",
+            "location": "",
+            "description": "",
+            "highlights": [
+                "Redução de Custos: Arquitetura e execução da migração de serviços da AWS para infraestrutura local (On-Premise), gerando uma economia de 80% nos custos mensais.",
+                "Detecção de Fraude (Graylog): Implementação de Graylog integrado ao Firewall e Active Directory via Syslog para detectar e mitigar uma fraude em pagamentos diários ocorrendo em Tempo Real (Real-time).",
+                "Segurança Defensiva: Implementação de Wazuh como solução de SIEM/XDR para monitoramento de segurança dos endpoints, detecção de vulnerabilidades e conformidade.",
+                "Observabilidade Avançada e API: Desenvolvimento de integrações personalizadas via API do Zabbix para monitoramento de entidades não-nativas, incluindo automação de checagem de expiração de domínios, validade de licenças e correlação de alertas do Wazuh.",
+                "Automação de Servidores e AD: Criação de scripts em Shell Script e Python para extração completa de usuários, caminhos e dados do Active Directory e Zabbix, além de relatórios automatizados via Cron Jobs.",
+                "Aprimoramento de Monitoramento: Identificação e correção de gaps nos processos de monitoramento, com implementação de melhorias para aumento da cobertura e eficiência.",
+                "Padronização de Documentação: Elaboração e atualização da documentação dos padrões de nomeação de hosts e display-names, promovendo consistência e clareza nos processos.",
+                "Sustentação de Aplicações Web: Diagnóstico e correção de bugs em sites em produção, garantindo a disponibilidade e estabilidade dos serviços.",
+                "Gerenciamento de Deploy: Execução de deploys de aplicações legadas via FTP, assegurando a continuidade das entregas enquanto se planeja a modernização."
+            ]
+        },
+        {
+            "company": "Compass UOL",
+            "title": "Estagiário em DevSecOps & Cloud",
+            "start_date": "2024-11",
+            "end_date": "2025-04",
+            "location": "",
+            "description": "",
+            "highlights": [
+                "AWS (EC2, S3, RDS, CloudWatch): Gerenciamento de instâncias, storage e monitoramento de cloud.",
+                "Web Servers: Configuração e manutenção de Nginx e Apache como web servers e reverse proxies.",
+                "Load Balancers: Configuração de balanceamento de carga para distribuição de tráfego.",
+                "CI/CD: Construção de pipelines de integração e entrega contínua.",
+                "Monitoramento: Implementação de métricas e automação com Grafana, Zabbix e Prometheus.",
+                "Containerização: Estudos e laboratórios práticos com Docker e orquestração com Kubernetes."
+            ]
+        },
+        {
+            "company": "Campanha Eleitoral (temporário)",
+            "title": "Engenheiro de Dados",
+            "start_date": "2024-06",
+            "end_date": "2024-10",
+            "location": "",
+            "description": "",
+            "highlights": [
+                "Administração de banco de dados e criação de scripts ETL em Python.",
+                "Automatização da geração de relatórios de pesquisas eleitorais e do sistema de comunicação."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "name": "Client Hub Open Project (CHOP)",
+            "description": "Plataforma de gestão de clientes e contratos com Backend em Go e Frontend em React. Destaques: Autenticação JWT com assinatura por usuário, Rate Limiting (Token Bucket), Logs de Auditoria com diffs, RBAC, Docker-first e testes com Pytest.",
+            "tech_stack": ["Go", "Golang", "React", "PostgreSQL", "Docker", "Dockerfile", "JWT", "Nginx"],
+            "links": [
+                "https://github.com/gabrielng-rj99/Client-Hub-Open-Project"
+            ]
+        },
+        {
+            "name": "pdf2md - PDF to Markdown",
+            "description": "Conversão .pdf para .md preservando imagens com filtros, como em rodapés, imagens em branco, etc.",
+            "tech_stack": ["Python", "Docker", "React"],
+            "links": [
+                "https://github.com/gabrielng-rj99/pdf2md"
+            ]
+        },
+        {
+            "name": "Self-hosting Homelab",
+            "description": "Ecossistema self-hosted completo implementado em infraestrutura própria: VLAN dedicada com Twingate (Zero Trust) para acesso remoto seguro; Caddy como reverse proxy com auto-HTTPS; AdGuard Home para DNS recursivo com bloqueio de trackers e ads; Nextcloud para nuvem pessoal (arquivos, contacts, calendar); Trilium para notas e conhecimento; pdf2md e Client Hub self-hosted; Gerenciamento via Docker Compose e systemd; Firewall com iptables/nftables para microsegmentação.",
+            "tech_stack": [
+                "Twingate VPN",
+                "Docker",
+                "Docker Compose",
+                "Caddy",
+                "AdGuard Home",
+                "Nextcloud",
+                "VLAN",
+                "Zero Trust",
+                "Nginx",
+                "Proxmox VE",
+                "TrueNAS Core"
+            ],
+            "links": []
+        },
+        {
+            "name": "Personal Website (GitHub Pages)",
+            "description": "Portfolio pessoal desenvolvido em React 19 com TypeScript e CSS Modules. Deploy automatizado via GitHub Actions com lint, type-check e build. tsParticles para background interativo, Framer Motion para animações, e Theme Toggle para modo claro/escuro.",
+            "tech_stack": ["React", "TypeScript", "CSS Modules", "Vite", "GitHub Actions", "tsParticles", "Framer Motion"],
+            "links": [
+                "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io"
+            ]
+        }
+    ],
+    "articles": [
+        {
+            "title": "Grep vs RipGrep: Desempenho",
+            "description": "Benchmark comparando grep vs ripgrep, demonstrando que ripgrep é 9-23x mais rápido através de paralelismo em Rust. Testes com hyperfine mostram ripgrep escalando eficientemente com núcleos CPU adicionais.",
+            "tags": ["CLI", "Performance", "Rust", "Benchmark"],
+            "link": "https://www.linkedin.com/pulse/grep-vs-ripgrep-desempenho-gabriel-gomes-b9tef/"
+        },
+        {
+            "title": "Análise Série História Brasileirão 2003~2022",
+            "description": "Análise estatística de 20 anos do Campeonato Brasileiro detectando padrões de desempenho dos clubes.",
+            "tags": ["Data Analysis", "Pandas", "Statistics"],
+            "link": "https://drive.google.com/file/d/1I1GDrJ2dbHAhiWR2j7tE8QQeMKUvVZ31/view"
+        }
+    ],
+    "education": [
+        {
+            "institution": "UNINTER – Centro Universitário Internacional",
+            "degree": "Bacharel em Engenharia de Software",
+            "start_year": 2024,
+            "end_year": 2028,
+            "details": ""
+        },
+        {
+            "institution": "UFRJ – Universidade Federal do Rio de Janeiro",
+            "degree": "Bacharel em Engenharia Mecânica",
+            "start_year": 2017,
+            "end_year": 2022,
+            "details": ""
+        },
+        {
+            "institution": "Colégio Pedro II - São Cristóvão",
+            "degree": "Educação Básica",
+            "start_year": 2010,
+            "end_year": 2016,
+            "details": ""
+        }
+    ],
+    "skills": {
+        "programming": [
+            "Golang",
+            "Python",
+            "JavaScript (React, Node.js)",
+            "Shell Script (Bash, PowerShell)",
+            "SQL (PostgreSQL, MySQL, MariaDB, SQLite)",
+            "HTML5/CSS3",
+            "API REST/RESTful",
+            "JSON/XML",
+            "JWT (JSON Web Tokens)",
+            "Expressões Regulares (Regex)",
+            "ETL",
+            "Unit Testing (Jest, Pytest)",
+            "Load Testing (Teste de Carga)",
+            "Web Scraping (Selenium, BeautifulSoup, Pillow (PIL), pytesseract)",
+            "Pandas, NumPy, SciPy, Matplotlib",
+            "Requirements Analysis",
+            "Agile (Scrum) & Waterfall"
+        ],
+        "DevOps & SRE": [
+            "AWS (EC2, S3, RDS, CloudWatch, VPC, IAM, FinOps, Cloud Practitioner)",
+            "Docker e Containerização",
+            "Kubernetes (Labs)",
+            "CI/CD Pipelines (GitHub Actions, Jenkins)",
+            "Terraform (IaC)",
+            "Ansible (Automação)",
+            "Git/GitFlow",
+            "ELK Stack (Elasticsearch, Logstash, Kibana)",
+            "Grafana",
+            "Prometheus",
+            "Zabbix (com Custom Scripts)",
+            "Graylog",
+            "Wazuh (SIEM/XDR)",
+            "Twingate (Zero Trust)",
+            "Nginx (Web Server & Reverse Proxy)",
+            "Apache (Web Server)",
+            "Caddy (Reverse Proxy com Auto-HTTPS)",
+            "Load Balancers (AWS ALB, Nginx)",
+            "OpenSSH",
+            "OpenVPN",
+            "WireGuard",
+            "Samba & Active Directory",
+            "Domain Controller",
+            "CIFS/SMB",
+            "FTP/SFTP",
+            "Cron Jobs/Systemd",
+            "LVM",
+            "File Permissions (Chmod/Chown)",
+            "TCP/IP",
+            "DNS & DNS Server (BIND, AdGuard Home)",
+            "DHCP",
+            "VPN/Zero Trust",
+            "SSL/TLS Certificates",
+            "Firewall (iptables, nftables, UFW)",
+            "WAF",
+            "IDS/IPS",
+            "IAM (Identity & Access Management)",
+            "Active Directory Hardening",
+            "Vulnerability Scanning",
+            "Penetration Testing",
+            "XSS/SQL Injection Protection"
+        ],
+        "databases": ["PostgreSQL", "MySQL", "MariaDB", "SQLite", "SQL Server", "MongoDB", "Redis"],
+        "tools": [
+            "Virtualização (VirtualBox, KVM, VMware ESXi, Proxmox VE, Hyper-V)",
+            "Linux (Ubuntu, Debian, RHEL/CentOS, Kali)",
+            "Windows Server",
+            "TrueNAS Core",
+            "Web Servers (Nginx, Apache, Caddy)",
+            "Reverse Proxy (Nginx, Caddy)",
+            "TCP/IP & Networking",
+            "DNS (BIND, AdGuard Home)",
+            "DHCP",
+            "VPN (WireGuard, OpenVPN, Twingate)",
+            "FTP/SFTP & SSH",
+            "Cron Jobs/Systemd",
+            "LVM & Storage",
+            "File Permissions (Chmod/Chown)",
+            "Samba & CIFS/SMB",
+            "GPO & Active Directory",
+            "Domain Controller",
+            "Zabbix (Custom Scripts)",
+            "Graylog (Log Management)",
+            "Prometheus & Grafana",
+            "ELK Stack",
+            "Tracing & Observability",
+            "Alerting & Incident Response",
+            "System Health Checks",
+            "Optimization & Mathematical Modeling",
+            "GLPI (Gestão de Serviços/Chamados)",
+            "MCP Servers (Model Context Protocol)",
+            "LLM Automation & Token Optimization"
+        ]
+    },
+    "languages": [
+        {
+            "language": "Português",
+            "level": "Nativo"
+        },
+        {
+            "language": "Inglês",
+            "level": "C1"
+        }
+    ],
+    "certifications": ["AWS Cloud Practitioner"]
+}
