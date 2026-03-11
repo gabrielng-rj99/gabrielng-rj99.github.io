@@ -7,7 +7,7 @@
     "personal": {
         "name": "Gabriel Gomes",
         "title": "Engenheiro de Software",
-        "summary": "Este campo deve ser ajustado dinamicamente conforme a vaga alvo, destacando as competências e experiências mais relevantes para cada oportunidade. Exemplo: para vagas DevSecOps, enfatizar segurança e automação; para SRE, destacar observabilidade e infraestrutura escalável.",
+        "summary": "Engenheiro de Software com experiência em Backend, DevSecOps e infraestrutura. Especializado em desenvolvimento de APIs com Go, automação com Python, e implementação de soluções de segurança e monitoramento. Atuação diversificada abrangendo migração de cloud para on-premise, detecção de fraudes em tempo real, e construção de sistemas escaláveis com containerização.",
         "contact": {
             "phone": "+55 21 99159-5073",
             "email": "gabrielng-rj99@proton.me",
@@ -15,7 +15,7 @@
             "linkedin": "https://www.linkedin.com/in/gabrielng-rj99/",
             "whatsapp_link": "http://wa.me/5521991595073"
         },
-        "location": ""
+        "location": "Rio de Janeiro, Brasil"
     },
     "experience": [
         {
@@ -23,8 +23,8 @@
             "title": "Analista de TI II",
             "start_date": "2025-05",
             "end_date": "Atual",
-            "location": "",
-            "description": "",
+            "location": "Rio de Janeiro, Brasil",
+            "description": "Responsável por infraestrutura, segurança e automação",
             "highlights": [
                 "Redução de Custos: Arquitetura e execução da migração de serviços da AWS para infraestrutura local (On-Premise), gerando uma economia de 80% nos custos mensais.",
                 "Detecção de Fraude (Graylog): Implementação de Graylog integrado ao Firewall e Active Directory via Syslog para detectar e mitigar uma fraude em pagamentos diários ocorrendo em Tempo Real (Real-time).",
@@ -42,8 +42,8 @@
             "title": "Estagiário em DevSecOps & Cloud",
             "start_date": "2024-11",
             "end_date": "2025-04",
-            "location": "",
-            "description": "",
+            "location": "Rio de Janeiro, Brasil",
+            "description": "Estágio em DevSecOps e Cloud Computing",
             "highlights": [
                 "AWS (EC2, S3, RDS, CloudWatch): Gerenciamento de instâncias, storage e monitoramento de cloud.",
                 "Web Servers: Configuração e manutenção de Nginx e Apache como web servers e reverse proxies.",
@@ -58,8 +58,8 @@
             "title": "Engenheiro de Dados",
             "start_date": "2024-06",
             "end_date": "2024-10",
-            "location": "",
-            "description": "",
+            "location": "Rio de Janeiro, Brasil",
+            "description": "Engenharia de dados para eleição",
             "highlights": [
                 "Administração de banco de dados e criação de scripts ETL em Python.",
                 "Automatização da geração de relatórios de pesquisas eleitorais e do sistema de comunicação."
@@ -80,6 +80,15 @@
                 "JWT",
                 "Nginx"
             ],
+            "skills_tags": [
+                "Backend API",
+                "JWT Auth",
+                "RBAC",
+                "Rate Limiting",
+                "Audit Logs",
+                "Unit Testing",
+                "Pytest"
+            ],
             "links": [
                 "https://github.com/gabrielng-rj99/Client-Hub-Open-Project"
             ]
@@ -88,6 +97,12 @@
             "name": "pdf2md - PDF to Markdown",
             "description": "Conversão .pdf para .md preservando imagens com filtros, como em rodapés, imagens em branco, etc.",
             "tech_stack": ["Python", "Docker", "React"],
+            "skills_tags": [
+                "Python Scripting",
+                "PDF Processing",
+                "Docker",
+                "React Frontend"
+            ],
             "links": ["https://github.com/gabrielng-rj99/pdf2md"]
         },
         {
@@ -104,6 +119,14 @@
                 "Zero Trust",
                 "Nginx"
             ],
+            "skills_tags": [
+                "Self-hosted Infrastructure",
+                "VPN/Zero Trust",
+                "Docker Compose",
+                "Reverse Proxy",
+                "DNS Server",
+                "Network Security"
+            ],
             "links": []
         },
         {
@@ -117,6 +140,13 @@
                 "GitHub Actions Workflow",
                 "tsParticles",
                 "Framer Motion"
+            ],
+            "skills_tags": [
+                "React",
+                "TypeScript",
+                "CI/CD",
+                "GitHub Actions",
+                "Animations"
             ],
             "links": [
                 "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io"
@@ -143,211 +173,147 @@
             "degree": "Bacharel em Engenharia de Software",
             "start_year": 2024,
             "end_year": 2028,
-            "details": ""
+            "details": "Em andamento"
         },
         {
             "institution": "UFRJ – Universidade Federal do Rio de Janeiro",
             "degree": "Bacharel em Engenharia Mecânica",
             "start_year": 2017,
             "end_year": 2022,
-            "details": ""
+            "details": "Incompleto - Trancamento"
         },
         {
             "institution": "Colégio Pedro II - São Cristóvão",
             "degree": "Educação Básica",
             "start_year": 2010,
             "end_year": 2016,
-            "details": ""
+            "details": "Ensino Médio"
         }
     ],
     "skills": {
         "programming": {
-            "backend": {
-                "Golang": "Client Hub Open Project (CHOP)",
-                "Python": "pdf2md, Aeontech, Campanha Eleitoral",
-                "API REST/RESTful": "Client Hub Open Project (CHOP)",
-                "JSON/XML": "Client Hub Open Project (CHOP)",
-                "JWT (JSON Web Tokens)": "Client Hub Open Project (CHOP)"
-            },
-            "scripting": {
-                "Shell Script (Bash, PowerShell)": "Aeontech",
-                "Python Script": "Aeontech, Campanha Eleitoral",
-                "Expressões Regulares (Regex)": ""
-            },
-            "frontend": {
-                "React.js": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Personal Website (GitHub Pages)",
-                "HTML5/CSS3/JS": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Personal Website (GitHub Pages)"
-            },
-            "query": {
-                "SQL": "Client Hub Open Project (CHOP), Campanha Eleitoral, Aeontech"
-            },
-            "data": {
-                "Pandas, NumPy, SciPy, Matplotlib": "Campanha Eleitoral",
-                "ETL": "Campanha Eleitoral"
-            },
-            "Web Scraping": {
-                "Selenium": "Campanha Eleitoral",
-                "BeautifulSoup": "Aeontech",
-                "Pillow (PIL)": "",
-                "Playwright": "Aeontech"
-            },
-            "testing": {
-                "Unit Testing": "Client Hub Open Project",
-                "Pytest": "Client Hub Open Project",
-                "Jest": "Personal Website (GitHub Pages)",
-                "Load Testing(Teste de Carga)": ""
-            },
-            "methodology": {
-                "Requirements Analysis": "",
-                "Agile (Scrum) & Waterfall": ""
-            }
-        },
-
-        "databases": {
-            "sql": {
-                "PostgreSQL": "Client Hub Open Project (CHOP)",
-                "MySQL": "",
-                "MariaDB": "",
-                "SQLite": "Aeontech",
-                "SQL Server": "Aeontech"
-            },
-            "nosql": {
-                "MongoDB": "",
-                "Redis": ""
+            "languages": ["Go", "Python", "SQL", "HTML", "CSS", "JavaScript"],
+            "backend": ["API REST/RESTful", "JSON/XML", "JWT"],
+            "frontend": ["React", "Angular"],
+            "shell": [
+                "Shell Script (Bash, PowerShell)",
+                "Python Script",
+                "Regex"
+            ],
+            "data": ["Pandas", "NumPy", "SciPy", "Matplotlib", "ETL"],
+            "web_scraping": [
+                "Selenium",
+                "BeautifulSoup",
+                "Pillow (PIL)",
+                "Playwright"
+            ],
+            "testing": ["Unit Testing", "Pytest", "Jest", "Load Testing"],
+            "methodology": [
+                "Requirements Analysis",
+                "Agile (Scrum)",
+                "Waterfall"
+            ],
+            "databases": {
+                "sql": [
+                    "PostgreSQL",
+                    "MySQL",
+                    "MariaDB",
+                    "SQLite",
+                    "SQL Server"
+                ],
+                "nosql": ["MongoDB", "Redis"]
             }
         },
         "infra": {
-            "hypervisors": {
-                "VirtualBox": "Compass UOL",
-                "KVM": "Compass UOL",
-                "VMware ESXi": "",
-                "Proxmox VE": "",
-                "Hyper-V": "Aeontech",
-                "TrueNAS": "Aeontech"
-            },
+            "hypervisors": [
+                "VirtualBox",
+                "KVM",
+                "VMware ESXi",
+                "Proxmox VE",
+                "Hyper-V",
+                "TrueNAS"
+            ],
             "os": {
-                "linux": {
-                    "Ubuntu": "Aeontech, Self-hosting Homelab",
-                    "Debian": "Self-hosting Homelab",
-                    "CentOS": "",
-                    "RHEL": "Aeontech",
-                    "Oracle Linux": "Aeontech",
-                    "Kali Linux": ""
-                },
-                "windows": {
-                    "Windows Server": "Aeontech"
-                }
+                "linux": [
+                    "Ubuntu",
+                    "Debian",
+                    "CentOS",
+                    "RHEL",
+                    "Oracle Linux",
+                    "Kali Linux"
+                ],
+                "windows": ["Windows Server"]
             },
             "cloud": {
-                "aws": {
-                    "Cloud Practitioner": "certification",
-                    "AWS Cloud Practitioner": "certification",
-                    "EC2": "Compass UOL, Aeontech",
-                    "S3": "Compass UOL, Aeontech",
-                    "RDS": "Compass UOL",
-                    "CloudWatch": "Compass UOL, Aeontech",
-                    "VPC": "Aeontech, Aeontech",
-                    "IAM": "Aeontech, Aeontech",
-                    "FinOps": "Aeontech, Aeontech"
-                }
+                "aws": [
+                    "EC2",
+                    "S3",
+                    "RDS",
+                    "CloudWatch",
+                    "VPC",
+                    "IAM",
+                    "FinOps"
+                ]
             },
-            "containers": {
-                "Docker": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Self-hosting Homelab, Aeontech",
-                "Podman": "",
-                "Kubernetes (EKS, K3s)": "Compass UOL"
-            },
-
-            "devops": {
-                "CI/CD Pipelines (GitHub Actions, Jenkins)": "Compass UOL, Personal Website",
-                "Terraform (IaC)": "",
-                "Ansible (Automação)": "",
-                "Git/GitFlow": "Compass UOL, Client Hub Open Project"
-            },
-            "monitoring": {
-                "ELK Stack (Elasticsearch, Logstash, Kibana)": "",
-                "Graylog": "Aeontech",
-                "Grafana": "Compass UOL",
-                "Prometheus": "Compass UOL",
-                "Zabbix": "Aeontech, Compass UOL",
-                "Tracing & Observability": "Compass UOL"
-            },
-            "alerting": {
-                "Alerting & Incident Response": "Aeontech",
-                "System Health Checks": "Aeontech, Compass UOL"
-            },
+            "containers": ["Docker", "Podman", "Kubernetes (EKS, K3s)"],
+            "devops": [
+                "CI/CD Pipelines",
+                "Terraform",
+                "Ansible",
+                "Git/GitFlow"
+            ],
+            "monitoring": [
+                "ELK Stack",
+                "Graylog",
+                "Grafana",
+                "Prometheus",
+                "Zabbix",
+                "Tracing & Observability"
+            ],
+            "alerting": [
+                "Alerting & Incident Response",
+                "System Health Checks"
+            ],
             "security": {
-                "defensive": {
-                    "Wazuh (SIEM/XDR)": "Aeontech",
-                    "IAM (Identity & Access Management)": "Aeontech",
-                    "Active Directory Hardening": "Aeontech",
-                    "Vulnerability Scanning": "Aeontech"
-                },
-                "offensive": {
-                    "Penetration Testing": ""
-                },
-                "network": {
-                    "Firewall (iptables, nftables, UFW)": "Aeontech, Self-hosting Homelab",
-                    "WAF": "",
-                    "IDS/IPS": "Aeontech",
-                    "SSL/TLS Certificates": "Self-hosting Homelab"
-                },
-                "app": {
-                    "XSS/SQL Injection Protection": ""
-                }
+                "defensive": [
+                    "Wazuh (SIEM/XDR)",
+                    "IAM",
+                    "Active Directory Hardening",
+                    "Vulnerability Scanning"
+                ],
+                "offensive": ["Penetration Testing"],
+                "network": [
+                    "Firewall",
+                    "WAF",
+                    "IDS/IPS",
+                    "SSL/TLS Certificates"
+                ],
+                "app": ["XSS/SQL Injection Protection"]
             },
             "networking": {
-                "protocols": {
-                    "TCP/IP": "",
-                    "DNS & DNS Server (Active Directory, AdGuard Home)": "Aeontech, Self-hosting Homelab",
-                    "DHCP": "Aeontech"
-                },
-                "services": {
-                    "Nginx (Web Server & Reverse Proxy)": "Compass UOL, Client Hub Open Project",
-                    "Apache (Web Server)": "Compass UOL",
-                    "Caddy (Reverse Proxy com Auto-HTTPS)": "Self-hosting Homelab",
-                    "Load Balancers (AWS ALB, Nginx)": "Compass UOL"
-                },
-                "vpn": {
-                    "Twingate VPN (Zero Trust)": "Self-hosting Homelab",
-                    "OpenVPN": "",
-                    "WireGuard": ""
-                },
-                "remote_access": {
-                    "OpenSSH": "Aeontech, Self-hosting Homelab",
-                    "FTP/SFTP": "Aeontech"
-                },
-                "directory": {
-                    "GPO & Active Directory": "Aeontech",
-                    "Domain Controller": "Aeontech"
-                }
+                "protocols": ["TCP/IP", "DNS", "DHCP"],
+                "services": ["Nginx", "Apache", "Caddy", "Load Balancers"],
+                "vpn": ["Twingate VPN", "OpenVPN", "WireGuard"],
+                "remote_access": ["OpenSSH", "FTP/SFTP"],
+                "directory": ["GPO & Active Directory", "Domain Controller"]
             },
             "storage": {
-                "file_sharing": {
-                    "Samba & CIFS/SMB": "Self-hosting Homelab"
-                },
-                "storage_sys": {
-                    "LVM & Storage": "Self-hosting Homelab",
-                    "TrueNAS": "Self-hosting Homelab"
-                },
-                "permissions": {
-                    "File Permissions (Chmod/Chown)": "Aeontech, Self-hosting Homelab"
-                },
-                "itsm": {
-                    "GLPI (Gestão de Serviços/Chamados)": "Aeontech"
-                }
+                "file_sharing": ["Samba & CIFS/SMB"],
+                "storage_sys": ["LVM", "TrueNAS"],
+                "permissions": ["File Permissions (Chmod/Chown)"],
+                "itsm": ["GLPI"]
             }
+        }
+    },
+    "languages": [
+        {
+            "language": "Português",
+            "level": "Nativo"
         },
-
-        "languages": [
-            {
-                "language": "Português",
-                "level": "Nativo"
-            },
-            {
-                "language": "Inglês",
-                "level": "C1"
-            }
-        ],
-        "certifications": ["AWS Cloud Practitioner"]
-    }
+        {
+            "language": "Inglês",
+            "level": "C1"
+        }
+    ],
+    "certifications": ["AWS Cloud Practitioner"]
 }
