@@ -3,10 +3,11 @@
         "id": "aws-cloud-practitioner",
         "title": "AWS Certified Cloud Practitioner",
         "issuer": "Amazon Web Services",
-        "date": "",
+        "date": "Apr 2025",
         "badgeImage": "/assets/images/certifications/aws-cloud-practitioner.png",
-        "credentialUrl": "",
-        "status": "planned"
+        "credentialUrl": "https://aws.amazon.com/verification",
+        "validationNumber": "7b0f8325c481414d8f81d0b9179a8705",
+        "status": "earned"
     },
     {
         "id": "comptia-security-plus",

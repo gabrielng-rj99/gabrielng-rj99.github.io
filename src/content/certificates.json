@@ -1,18 +1,186 @@
 [
     {
-        "id": "compass-uol-devsecops",
-        "title": "DevSecOps Program",
-        "issuer": "Compass UOL",
-        "date": "2024",
-        "credentialUrl": "",
-        "description": "Intensive program covering DevSecOps practices, CI/CD, cloud infrastructure, and security."
+        "id": "scrum-fundamentals",
+        "title": "Scrum Fundamentals",
+        "issuer": "Udemy",
+        "date": "Nov 2024",
+        "credentialUrl": "https://ude.my/UC-7b1b13d8-c693-4956-a33c-e49e96b931bf",
+        "description": "Agile fundamentals and Scrum methodology. 1.5 hours."
     },
     {
-        "id": "ufrj-mechanical-engineering",
-        "title": "Bachelor of Mechanical Engineering",
-        "issuer": "Federal University of Rio de Janeiro (UFRJ)",
-        "date": "2017 - 2022",
+        "id": "linux-servers",
+        "title": "Linux Completo + Servidores",
+        "issuer": "Udemy",
+        "date": "Nov 2024",
+        "credentialUrl": "https://ude.my/UC-a15a9373-2dec-43cc-9064-88c63c219fal",
+        "description": "Complete Linux course covering servers, shell, and administration. 17 hours."
+    },
+    {
+        "id": "lpi-linux-essentials",
+        "title": "LPI Linux Essentials Preparatório",
+        "issuer": "Udemy",
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-fb280985-90da-4583-adb7-7e94b9f6f699",
+        "description": "Preparation for LPI Linux Essentials certification. 7.5 hours."
+    },
+    {
+        "id": "aws-na-pratica",
+        "title": "AWS na Prática",
+        "issuer": "Udemy",
+        "date": "Dec 2024",
+        "credentialUrl": "https://ude.my/UC-4ed47eal1-08a6-4f32-8a8e-7343a6c81d46",
+        "description": "Hands-on AWS practical course. 38.5 hours."
+    },
+    {
+        "id": "docker",
+        "title": "Docker",
+        "issuer": "Udemy",
+        "date": "Jan 2025",
+        "credentialUrl": "https://ude.my/UC-bb014088-72a5-4adb-b3cc-7d269a173370",
+        "description": "Docker containers fundamentals and hands-on. 7 hours."
+    },
+    {
+        "id": "kubernetes",
+        "title": "Kubernetes Hands-On",
+        "issuer": "Udemy",
+        "date": "Jan 2025",
+        "credentialUrl": "https://ude.my/UC-5e9ata0f-80ad-4bb7-afb1-4338a331b631",
+        "description": "Deploy microservices to Kubernetes. 29 hours."
+    },
+    {
+        "id": "sre-big-picture",
+        "title": "SRE - The Big Picture",
+        "issuer": "Udemy",
+        "date": "Jan 2025",
+        "credentialUrl": "https://ude.my/UC-3ecf2b11-2a14-4445-af61-242847163314",
+        "description": "Site Reliability Engineering overview. 2 hours."
+    },
+    {
+        "id": "zabbix",
+        "title": "Monitoramento com Zabbix",
+        "issuer": "Udemy",
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-2f87c7d2-75dc-4546-aea6-bfc9f7250b4d",
+        "description": "Zabbix monitoring setup and configuration. 8 hours."
+    },
+    {
+        "id": "prometheus-grafana",
+        "title": "Prometheus + Grafana",
+        "issuer": "Udemy",
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-053c4daf-dbb9-4a69-9499-439381650ec3",
+        "description": "Application monitoring with Prometheus and Grafana. 5.5 hours."
+    },
+    {
+        "id": "aws-devops-ci-cd",
+        "title": "AWS DevOps & CI/CD",
+        "issuer": "Udemy",
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-4b46e58d-3e99-4beb-b8a5-f7b6ac246865",
+        "description": "AWS CodePipeline for DevOps engineers. 16.5 hours."
+    },
+    {
+        "id": "aws-pipelines-hands-on",
+        "title": "AWS Pipelines Hands-On",
+        "issuer": "Udemy",
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-db2bt4a6-eb39-4829-b672-5112275b89a3",
+        "description": "AWS CodeCommit, CodeBuild, CodeDeploy, CodePipeline. 3.5 hours."
+    },
+    {
+        "id": "excel",
+        "title": "Excel - Básico ao Avançado",
+        "issuer": "Udemy",
+        "date": "Jul 2024",
+        "credentialUrl": "https://ude.my/UC-92ac3fdf-1a6d-45b8-a150-ae5f5fa38131",
+        "description": "Complete Excel from basics to advanced. 28.5 hours."
+    },
+    {
+        "id": "aws-partner-technical",
+        "title": "AWS Partner: Accreditation (Technical)",
+        "issuer": "AWS",
+        "date": "Apr 2025",
         "credentialUrl": "",
-        "description": "Discrete math, linear algebra, calculus, data analysis and visualization with Python."
+        "description": "AWS Partner technical accreditation."
+    },
+    {
+        "id": "aws-cloud-economics",
+        "title": "AWS Partner: Cloud Economics",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Partner cloud economics accreditation."
+    },
+    {
+        "id": "aws-sales-business",
+        "title": "AWS Partner: Sales Accreditation (Business)",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Partner sales accreditation."
+    },
+    {
+        "id": "aws-cloud-essentials-badge",
+        "title": "Cloud Essentials Knowledge Badge Assessment",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Cloud Essentials assessment."
+    },
+    {
+        "id": "aws-foundations-cloud-essentials",
+        "title": "AWS Foundations: Getting Started with AWS Cloud Essentials",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Cloud fundamentals course."
+    },
+    {
+        "id": "aws-billing-cost",
+        "title": "AWS Billing and Cost Management",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS billing and cost management course."
+    },
+    {
+        "id": "aws-cloud-practitioner-essentials",
+        "title": "AWS Cloud Practitioner Essentials",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Cloud Practitioner preparation course."
+    },
+    {
+        "id": "aws-cloud-acquisition",
+        "title": "Getting Started with Cloud Acquisition",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS cloud acquisition fundamentals."
+    },
+    {
+        "id": "aws-db-migration",
+        "title": "Introduction to Database Migration",
+        "issuer": "AWS",
+        "date": "Mar 2025",
+        "credentialUrl": "",
+        "description": "AWS database migration introduction."
+    },
+    {
+        "id": "aws-job-roles",
+        "title": "Job Roles in the Cloud",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "Cloud job roles overview."
+    },
+    {
+        "id": "aws-cloud-readiness",
+        "title": "Cloud Essentials - Knowledge Badge Readiness Path",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Cloud Essentials readiness path."
     }
 ]
