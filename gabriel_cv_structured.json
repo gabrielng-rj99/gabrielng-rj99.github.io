@@ -164,36 +164,32 @@
         "programming": {
             "backend": {
                 "Golang": "Client Hub Open Project (CHOP)",
-                "Python": "pdf2md, Aeontech, Campanha Eleitoral"
-            },
-            "api": {
+                "Python": "pdf2md, Aeontech, Campanha Eleitoral",
                 "API REST/RESTful": "Client Hub Open Project (CHOP)",
-                "JSON/XML": "Client Hub Open Project (CHOP)"
+                "JSON/XML": "Client Hub Open Project (CHOP)",
+                "JWT (JSON Web Tokens)": "Client Hub Open Project (CHOP)"
             },
             "scripting": {
-                "Shell Script (Bash, PowerShell)": "Aeontech"
+                "Shell Script (Bash, PowerShell)": "Aeontech",
+                "Python Script": "Aeontech, Campanha Eleitoral",
+                "Expressões Regulares (Regex)": ""
             },
             "frontend": {
-                "JavaScript (React)": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Personal Website (GitHub Pages)",
-                "HTML5/CSS3": "Personal Website (GitHub Pages)"
+                "React.js": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Personal Website (GitHub Pages)",
+                "HTML5/CSS3/JS": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Personal Website (GitHub Pages)"
             },
             "query": {
-                "SQL": "Client Hub Open Project (CHOP), Campanha Eleitoral"
+                "SQL": "Client Hub Open Project (CHOP), Campanha Eleitoral, Aeontech"
             },
             "data": {
                 "Pandas, NumPy, SciPy, Matplotlib": "Campanha Eleitoral",
                 "ETL": "Campanha Eleitoral"
             },
-            "scraping": {
-                "Web Scraping": "pdf2md",
-                "Selenium, BeautifulSoup, Pillow (PIL), pytesseract": "pdf2md",
-                "Playwright": ""
-            },
-            "other": {
-                "Expressões Regulares (Regex)": "pdf2md"
-            },
-            "auth": {
-                "JWT (JSON Web Tokens)": "Client Hub Open Project (CHOP)"
+            "Web Scraping": {
+                "Selenium": "Campanha Eleitoral",
+                "BeautifulSoup": "Aeontech",
+                "Pillow (PIL)": "",
+                "Playwright": "Aeontech"
             },
             "testing": {
                 "Unit Testing": "Client Hub Open Project",
@@ -212,8 +208,8 @@
                 "PostgreSQL": "Client Hub Open Project (CHOP)",
                 "MySQL": "",
                 "MariaDB": "",
-                "SQLite": "",
-                "SQL Server": ""
+                "SQLite": "Aeontech",
+                "SQL Server": "Aeontech"
             },
             "nosql": {
                 "MongoDB": "",
@@ -222,49 +218,41 @@
         },
         "infra": {
             "hypervisors": {
-                "VirtualBox": "Self-hosting Homelab",
-                "KVM": "",
+                "VirtualBox": "Compass UOL",
+                "KVM": "Compass UOL",
                 "VMware ESXi": "",
-                "Proxmox VE": "Self-hosting Homelab",
-                "Hyper-V": "",
-                "TrueNAS": "Self-hosting Homelab"
+                "Proxmox VE": "",
+                "Hyper-V": "Aeontech",
+                "TrueNAS": "Aeontech"
             },
             "os": {
                 "linux": {
                     "Ubuntu": "Aeontech, Self-hosting Homelab",
-                    "Ubuntu LTS": "Aeontech, Self-hosting Homelab",
                     "Debian": "Self-hosting Homelab",
                     "CentOS": "",
-                    "RHEL": "",
-                    "Oracle Linux": "",
-                    "AlmaLinux": "",
-                    "Rocky Linux": "",
+                    "RHEL": "Aeontech",
+                    "Oracle Linux": "Aeontech",
                     "Kali Linux": ""
                 },
                 "windows": {
-                    "Windows Server 2008": "",
-                    "Windows Server 2012 R2": "Aeontech",
-                    "Windows Server 2016": "Aeontech",
-                    "Windows Server 2019": "Aeontech",
-                    "Windows Server 2022": "Aeontech",
-                    "Windows Server 2025": ""
+                    "Windows Server": "Aeontech"
                 }
             },
             "cloud": {
                 "aws": {
                     "Cloud Practitioner": "certification",
                     "AWS Cloud Practitioner": "certification",
-                    "EC2": "Compass UOL",
-                    "S3": "Compass UOL",
+                    "EC2": "Compass UOL, Aeontech",
+                    "S3": "Compass UOL, Aeontech",
                     "RDS": "Compass UOL",
-                    "CloudWatch": "Compass UOL",
-                    "VPC": "Aeontech",
-                    "IAM": "Aeontech",
-                    "FinOps": "Aeontech"
+                    "CloudWatch": "Compass UOL, Aeontech",
+                    "VPC": "Aeontech, Aeontech",
+                    "IAM": "Aeontech, Aeontech",
+                    "FinOps": "Aeontech, Aeontech"
                 }
             },
             "containers": {
-                "Docker": "pdf2md - PDF to Markdown, Self-hosting Homelab, Aeontech",
+                "Docker": "Client Hub Open Project (CHOP), pdf2md - PDF to Markdown, Self-hosting Homelab, Aeontech",
                 "Podman": "",
                 "Kubernetes (EKS, K3s)": "Compass UOL"
             },
@@ -276,22 +264,16 @@
                 "Git/GitFlow": "Compass UOL, Client Hub Open Project"
             },
             "monitoring": {
-                "logs": {
-                    "ELK Stack (Elasticsearch, Logstash, Kibana)": "",
-                    "Graylog": "Aeontech"
-                },
-                "metrics": {
-                    "Grafana": "Compass UOL",
-                    "Prometheus": "Compass UOL",
-                    "Zabbix (com Custom Scripts)": "Aeontech, Compass UOL"
-                },
-                "tracing": {
-                    "Tracing & Observability": "Compass UOL"
-                },
-                "alerting": {
-                    "Alerting & Incident Response": "Aeontech",
-                    "System Health Checks": "Aeontech, Compass UOL"
-                }
+                "ELK Stack (Elasticsearch, Logstash, Kibana)": "",
+                "Graylog": "Aeontech",
+                "Grafana": "Compass UOL",
+                "Prometheus": "Compass UOL",
+                "Zabbix": "Aeontech, Compass UOL",
+                "Tracing & Observability": "Compass UOL"
+            },
+            "alerting": {
+                "Alerting & Incident Response": "Aeontech",
+                "System Health Checks": "Aeontech, Compass UOL"
             },
             "security": {
                 "defensive": {
