@@ -20,11 +20,11 @@
     }
 }
 
-/* Certificates Grid */
+/* Certificates Grid - Smaller cards */
 .certificatesGrid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
     justify-content: center;
     max-width: 72rem;
     margin: 0 auto;
@@ -33,7 +33,8 @@
 
 @media (min-width: 768px) {
     .certificatesGrid {
-        grid-template-columns: repeat(var(--grid-cols, 2), minmax(280px, 380px));
+        grid-template-columns: repeat(var(--grid-cols, 4), minmax(180px, 240px));
+        gap: 1rem;
     }
 }
 
@@ -257,69 +258,347 @@
 }
 
 /* ─── Certificate Card ─── */
+.certificateCard {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+    padding: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: visible;
+}
+
+.certificateCard:hover {
+    border-color: var(--accent-purple);
+    transform: translateY(-2px);
+}
 
 /* Certificate Title */
 .certName {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 700;
-    line-height: 1.375;
+    line-height: 1.3;
     margin-bottom: 0.25rem;
+    color: var(--text-primary);
 }
 
 @media (min-width: 768px) {
     .certName {
-        font-size: 1rem;
+        font-size: 0.875rem;
     }
 }
 
 /* Certificate Issuer */
 .certIssuingOrg {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
+    color: var(--accent-purple);
 }
 
 /* Certificate Date */
 .certDate2 {
-    font-size: 0.75rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.6875rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
 }
 
 /* Certificate Description */
 .certDescription {
-    font-size: 0.875rem;
-    line-height: 1.625;
-}
-
-/* Certificate Credential Link */
-.certCredentialLink {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    margin-top: 0.75rem;
     font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-/* Use global .card-base for hover effects */
-:global(.card-base):hover .certCredentialLink {
-    opacity: 1;
+    line-height: 1.4;
+    color: var(--text-tertiary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* Certificate Accent Line */
 .certAccentLine {
-    width: 0;
+    width: 1.5rem;
     height: 2px;
     border-radius: 9999px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0.75rem;
-    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    background: linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end));
 }
 
-:global(.card-base):hover .certAccentLine {
-    width: 2.5rem;
+/* ─── Tooltip (Desktop Hover only - hidden on touch) ─── */
+.tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--accent-purple);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hide tooltip on touch devices */
+@media (hover: none) {
+    .tooltip {
+        display: none;
+    }
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--accent-purple);
+}
+
+.certificateCard:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltipText {
+    font-size: 0.6875rem;
+    color: var(--text-primary);
+    word-break: break-all;
+    max-width: 200px;
+    display: block;
+}
+
+.tooltipLabel {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+/* ─── Modal (Mobile) ─── */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modalContent {
+    background: var(--bg-card);
+    border: 1px solid var(--accent-purple);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    max-width: 320px;
+    width: 100%;
+    animation: slideUp 0.2s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modalTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    padding-right: 2rem;
+}
+
+.modalIssuer {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent-purple);
+    margin-bottom: 0.75rem;
+}
+
+.modalDescription {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+}
+
+.modalUrlLabel {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.375rem;
+}
+
+.modalUrl {
+    font-size: 0.75rem;
+    color: var(--accent-purple);
+    word-break: break-all;
+    background: var(--bg-tertiary);
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+}
+
+.modalNoUrl {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.modalActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.modalButton {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.modalButtonPrimary {
+    background: var(--accent-purple);
+    color: white;
+}
+
+.modalButtonPrimary:hover {
+    background: var(--accent-purple-hover, #8b5cf6);
+}
+
+.modalButtonSecondary {
+    background: transparent;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+.modalButtonSecondary:hover {
+    border-color: var(--text-muted);
+}
+/* ─── Hovercard (Rich Tooltip Preview) ─── */
+.hovercardContainer {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: 280px;
+    padding-bottom: 12px;
+    pointer-events: none; /* Prevents blocking cards above */
+}
+
+/* Invisible hitbox to allow hovering from the card to the hovercard */
+.hovercardHitbox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    pointer-events: auto; /* Allows crossing the gap */
+}
+
+.hovercard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto; /* Restores interaction */
+}
+
+.hovercardImageOverlay {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    background: var(--bg-tertiary);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+.hovercardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hovercardContainer:hover .hovercardImage {
+    transform: scale(1.05);
+}
+
+.hovercardTypeBadge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 0.625rem;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+
+.hovercardContent {
+    padding: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.hovercardTitle {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hovercardDesc {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hovercardDomain {
+    display: flex;
+    align-items: center;
+    font-size: 0.6875rem;
+    color: var(--accent-purple);
+    margin-top: 0.25rem;
+    font-weight: 500;
 }

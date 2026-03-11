@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { HiExternalLink, HiBadgeCheck } from "react-icons/hi";
+import { HiExternalLink, HiBadgeCheck, HiEye } from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
 import certificationsData from "../content/certifications.json";
 import certificatesData from "../content/certificates.json";
+import certificatePreviewsData from "../content/certificate_previews.json";
 import styles from "./Certifications.module.css";
 
 interface Certification {
@@ -29,20 +30,34 @@ const containerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.12,
-            delayChildren: 0.15,
+            staggerChildren: 0.08,
+            delayChildren: 0.1,
         },
     },
 };
 
+const hoverCardVariants = {
+    hidden: { opacity: 0, y: 10, scale: 0.95, pointerEvents: "none" as const },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        pointerEvents: "auto" as const,
+        transition: {
+            duration: 0.2,
+            ease: "easeOut" as const
+        }
+    }
+};
+
 const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
     visible: {
         opacity: 1,
         y: 0,
         scale: 1,
         transition: {
-            duration: 0.5,
+            duration: 0.4,
             ease: "easeOut" as const,
         },
     },
@@ -108,7 +123,6 @@ function CertificationCard({
                     background: "var(--bg-tertiary)",
                 }}
             >
-                {/* Glow on hover */}
                 <div
                     className={styles.badgeGlow}
                     style={{
@@ -191,80 +205,102 @@ function CertificationCard({
     );
 }
 
-/* ─── Certificate List Item ───────────────────────────────────────── */
+/* ─── Certificate Card (direct open on tap) ───────────────────────── */
 
-function CertificateCard({ certificate }: { certificate: Certificate }) {
+function CertificateCard({
+    certificate,
+}: {
+    certificate: Certificate;
+}) {
     const hasCredential =
         certificate.credentialUrl && certificate.credentialUrl.length > 0;
+
+    // Desktop: hover shows tooltip with URL preview
+    // Mobile: tap directly opens URL (single click)
+    const handleClick = (e: React.MouseEvent) => {
+        if (hasCredential) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.open(certificate.credentialUrl, "_blank", "noopener,noreferrer");
+        }
+    };
 
     return (
         <motion.div
             variants={cardVariants}
-            whileHover={{ y: -3 }}
-            className="card-base"
-            style={{
-                background: "var(--bg-card)",
-                borderColor: "var(--border-primary)",
-            }}
+            whileHover={{ y: -2 }}
+            className={styles.certificateCard}
+            onClick={handleClick}
         >
+            {/* Rich Hovercard - Desktop only */}
+            {hasCredential && (
+                <motion.div 
+                    className={styles.hovercardContainer}
+                    initial="hidden"
+                    whileHover="visible"
+                >
+                    <div className={styles.hovercardHitbox} />
+                    <motion.div 
+                        variants={hoverCardVariants} 
+                        className={styles.hovercard}
+                    >
+                        {certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] ? (
+                            <>
+                                <div className={styles.hovercardImageOverlay}>
+                                    <img 
+                                        src={(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).image} 
+                                        alt="" 
+                                        className={styles.hovercardImage} 
+                                    />
+                                    <div className={styles.hovercardTypeBadge}>
+                                        <HiEye size={12} style={{ marginRight: "4px" }} />
+                                        Preview
+                                    </div>
+                                </div>
+                                <div className={styles.hovercardContent}>
+                                    <h5 className={styles.hovercardTitle}>{(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).title}</h5>
+                                    <p className={styles.hovercardDesc}>{(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).description}</p>
+                                    <div className={styles.hovercardDomain}>
+                                        <HiExternalLink size={10} style={{ marginRight: "4px" }} /> 
+                                        {new URL(certificate.credentialUrl).hostname}
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <div className={styles.hovercardContent}>
+                                <span className={styles.tooltipLabel}>
+                                    <HiEye size={12} style={{ marginRight: "4px" }} />
+                                    {certificate.credentialUrl.includes("ude.my") ? "Udemy Certificate" : "View Credential"}
+                                </span>
+                                <span className={styles.tooltipText}>
+                                    {certificate.credentialUrl}
+                                </span>
+                            </div>
+                        )}
+                    </motion.div>
+                </motion.div>
+            )}
+
             {/* Title */}
-            <h4
-                className={styles.certName}
-                style={{ color: "var(--text-primary)" }}
-            >
-                {certificate.title}
-            </h4>
+            <h4 className={styles.certName}>{certificate.title}</h4>
 
             {/* Issuer */}
-            <p
-                className={styles.certIssuingOrg}
-                style={{ color: "var(--accent-purple)" }}
-            >
-                {certificate.issuer}
-            </p>
+            <p className={styles.certIssuingOrg}>{certificate.issuer}</p>
 
             {/* Date */}
             {certificate.date && (
-                <p
-                    className={styles.certDate2}
-                    style={{ color: "var(--text-muted)" }}
-                >
-                    {certificate.date}
-                </p>
+                <p className={styles.certDate2}>{certificate.date}</p>
             )}
 
             {/* Description */}
             {certificate.description && (
-                <p
-                    className={styles.certDescription}
-                    style={{ color: "var(--text-tertiary)" }}
-                >
+                <p className={styles.certDescription}>
                     {certificate.description}
                 </p>
             )}
 
-            {/* Credential link indicator */}
-            {hasCredential && (
-                <a
-                    href={certificate.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.certCredentialLink}
-                    style={{ color: "var(--accent-purple)" }}
-                >
-                    <span>View</span>
-                    <HiExternalLink size={12} />
-                </a>
-            )}
-
             {/* Hover accent line */}
-            <div
-                className={styles.certAccentLine}
-                style={{
-                    background:
-                        "linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end))",
-                }}
-            />
+            <div className={styles.certAccentLine} />
         </motion.div>
     );
 }
@@ -279,10 +315,8 @@ export default function Certifications() {
     const hasCertificates = certificates.length > 0;
 
     // Calculate columns
-    // If more than max, calculate equal distribution across rows
     const calcCols = (count: number, maxCols: number) => {
         if (count <= maxCols) return count;
-        // Distribute evenly
         const rows = Math.ceil(count / maxCols);
         return Math.ceil(count / rows);
     };
@@ -290,7 +324,6 @@ export default function Certifications() {
     const badgeCols = calcCols(certifications.length, 6);
     const certCols = calcCols(certificates.length, 4);
 
-    // Build grid style dynamically via CSS Variables to allow media queries
     const badgeGridStyle = {
         "--grid-cols": badgeCols,
     } as React.CSSProperties;
@@ -308,7 +341,6 @@ export default function Certifications() {
                     className="section-wrapper section-glow-bg"
                 >
                     <div className="section-container">
-                        {/* Section Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -327,7 +359,6 @@ export default function Certifications() {
                             </p>
                         </motion.div>
 
-                        {/* Badges Grid */}
                         <motion.div
                             variants={containerVariants}
                             initial="hidden"
@@ -344,7 +375,6 @@ export default function Certifications() {
                             ))}
                         </motion.div>
 
-                        {/* Legend */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -386,7 +416,6 @@ export default function Certifications() {
                     className="section-wrapper section-glow-bg"
                 >
                     <div className="section-container">
-                        {/* Section Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -406,7 +435,6 @@ export default function Certifications() {
                             </p>
                         </motion.div>
 
-                        {/* Certificates Grid */}
                         <motion.div
                             variants={containerVariants}
                             initial="hidden"
