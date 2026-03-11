@@ -1,0 +1,62 @@
+{
+  "scrum-fundamentals": {
+    "title": "Scrum Fundamentals - Udemy Certificate",
+    "description": "Agile fundamentals and Scrum methodology. 1.5 hours.",
+    "image": "/assets/previews/scrum-fundamentals.png"
+  },
+  "linux-servers": {
+    "title": "Linux Completo + Servidores - Udemy Certificate",
+    "description": "Complete Linux course covering servers, shell, and administration. 17 hours.",
+    "image": "/assets/previews/linux-servers.png"
+  },
+  "lpi-linux-essentials": {
+    "title": "LPI Linux Essentials Preparatório - Udemy Certificate",
+    "description": "Preparation for LPI Linux Essentials certification. 7.5 hours.",
+    "image": "/assets/previews/lpi-linux-essentials.png"
+  },
+  "aws-na-pratica": {
+    "title": "AWS na Prática - Udemy Certificate",
+    "description": "Hands-on AWS practical course. 38.5 hours.",
+    "image": "/assets/previews/aws-na-pratica.png"
+  },
+  "docker": {
+    "title": "Docker - Udemy Certificate",
+    "description": "Docker containers fundamentals and hands-on. 7 hours.",
+    "image": "/assets/previews/docker.png"
+  },
+  "kubernetes": {
+    "title": "Kubernetes Hands-On - Udemy Certificate",
+    "description": "Deploy microservices to Kubernetes. 29 hours.",
+    "image": "/assets/previews/kubernetes.png"
+  },
+  "sre-big-picture": {
+    "title": "SRE - The Big Picture - Udemy Certificate",
+    "description": "Site Reliability Engineering overview. 2 hours.",
+    "image": "/assets/previews/sre-big-picture.png"
+  },
+  "zabbix": {
+    "title": "Monitoramento com Zabbix - Udemy Certificate",
+    "description": "Zabbix monitoring setup and configuration. 8 hours.",
+    "image": "/assets/previews/zabbix.png"
+  },
+  "prometheus-grafana": {
+    "title": "Prometheus + Grafana - Udemy Certificate",
+    "description": "Application monitoring with Prometheus and Grafana. 5.5 hours.",
+    "image": "/assets/previews/prometheus-grafana.png"
+  },
+  "aws-devops-ci-cd": {
+    "title": "AWS DevOps & CI/CD - Udemy Certificate",
+    "description": "AWS CodePipeline for DevOps engineers. 16.5 hours.",
+    "image": "/assets/previews/aws-devops-ci-cd.png"
+  },
+  "aws-pipelines-hands-on": {
+    "title": "AWS Pipelines Hands-On - Udemy Certificate",
+    "description": "AWS CodeCommit, CodeBuild, CodeDeploy, CodePipeline. 3.5 hours.",
+    "image": "/assets/previews/aws-pipelines-hands-on.png"
+  },
+  "excel": {
+    "title": "Excel - Básico ao Avançado - Udemy Certificate",
+    "description": "Complete Excel from basics to advanced. 28.5 hours.",
+    "image": "/assets/previews/excel.png"
+  }
+}
