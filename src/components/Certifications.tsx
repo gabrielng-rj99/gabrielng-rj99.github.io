@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { HiExternalLink, HiBadgeCheck, HiEye } from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
@@ -37,9 +38,20 @@ const containerVariants = {
 };
 
 const hoverCardVariants = {
-    hidden: { opacity: 0, y: 10, scale: 0.95, pointerEvents: "none" as const },
+    hidden: {
+        opacity: 0,
+        x: -15,
+        y: 15,
+        scale: 0.95,
+        pointerEvents: "none" as const,
+        transition: {
+            duration: 0.01,
+            ease: "easeIn" as const
+        }
+    },
     visible: {
         opacity: 1,
+        x: 0,
         y: 0,
         scale: 1,
         pointerEvents: "auto" as const,
@@ -57,7 +69,7 @@ const cardVariants = {
         y: 0,
         scale: 1,
         transition: {
-            duration: 0.4,
+            duration: 0.2,
             ease: "easeOut" as const,
         },
     },
@@ -215,6 +227,8 @@ function CertificateCard({
     const hasCredential =
         certificate.credentialUrl && certificate.credentialUrl.length > 0;
 
+    const [isHovered, setIsHovered] = React.useState(false);
+
     // Desktop: hover shows tooltip with URL preview
     // Mobile: tap directly opens URL (single click)
     const handleClick = (e: React.MouseEvent) => {
@@ -229,28 +243,29 @@ function CertificateCard({
         <motion.div
             variants={cardVariants}
             whileHover={{ y: -2 }}
-            className={styles.certificateCard}
+            className={`${styles.certificateCard} ${isHovered ? styles.hoveredCard : ""}`}
             onClick={handleClick}
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
         >
             {/* Rich Hovercard - Desktop only */}
             {hasCredential && (
-                <motion.div 
+                <motion.div
                     className={styles.hovercardContainer}
                     initial="hidden"
-                    whileHover="visible"
+                    animate={isHovered ? "visible" : "hidden"}
                 >
-                    <div className={styles.hovercardHitbox} />
-                    <motion.div 
-                        variants={hoverCardVariants} 
+                    <motion.div
+                        variants={hoverCardVariants}
                         className={styles.hovercard}
                     >
                         {certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] ? (
                             <>
-                                <div className={styles.hovercardImageOverlay}>
-                                    <img 
-                                        src={(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).image} 
-                                        alt="" 
-                                        className={styles.hovercardImage} 
+                                <div className={styles.previewOverlay}>
+                                    <img
+                                        src={(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).image}
+                                        alt=""
+                                        className={styles.previewImage}
                                     />
                                     <div className={styles.hovercardTypeBadge}>
                                         <HiEye size={12} style={{ marginRight: "4px" }} />
@@ -258,10 +273,8 @@ function CertificateCard({
                                     </div>
                                 </div>
                                 <div className={styles.hovercardContent}>
-                                    <h5 className={styles.hovercardTitle}>{(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).title}</h5>
-                                    <p className={styles.hovercardDesc}>{(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).description}</p>
                                     <div className={styles.hovercardDomain}>
-                                        <HiExternalLink size={10} style={{ marginRight: "4px" }} /> 
+                                        <HiExternalLink size={14} style={{ marginRight: "6px" }} />
                                         {new URL(certificate.credentialUrl).hostname}
                                     </div>
                                 </div>

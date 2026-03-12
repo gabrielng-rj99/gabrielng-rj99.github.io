@@ -168,14 +168,6 @@
         "description": "AWS database migration introduction."
     },
     {
-        "id": "aws-job-roles",
-        "title": "Job Roles in the Cloud",
-        "issuer": "AWS",
-        "date": "Apr 2025",
-        "credentialUrl": "",
-        "description": "Cloud job roles overview."
-    },
-    {
         "id": "aws-cloud-readiness",
         "title": "Cloud Essentials - Knowledge Badge Readiness Path",
         "issuer": "AWS",
