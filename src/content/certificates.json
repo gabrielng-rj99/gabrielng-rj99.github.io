@@ -1,15 +1,5 @@
 [
     {
-        "id": "scrum-fundamentals",
-        "title": "Scrum & Agile",
-        "issuer": "Udemy",
-        "date": "Nov 2024",
-        "credentialUrl": "https://ude.my/UC-7b1b13d8-c693-4956-a33c-e49e96b931bf",
-        "description": "Agile fundamentals and Scrum methodology.",
-        "previewImage": "/assets/previews/scrum-fundamentals.png",
-        "logo": "/assets/logo/for_certs/scrum.svg"
-    },
-    {
         "id": "linux-servers",
         "title": "Linux & Servidores",
         "issuer": "Udemy",
@@ -17,16 +7,6 @@
         "credentialUrl": "https://ude.my/UC-a15a9373-2dec-43cc-9064-88c63c219fa1",
         "description": "Linux servers, shell, and administration.",
         "previewImage": "/assets/previews/linux-servers.png",
-        "logo": "/assets/logo/for_certs/tux.png"
-    },
-    {
-        "id": "lpi-linux-essentials",
-        "title": "LPI Linux Essentials",
-        "issuer": "Udemy",
-        "date": "Feb 2025",
-        "credentialUrl": "https://ude.my/UC-fb280985-90da-4583-adb7-7e94b9f6f699",
-        "description": "Preparation for LPI Linux Essentials certification.",
-        "previewImage": "/assets/previews/lpi-linux-essentials.png",
         "logo": "/assets/logo/for_certs/tux.png"
     },
     {
@@ -40,16 +20,6 @@
         "logo": "/assets/logo/for_certs/AWS.png"
     },
     {
-        "id": "docker",
-        "title": "Docker",
-        "issuer": "Udemy",
-        "date": "Jan 2025",
-        "credentialUrl": "https://ude.my/UC-bb014088-72a5-4adb-b3cc-7d269a173370",
-        "description": "Docker containers hands-on and fundamentals.",
-        "previewImage": "/assets/previews/docker.png",
-        "logo": "/assets/logo/for_certs/docker.svg"
-    },
-    {
         "id": "kubernetes",
         "title": "Kubernetes",
         "issuer": "Udemy",
@@ -58,16 +28,6 @@
         "description": "Kubernetes deploy microservices to AWS.",
         "previewImage": "/assets/previews/kubernetes.png",
         "logo": "/assets/logo/for_certs/kubernetes.svg"
-    },
-    {
-        "id": "sre-big-picture",
-        "title": "SRE",
-        "issuer": "Udemy",
-        "date": "Jan 2025",
-        "credentialUrl": "https://ude.my/UC-3ecf2b11-2a14-4445-af61-242847f63314",
-        "description": "Site Reliability Engineering overview.",
-        "previewImage": "/assets/previews/sre-big-picture.png",
-        "logo": "/assets/logo/for_certs/devops.png"
     },
     {
         "id": "zabbix",
@@ -80,6 +40,36 @@
         "logo": "/assets/logo/for_certs/zabbix.svg"
     },
     {
+        "id": "docker",
+        "title": "Docker",
+        "issuer": "Udemy",
+        "date": "Jan 2025",
+        "credentialUrl": "https://ude.my/UC-bb014088-72a5-4adb-b3cc-7d269a173370",
+        "description": "Docker containers hands-on and fundamentals.",
+        "previewImage": "/assets/previews/docker.png",
+        "logo": "/assets/logo/for_certs/docker.svg"
+    },
+    {
+        "id": "scrum-fundamentals",
+        "title": "Scrum & Agile",
+        "issuer": "Udemy",
+        "date": "Nov 2024",
+        "credentialUrl": "https://ude.my/UC-7b1b13d8-c693-4956-a33c-e49e96b931bf",
+        "description": "Agile fundamentals and Scrum methodology.",
+        "previewImage": "/assets/previews/scrum-fundamentals.png",
+        "logo": "/assets/logo/for_certs/scrum.svg"
+    },
+    {
+        "id": "sre-big-picture",
+        "title": "SRE",
+        "issuer": "Udemy",
+        "date": "Jan 2025",
+        "credentialUrl": "https://ude.my/UC-3ecf2b11-2a14-4445-af61-242847f63314",
+        "description": "Site Reliability Engineering overview.",
+        "previewImage": "/assets/previews/sre-big-picture.png",
+        "logo": "/assets/logo/for_certs/devops.png"
+    },
+    {
         "id": "prometheus-grafana",
         "title": "Prometheus & Grafana",
         "issuer": "Udemy",
@@ -88,6 +78,16 @@
         "description": "Application monitoring with Prometheus and Grafana.",
         "previewImage": "/assets/previews/prometheus-grafana.png",
         "logo": "/assets/logo/for_certs/Grafana.svg"
+    },
+    {
+        "id": "lpi-linux-essentials",
+        "title": "LPI Linux Essentials",
+        "issuer": "Udemy",
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-fb280985-90da-4583-adb7-7e94b9f6f699",
+        "description": "Preparation for LPI Linux Essentials certification.",
+        "previewImage": "/assets/previews/lpi-linux-essentials.png",
+        "logo": "/assets/logo/for_certs/tux.png"
     },
     {
         "id": "aws-devops-ci-cd",
