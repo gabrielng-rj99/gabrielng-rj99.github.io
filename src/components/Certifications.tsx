@@ -316,7 +316,7 @@ export default function Certifications() {
 
     const scrollCarousel = (direction: "left" | "right") => {
         if (!carouselRef.current) return;
-        const scrollAmount = carouselRef.current.clientWidth * 0.8;
+        const scrollAmount = carouselRef.current.clientWidth * 0.9;
         carouselRef.current.scrollBy({
             left: direction === "left" ? -scrollAmount : scrollAmount,
             behavior: "smooth"

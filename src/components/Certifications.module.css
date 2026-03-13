@@ -334,14 +334,14 @@
     text-decoration: none;
     transition: all 0.2s ease;
     z-index: 1;
-    /* Flex item properties for carousel */
-    flex: 0 0 280px;
+    /* Flex item properties for carousel - matched to old grid sizes */
+    flex: 0 0 220px;
     scroll-snap-align: start;
 }
 
 @media (min-width: 768px) {
     .certificateCard {
-        flex: 0 0 320px;
+        flex: 0 0 240px;
     }
 }
 
@@ -444,7 +444,7 @@
     color: var(--text-primary);
     position: relative;
     z-index: 100;
-    padding-right: 1rem;
+    padding-right: 0.5rem;
 }
 
 .certMeta {
@@ -515,7 +515,7 @@
     margin-top: auto;
     position: relative;
     z-index: 2;
-    padding-right: 2.5rem;
+    padding-right: 1rem;
 }
 
 /* Certificate Accent Line */
