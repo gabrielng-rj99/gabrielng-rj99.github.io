@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { HiExternalLink, HiBadgeCheck, HiEye } from "react-icons/hi";
+import { HiExternalLink, HiBadgeCheck, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
 import certificationsData from "../content/certifications.json";
 import certificatesData from "../content/certificates.json";
-import certificatePreviewsData from "../content/certificate_previews.json";
 import styles from "./Certifications.module.css";
 
 interface Certification {
@@ -24,6 +23,8 @@ interface Certificate {
     date: string;
     credentialUrl: string;
     description: string;
+    previewImage?: string;
+    logo?: string;
 }
 
 const containerVariants = {
@@ -35,31 +36,6 @@ const containerVariants = {
             delayChildren: 0.1,
         },
     },
-};
-
-const hoverCardVariants = {
-    hidden: {
-        opacity: 0,
-        x: -15,
-        y: 15,
-        scale: 0.95,
-        pointerEvents: "none" as const,
-        transition: {
-            duration: 0.01,
-            ease: "easeIn" as const
-        }
-    },
-    visible: {
-        opacity: 1,
-        x: 0,
-        y: 0,
-        scale: 1,
-        pointerEvents: "auto" as const,
-        transition: {
-            duration: 0.2,
-            ease: "easeOut" as const
-        }
-    }
 };
 
 const cardVariants = {
@@ -217,7 +193,7 @@ function CertificationCard({
     );
 }
 
-/* ─── Certificate Card (direct open on tap) ───────────────────────── */
+/* ─── Certificate Card (Unified Card) ───────────────────────────── */
 
 function CertificateCard({
     certificate,
@@ -226,95 +202,77 @@ function CertificateCard({
 }) {
     const hasCredential =
         certificate.credentialUrl && certificate.credentialUrl.length > 0;
+    const hasImage = certificate.previewImage && !certificate.previewImage.includes("PLACEHOLDER");
 
-    const [isHovered, setIsHovered] = React.useState(false);
-
-    // Desktop: hover shows tooltip with URL preview
-    // Mobile: tap directly opens URL (single click)
-    const handleClick = (e: React.MouseEvent) => {
-        if (hasCredential) {
-            e.preventDefault();
-            e.stopPropagation();
-            window.open(certificate.credentialUrl, "_blank", "noopener,noreferrer");
+    const Wrapper = hasCredential ? motion.a : motion.div;
+    const wrapperProps = hasCredential
+        ? {
+            href: certificate.credentialUrl,
+            target: "_blank",
+            rel: "noopener noreferrer",
         }
-    };
+        : {};
 
     return (
-        <motion.div
+        <Wrapper
+            {...(wrapperProps as Record<string, string>)}
             variants={cardVariants}
-            whileHover={{ y: -2 }}
-            className={`${styles.certificateCard} ${isHovered ? styles.hoveredCard : ""}`}
-            onClick={handleClick}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
+            whileHover={{ y: -4, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`${styles.certificateCard} ${hasCredential ? styles.certCardClickable : styles.certCardStatic}`}
         >
-            {/* Rich Hovercard - Desktop only */}
-            {hasCredential && (
-                <motion.div
-                    className={styles.hovercardContainer}
-                    initial="hidden"
-                    animate={isHovered ? "visible" : "hidden"}
-                >
-                    <motion.div
-                        variants={hoverCardVariants}
-                        className={styles.hovercard}
-                    >
-                        {certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] ? (
-                            <>
-                                <div className={styles.previewOverlay}>
-                                    <img
-                                        src={(certificatePreviewsData[certificate.id as keyof typeof certificatePreviewsData] as any).image}
-                                        alt=""
-                                        className={styles.previewImage}
-                                    />
-                                    <div className={styles.hovercardTypeBadge}>
-                                        <HiEye size={12} style={{ marginRight: "4px" }} />
-                                        Preview
-                                    </div>
-                                </div>
-                                <div className={styles.hovercardContent}>
-                                    <div className={styles.hovercardDomain}>
-                                        <HiExternalLink size={14} style={{ marginRight: "6px" }} />
-                                        {new URL(certificate.credentialUrl).hostname}
-                                    </div>
-                                </div>
-                            </>
-                        ) : (
-                            <div className={styles.hovercardContent}>
-                                <span className={styles.tooltipLabel}>
-                                    <HiEye size={12} style={{ marginRight: "4px" }} />
-                                    {certificate.credentialUrl.includes("ude.my") ? "Udemy Certificate" : "View Credential"}
-                                </span>
-                                <span className={styles.tooltipText}>
-                                    {certificate.credentialUrl}
-                                </span>
-                            </div>
+            {/* Top Image Preview */}
+            <div className={styles.certImageContainer}>
+                {hasImage ? (
+                    <img
+                        src={certificate.previewImage}
+                        alt={`${certificate.title} preview`}
+                        className={styles.certImage}
+                        loading="lazy"
+                    />
+                ) : (
+                    <div className={styles.certImagePlaceholder}>
+                        <HiBadgeCheck size={32} style={{ opacity: 0.3 }} />
+                    </div>
+                )}
+                {hasCredential && (
+                    <div className={styles.certDomainBadge}>
+                        <HiExternalLink size={12} style={{ marginRight: "4px" }} />
+                        {new URL(certificate.credentialUrl).hostname}
+                    </div>
+                )}
+            </div>
+
+            {/* Content Area */}
+            <div className={styles.certContent}>
+                <h4 className={styles.certName}>{certificate.title}</h4>
+
+                <div className={styles.certMeta}>
+                    <div className={styles.certIssuingOrgWrapper}>
+                        <p className={styles.certIssuingOrg}>
+                            {certificate.issuer}
+                        </p>
+                        {certificate.date && (
+                            <p className={styles.certDate2}>{certificate.date}</p>
                         )}
-                    </motion.div>
-                </motion.div>
-            )}
+                    </div>
+                    {certificate.logo && (
+                        <div className={styles.certLogoContainer}>
+                            <img src={certificate.logo} alt="" className={styles.certLogo} />
+                        </div>
+                    )}
+                </div>
 
-            {/* Title */}
-            <h4 className={styles.certName}>{certificate.title}</h4>
+                {certificate.description && (
+                    <p className={styles.certDescription}>
+                        {certificate.description}
+                    </p>
+                )}
+            </div>
 
-            {/* Issuer */}
-            <p className={styles.certIssuingOrg}>{certificate.issuer}</p>
-
-            {/* Date */}
-            {certificate.date && (
-                <p className={styles.certDate2}>{certificate.date}</p>
-            )}
-
-            {/* Description */}
-            {certificate.description && (
-                <p className={styles.certDescription}>
-                    {certificate.description}
-                </p>
-            )}
-
-            {/* Hover accent line */}
+            {/* Bottom accent line edge */}
             <div className={styles.certAccentLine} />
-        </motion.div>
+        </Wrapper>
     );
 }
 
@@ -327,6 +285,44 @@ export default function Certifications() {
     const hasCertifications = certifications.length > 0;
     const hasCertificates = certificates.length > 0;
 
+    // Carousel state and refs
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!carouselRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - carouselRef.current.offsetLeft);
+        setScrollLeft(carouselRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !carouselRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - carouselRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // scroll wrapper multiplier
+        carouselRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const scrollCarousel = (direction: "left" | "right") => {
+        if (!carouselRef.current) return;
+        const scrollAmount = carouselRef.current.clientWidth * 0.8;
+        carouselRef.current.scrollBy({
+            left: direction === "left" ? -scrollAmount : scrollAmount,
+            behavior: "smooth"
+        });
+    };
+
     // Calculate columns
     const calcCols = (count: number, maxCols: number) => {
         if (count <= maxCols) return count;
@@ -335,14 +331,9 @@ export default function Certifications() {
     };
 
     const badgeCols = calcCols(certifications.length, 6);
-    const certCols = calcCols(certificates.length, 4);
 
     const badgeGridStyle = {
         "--grid-cols": badgeCols,
-    } as React.CSSProperties;
-
-    const certGridStyle = {
-        "--grid-cols": certCols,
     } as React.CSSProperties;
 
     return (
@@ -448,21 +439,43 @@ export default function Certifications() {
                             </p>
                         </motion.div>
 
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-50px" }}
-                            className={styles.certificatesGrid}
-                            style={certGridStyle}
-                        >
-                            {certificates.map((cert) => (
-                                <CertificateCard
-                                    key={cert.id}
-                                    certificate={cert}
-                                />
-                            ))}
-                        </motion.div>
+                        <div className={styles.carouselWrapper}>
+                            <button
+                                className={`${styles.carouselBtn} ${styles.prevBtn}`}
+                                onClick={() => scrollCarousel("left")}
+                                aria-label="Previous certificates"
+                            >
+                                <HiChevronLeft size={24} />
+                            </button>
+
+                            <motion.div
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                                className={styles.carouselContainer}
+                                ref={carouselRef}
+                                onMouseDown={handleMouseDown}
+                                onMouseLeave={handleMouseLeave}
+                                onMouseUp={handleMouseUp}
+                                onMouseMove={handleMouseMove}
+                            >
+                                {certificates.map((cert) => (
+                                    <CertificateCard
+                                        key={cert.id}
+                                        certificate={cert}
+                                    />
+                                ))}
+                            </motion.div>
+
+                            <button
+                                className={`${styles.carouselBtn} ${styles.nextBtn}`}
+                                onClick={() => scrollCarousel("right")}
+                                aria-label="Next certificates"
+                            >
+                                <HiChevronRight size={24} />
+                            </button>
+                        </div>
                     </div>
                 </section>
             )}

@@ -20,21 +20,81 @@
     }
 }
 
-/* Certificates Grid - Smaller cards */
-.certificatesGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    justify-content: center;
-    max-width: 72rem;
-    margin: 0 auto;
+/* Carousel Wrapper and Container */
+.carouselWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
     width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-    .certificatesGrid {
-        grid-template-columns: repeat(var(--grid-cols, 4), minmax(180px, 240px));
-        gap: 1rem;
+.carouselContainer {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 1.5rem 0.5rem;
+    /* Padding to prevent drop-shadow clipping */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    width: 100%;
+    cursor: grab;
+}
+
+.carouselContainer:active {
+    cursor: grabbing;
+}
+
+.carouselContainer::-webkit-scrollbar {
+    display: none;
+}
+
+/* Carousel Buttons */
+.carouselBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carouselBtn:hover {
+    background: var(--accent-purple);
+    color: white;
+    border-color: var(--accent-purple);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prevBtn {
+    left: -22px;
+}
+
+.nextBtn {
+    right: -22px;
+}
+
+@media (max-width: 768px) {
+
+    .prevBtn,
+    .nextBtn {
+        display: none;
+        /* Hide buttons on mobile, rely on touch swipe */
     }
 }
 
@@ -268,334 +328,204 @@
     background: var(--bg-card);
     border: 1px solid var(--border-primary);
     border-radius: 0.75rem;
-    padding: 0.875rem;
-    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
     transition: all 0.2s ease;
-    overflow: visible;
     z-index: 1;
+    /* Flex item properties for carousel */
+    flex: 0 0 280px;
+    scroll-snap-align: start;
 }
 
-.hoveredCard {
-    z-index: 50 !important;
+@media (min-width: 768px) {
+    .certificateCard {
+        flex: 0 0 320px;
+    }
+}
+
+.certificateCard::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.75rem;
+    border: 1px solid var(--accent-purple);
+    opacity: 0.4;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+.certificateCard:hover::before {
+    opacity: 1;
 }
 
 .certificateCard:hover {
     border-color: var(--accent-purple);
-    transform: translateY(-2px);
-    z-index: 50 !important;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
-/* Certificate Title */
-.certName {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 0.25rem;
-    color: var(--text-primary);
+.certCardClickable {
+    cursor: pointer;
 }
 
-@media (min-width: 768px) {
-    .certName {
-        font-size: 0.875rem;
-    }
+/* Image Preview Container */
+.certImageContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-primary);
+    overflow: hidden;
 }
 
-/* Certificate Issuer */
-.certIssuingOrg {
-    font-size: 0.6875rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-    color: var(--accent-purple);
+.certImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-/* Certificate Date */
-.certDate2 {
-    font-size: 0.6875rem;
-    margin-bottom: 0.5rem;
+.certificateCard:hover .certImage {
+    transform: scale(1.05);
+}
+
+.certImagePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-muted);
 }
 
-/* Certificate Description */
+/* Domain Badge Overlay */
+.certDomainBadge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    color: white;
+    font-size: 0.625rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 2;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.certificateCard:hover .certDomainBadge {
+    opacity: 1;
+}
+
+/* Content Area */
+.certContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    position: relative;
+}
+
+.certName {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    position: relative;
+    z-index: 100;
+    padding-right: 1rem;
+}
+
+.certMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-bottom: 0.625rem;
+    position: relative;
+    z-index: 2;
+}
+
+.certIssuingOrgWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.certIssuingOrg {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+}
+
+.certLogoContainer {
+    position: absolute;
+    top: -40px;
+    right: -10px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    flex-shrink: 0;
+    z-index: -1;
+    opacity: 0.75;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.certificateCard:hover .certLogoContainer {
+    opacity: 0.95;
+    transform: scale(1.05);
+}
+
+.certLogo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.certDate2 {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
 .certDescription {
     font-size: 0.75rem;
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--text-tertiary);
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+    padding-right: 2.5rem;
 }
 
 /* Certificate Accent Line */
 .certAccentLine {
-    width: 1.5rem;
-    height: 2px;
-    border-radius: 9999px;
-    margin-top: 0.5rem;
+    height: 3px;
+    width: 0;
     background: linear-gradient(to right, var(--accent-gradient-start), var(--accent-gradient-end));
+    transition: width 0.3s ease;
 }
 
-/* ─── Tooltip (Desktop Hover only - hidden on touch) ─── */
-.tooltip {
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-tertiary);
-    border: 1px solid var(--accent-purple);
-    border-radius: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    white-space: nowrap;
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Hide tooltip on touch devices */
-@media (hover: none) {
-    .tooltip {
-        display: none;
-    }
-}
-
-.tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-top-color: var(--accent-purple);
-}
-
-.certificateCard:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-}
-
-.tooltipText {
-    font-size: 0.6875rem;
-    color: var(--text-primary);
-    word-break: break-all;
-    max-width: 200px;
-    display: block;
-}
-
-.tooltipLabel {
-    font-size: 0.625rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
-}
-
-/* ─── Modal (Mobile) ─── */
-.modalOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: 1rem;
-    animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.modalContent {
-    background: var(--bg-card);
-    border: 1px solid var(--accent-purple);
-    border-radius: 1rem;
-    padding: 1.25rem;
-    max-width: 320px;
+.certificateCard:hover .certAccentLine {
     width: 100%;
-    animation: slideUp 0.2s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.modalTitle {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-    padding-right: 2rem;
-}
-
-.modalIssuer {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--accent-purple);
-    margin-bottom: 0.75rem;
-}
-
-.modalDescription {
-    font-size: 0.8125rem;
-    line-height: 1.5;
-    color: var(--text-tertiary);
-    margin-bottom: 1rem;
-}
-
-.modalUrlLabel {
-    font-size: 0.625rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.375rem;
-}
-
-.modalUrl {
-    font-size: 0.75rem;
-    color: var(--accent-purple);
-    word-break: break-all;
-    background: var(--bg-tertiary);
-    padding: 0.5rem;
-    border-radius: 0.375rem;
-    margin-bottom: 1rem;
-}
-
-.modalNoUrl {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    font-style: italic;
-}
-
-.modalActions {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.modalButton {
-    flex: 1;
-    padding: 0.625rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.modalButtonPrimary {
-    background: var(--accent-purple);
-    color: white;
-}
-
-.modalButtonPrimary:hover {
-    background: var(--accent-purple-hover, #8b5cf6);
-}
-
-.modalButtonSecondary {
-    background: transparent;
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-}
-
-.modalButtonSecondary:hover {
-    border-color: var(--text-muted);
-}
-
-/* ─── Hovercard (Rich Tooltip Preview) ─── */
-.hovercardContainer {
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    z-index: 100;
-    width: 220px;
-    pointer-events: none;
-    /* Prevents blocking cards below */
-}
-
-
-
-.hovercard {
-    background: var(--bg-card);
-    border: 1px solid var(--border-primary);
-    border-radius: 0.75rem;
-    overflow: hidden;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    pointer-events: auto;
-    /* Restores interaction */
-}
-
-.previewOverlay {
-    position: relative;
-    width: 100%;
-    height: 140px;
-    background: var(--bg-tertiary);
-    overflow: hidden;
-    border-bottom: 1px solid var(--border-primary);
-}
-
-.previewImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.01s ease;
-}
-
-.hovercardContainer:hover .previewImage {
-    transform: scale(1.05);
-}
-
-.hovercardTypeBadge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(4px);
-    color: white;
-    font-size: 0.625rem;
-    padding: 4px 8px;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    z-index: 10;
-}
-
-.hovercardContent {
-    padding: 0.5rem 0.75rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.hovercardDomain {
-    display: flex;
-    align-items: center;
-    font-size: 0.75rem;
-    color: var(--accent-purple);
-    font-weight: 600;
 }
