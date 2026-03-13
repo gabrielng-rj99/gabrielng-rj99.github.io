@@ -50,6 +50,27 @@
     cursor: grabbing;
 }
 
+/* Slide = 8 cards (4 top + 4 bottom) */
+.carouselSlide {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 0 0 calc(240px * 4 + 1.5rem * 3);
+    scroll-snap-align: start;
+}
+
+/* Each row = 4 cards horizontally */
+.carouselRow {
+    display: flex;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .carouselSlide {
+        flex: 0 0 calc(220px * 4 + 1.5rem * 3);
+    }
+}
+
 .carouselContainer::-webkit-scrollbar {
     display: none;
 }

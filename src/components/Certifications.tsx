@@ -316,7 +316,8 @@ export default function Certifications() {
 
     const scrollCarousel = (direction: "left" | "right") => {
         if (!carouselRef.current) return;
-        const scrollAmount = carouselRef.current.clientWidth * 0.9;
+        // Scroll by approximately 4 card widths (slightly less to avoid overshoot)
+        const scrollAmount = 950; // 4 cards = ~960px with gaps
         carouselRef.current.scrollBy({
             left: direction === "left" ? -scrollAmount : scrollAmount,
             behavior: "smooth"
@@ -460,11 +461,28 @@ export default function Certifications() {
                                 onMouseUp={handleMouseUp}
                                 onMouseMove={handleMouseMove}
                             >
-                                {certificates.map((cert) => (
-                                    <CertificateCard
-                                        key={cert.id}
-                                        certificate={cert}
-                                    />
+                                {/* Each slide = 8 cards (4 top + 4 bottom) */}
+                                {Array.from({ length: Math.ceil(certificates.length / 8) }).map((_, slideIndex) => (
+                                    <div key={slideIndex} className={styles.carouselSlide}>
+                                        {/* Top row - 4 cards */}
+                                        <div className={styles.carouselRow}>
+                                            {certificates.slice(slideIndex * 8, slideIndex * 8 + 4).map((cert) => (
+                                                <CertificateCard
+                                                    key={cert.id}
+                                                    certificate={cert}
+                                                />
+                                            ))}
+                                        </div>
+                                        {/* Bottom row - 4 cards */}
+                                        <div className={styles.carouselRow}>
+                                            {certificates.slice(slideIndex * 8 + 4, slideIndex * 8 + 8).map((cert) => (
+                                                <CertificateCard
+                                                    key={cert.id}
+                                                    certificate={cert}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
                                 ))}
                             </motion.div>
 
