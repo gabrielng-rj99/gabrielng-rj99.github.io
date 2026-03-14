@@ -35,7 +35,7 @@ function ProjectMedia({
     title,
     featured = false,
 }: {
-    media: { type: string; src: string };
+    media: { type: string; src: string; fit?: string };
     title: string;
     featured?: boolean;
 }) {
@@ -43,6 +43,13 @@ function ProjectMedia({
     const [isLoaded, setIsLoaded] = useState(false);
 
     const heightClass = featured ? styles.mediaFeatured : styles.mediaRegular;
+    const fitMode = media.fit || "fill";
+    const objectPosition = fitMode === "cover" ? "top" : "center";
+
+    const mediaStyle = {
+        objectFit: fitMode as "fill" | "cover" | "contain",
+        objectPosition,
+    };
 
     if (media.type === "video") {
         return (
@@ -62,6 +69,7 @@ function ProjectMedia({
                     playsInline
                     onLoadedData={() => setIsLoaded(true)}
                     className={styles.media}
+                    style={mediaStyle}
                 />
             </div>
         );
@@ -81,6 +89,7 @@ function ProjectMedia({
                 loading="lazy"
                 onLoad={() => setIsLoaded(true)}
                 className={styles.media}
+                style={mediaStyle}
             />
         </div>
     );
@@ -90,7 +99,19 @@ function ProjectMedia({
 
 function TagPill({ label }: { label: string }) {
     return (
-        <span className="badge">
+        <span
+            style={{
+                display: "inline-block",
+                padding: "0.25rem 0.65rem",
+                fontSize: "0.75rem",
+                fontWeight: 500,
+                color: "var(--accent-purple)",
+                background: "rgba(159, 0, 255, 0.1)",
+                border: "1px solid rgba(159, 0, 255, 0.25)",
+                borderRadius: "9999px",
+                transition: "all 0.2s ease",
+            }}
+        >
             {label}
         </span>
     );
