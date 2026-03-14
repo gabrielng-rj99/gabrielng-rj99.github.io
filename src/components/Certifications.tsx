@@ -144,7 +144,12 @@ function CertificationCard({
                 className={styles.certTitle}
                 style={{ color: "var(--text-primary)" }}
             >
-                {certification.title}
+                {certification.title.split("\n").map((line, i, arr) => (
+                    <React.Fragment key={i}>
+                        {line}
+                        {i < arr.length - 1 && <br />}
+                    </React.Fragment>
+                ))}
             </h3>
 
             {/* Issuer */}
@@ -260,7 +265,12 @@ function CertificateCard({
 
                 {certificate.description && (
                     <p className={styles.certDescription}>
-                        {certificate.description}
+                        {certificate.description.split("\n").map((line, i, arr) => (
+                            <React.Fragment key={i}>
+                                {line}
+                                {i < arr.length - 1 && <br />}
+                            </React.Fragment>
+                        ))}
                     </p>
                 )}
             </div>
