@@ -13,6 +13,18 @@
         <meta name="author" content="Gabriel Gomes" />
         <meta name="theme-color" content="#9f00ff" />
 
+        <!-- Blocking script to set theme before React hydrates -->
+        <script>
+            (function() {
+                const STORAGE_KEY = "portfolio-theme";
+                const stored = localStorage.getItem(STORAGE_KEY);
+                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                const theme = stored === "dark" || stored === "light" ? stored : (prefersDark ? "dark" : "light");
+                document.documentElement.setAttribute("data-theme", theme);
+                document.documentElement.classList.add(theme);
+            })();
+        </script>
+
         <title>Gabriel Gomes | Software Engineer</title>
 
         <link
