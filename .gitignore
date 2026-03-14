@@ -34,8 +34,8 @@ pnpm-debug.log*
 # Vite
 vite.config.ts.timestamp-*
 
-# GitHub (disabled temporarily)
-.github/
+# GitHub
+# .github/
 
 # IA files
 CLAUDE.md
