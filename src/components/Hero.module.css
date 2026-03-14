@@ -15,25 +15,19 @@
     z-index: 10;
     width: min(90vw, 72rem);
     margin: 0 auto;
-    padding: 7rem 1rem 1rem;
+    padding: 0 1rem;
     text-align: center;
-}
-
-@media (min-width: 640px) {
-    .heroContent {
-        padding-top: 7rem;
-    }
 }
 
 @media (min-width: 768px) {
     .heroContent {
-        padding: 9rem 1.5rem 1rem;
+        padding: 0 1.5rem;
     }
 }
 
 @media (min-width: 1024px) {
     .heroContent {
-        padding: 9rem 2rem 1rem;
+        padding: 0 2rem;
     }
 }
 

@@ -80,11 +80,18 @@ export default function Hero() {
                             href="#portfolio"
                             onClick={(e) => {
                                 e.preventDefault();
-                                document
-                                    .querySelector("#portfolio")
-                                    ?.scrollIntoView({
+                                const target = document.querySelector("#portfolio");
+                                if (target) {
+                                    const navHeight = 30;
+                                    const targetPosition =
+                                        target.getBoundingClientRect().top +
+                                        window.scrollY -
+                                        navHeight;
+                                    window.scrollTo({
+                                        top: targetPosition,
                                         behavior: "smooth",
                                     });
+                                }
                             }}
                             className={`btn-outline ${styles.heroBtn}`}
                         >

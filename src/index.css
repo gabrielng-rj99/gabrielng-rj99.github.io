@@ -539,6 +539,12 @@ img {
 
 .list-item-bullet:hover {
     color: var(--text-primary);
+    text-shadow: 0 0 8px rgba(159, 0, 255, 0.35);
+}
+
+[data-theme="dark"] .list-item-bullet:hover {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(180, 77, 255, 0.4);
 }
 
 /* Bullet point */
