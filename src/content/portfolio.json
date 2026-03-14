@@ -1,74 +1,74 @@
 [
-  {
-    "id": "client-hub-open",
-    "title": "Client Hub Open Project",
-    "description": "Licenses Manager - A client management system for handling licenses and subscriptions.",
-    "tags": ["React", "TypeScript", "Full-Stack"],
-    "link": "https://github.com/gabrielng-rj99/Client-Hub-Open-Project",
-    "media": {
-      "type": "image",
-      "src": "/assets/images/portfolio/client-hub-open.png"
+    {
+        "id": "client-hub-open",
+        "title": "Client Hub Open Project",
+        "description": "Licenses Manager - A client management system for handling licenses and subscriptions.",
+        "tags": ["React", "TypeScript", "Full-Stack"],
+        "link": "https://github.com/gabrielng-rj99/Client-Hub-Open-Project",
+        "media": {
+            "type": "video",
+            "src": "/assets/images/portfolio/chop.mp4"
+        },
+        "featured": true
     },
-    "featured": true
-  },
-  {
-    "id": "ai-flow",
-    "title": "AI-Flow",
-    "description": "AI-powered workflow automation tool for streamlined business processes.",
-    "tags": ["AI", "Automation", "Workflow"],
-    "link": "https://github.com/gabrielng-rj99/AI-Flow",
-    "media": {
-      "type": "image",
-      "src": "/assets/images/portfolio/ai-flow.png"
+    {
+        "id": "ai-flow",
+        "title": "AI-Flow",
+        "description": "AI-powered workflow automation tool for streamlined business processes.",
+        "tags": ["AI", "Automation", "Workflow"],
+        "link": "https://github.com/gabrielng-rj99/AI-Flow",
+        "media": {
+            "type": "video",
+            "src": "/assets/images/portfolio/ai-flow.mp4"
+        },
+        "featured": true
     },
-    "featured": true
-  },
-  {
-    "id": "pdf2md",
-    "title": "pdf2md",
-    "description": "Transform PDF files into Markdown format while preserving formatting and images.",
-    "tags": ["Python", "CLI", "Document Processing"],
-    "link": "https://github.com/gabrielng-rj99/pdf2md",
-    "media": {
-      "type": "image",
-      "src": "/assets/images/portfolio/pdf2md.png"
+    {
+        "id": "pdf2md",
+        "title": "pdf2md",
+        "description": "Transform PDF files into Markdown format while preserving formatting and images.",
+        "tags": ["Python", "CLI", "Document Processing"],
+        "link": "https://github.com/gabrielng-rj99/pdf2md",
+        "media": {
+            "type": "video",
+            "src": "/assets/images/portfolio/pdf2md.mp4"
+        },
+        "featured": false
     },
-    "featured": false
-  },
-  {
-    "id": "website",
-    "title": "Web Development",
-    "description": "Personal portfolio website — the very site you're viewing right now.",
-    "tags": ["React", "TypeScript", "CSS Modules"],
-    "link": "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io",
-    "media": {
-      "type": "video",
-      "src": "/assets/images/portfolio/website.mp4"
+    {
+        "id": "website",
+        "title": "Web Development",
+        "description": "Personal portfolio website — the very site you're viewing right now.",
+        "tags": ["React", "TypeScript", "CSS Modules"],
+        "link": "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io",
+        "media": {
+            "type": "video",
+            "src": "/assets/images/portfolio/website.mp4"
+        },
+        "featured": false
     },
-    "featured": false
-  },
-  {
-    "id": "election-campaign",
-    "title": "Campanha Eleitoral",
-    "description": "Full-stack application built for data management during an election campaign, including ETL pipelines compliant with LGPD and TSE regulations.",
-    "tags": ["Python", "SQL", "ETL", "LGPD"],
-    "link": "https://youtu.be/JziopgNKHR4",
-    "media": {
-      "type": "image",
-      "src": "/assets/images/portfolio/election-campaign.png"
+    {
+        "id": "election-campaign",
+        "title": "Campanha Eleitoral",
+        "description": "Full-stack application built for data management during an election campaign, including ETL pipelines compliant with LGPD and TSE regulations.",
+        "tags": ["Python", "SQL", "ETL", "LGPD"],
+        "link": "https://youtu.be/JziopgNKHR4",
+        "media": {
+            "type": "image",
+            "src": "/assets/images/portfolio/election-campaign.png"
+        },
+        "featured": false
     },
-    "featured": false
-  },
-  {
-    "id": "2048",
-    "title": "2048 CLI Game",
-    "description": "A command-line implementation of the classic 2048 puzzle game.",
-    "tags": ["Python", "CLI", "Game"],
-    "link": "https://github.com/gabrielng-rj99/2048",
-    "media": {
-      "type": "video",
-      "src": "/assets/images/portfolio/2048.mp4"
-    },
-    "featured": false
-  }
+    {
+        "id": "2048",
+        "title": "2048 CLI Game",
+        "description": "A command-line implementation of the classic 2048 puzzle game.",
+        "tags": ["Python", "CLI", "Game"],
+        "link": "https://github.com/gabrielng-rj99/2048",
+        "media": {
+            "type": "video",
+            "src": "/assets/images/portfolio/2048.mp4"
+        },
+        "featured": false
+    }
 ]
