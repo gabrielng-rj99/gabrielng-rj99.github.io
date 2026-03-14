@@ -1,0 +1,43 @@
+[
+    {
+        "id": "life-plan",
+        "role": "Automation Specialist and Broker",
+        "company": "Life Plan Insurance and Health Brokerage",
+        "period": "Mar/2023 - Aug/2023",
+        "location": "Rio de Janeiro, Brasil",
+        "description": [
+            "ETL and data cleaning automation to be used by the brokers.",
+            "Automated messaging system via WhatsApp (discontinued):",
+            "  - Accelerated the initial communication process with clients by 1500%.",
+            "  - Monolithic architecture.",
+            "  - Service blocked due to WhatsApp Business, even for non-SPAM cases."
+        ],
+        "skills": [
+            "ETL",
+            "Python",
+            "Automation",
+            "WhatsApp API",
+            "Data Cleaning"
+        ]
+    },
+    {
+        "id": "forca-motriz",
+        "role": "Technical Consultant",
+        "company": "Third Sector - Coletivo Força Motriz",
+        "period": "2019 - 2021",
+        "location": "Rio de Janeiro, Brasil",
+        "description": [
+            "A team focused on engineering and security in occupations in RJ.",
+            "In partnership with Senge-RJ, UFRJ, UERJ, architects, lawyers, and politicians, we managed to:",
+            "  - Regularize 3 occupations, which we officially \"transformed\" into \"favelas.\"",
+            "  - Extension Project NATEP-UFRJ, which continues to operate today (also at UERJ).",
+            "  - Create a space (donated by a former resident DJ) for education in Rocinha known as Só Cria."
+        ],
+        "skills": [
+            "Project Management",
+            "Engineering",
+            "Security",
+            "Community Development"
+        ]
+    }
+]
