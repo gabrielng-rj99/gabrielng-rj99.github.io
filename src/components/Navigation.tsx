@@ -187,7 +187,7 @@ export default function Navigation() {
                     {/* Column 3: Right-aligned Tools (Desktop) */}
                     <div className={styles.navTools}>
                         <a
-                            href="/assets/download/Gabriel-Gomes_Curriculum-En.pdf"
+                            href="/assets/download/CV-Gabriel_Gomes-Software_Engineer.pdf"
                             download
                             className={styles.downloadBtn}
                             title="Download CV"
@@ -205,7 +205,7 @@ export default function Navigation() {
                     {/* Mobile: Tools + Hamburger */}
                     <div className={styles.mobileTools}>
                         <a
-                            href="/assets/download/Gabriel-Gomes_Curriculum-En.pdf"
+                            href="/assets/download/CV-Gabriel_Gomes-Software_Engineer.pdf"
                             download
                             className={styles.downloadBtn}
                             title="Download CV"
