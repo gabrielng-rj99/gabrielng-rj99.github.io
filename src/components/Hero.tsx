@@ -1,3 +1,4 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { HiDownload } from "react-icons/hi";
 import aboutData from "../content/about.json";
@@ -17,10 +18,9 @@ export default function Hero() {
                     {/* Headline */}
                     <h1 className={styles.heroHeadline}>
                         {headlineParts.map((part, index) => (
-                            <span
-                                key={index}
-                                className="text-gradient-animated"
-                            >
+                            <React.Fragment key={index}>
+                                {index > 0 && <br />}
+                                <span className="text-gradient-animated">
                                 {part.split(/(-)/g).map((segment, i) =>
                                     segment === "-" ? (
                                         <span
@@ -38,6 +38,7 @@ export default function Hero() {
                                     ),
                                 )}
                             </span>
+                            </React.Fragment>
                         ))}
                     </h1>
 
