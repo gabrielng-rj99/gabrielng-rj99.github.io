@@ -256,3 +256,58 @@
 .job:hover .jobListItemMobile {
     color: var(--text-primary);
 }
+
+/* ============================================
+   Skills Section
+   ============================================ */
+
+.jobSkills {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.jobSkillsMobile {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-secondary);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skillsLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+}
+
+.skillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skillPill {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent-purple);
+    background: rgba(159, 0, 255, 0.1);
+    border: 1px solid rgba(159, 0, 255, 0.25);
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+
+.skillPill:hover {
+    background: rgba(159, 0, 255, 0.2);
+    border-color: var(--accent-purple);
+    transform: translateY(-1px);
+}

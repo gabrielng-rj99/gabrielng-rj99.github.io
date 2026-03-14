@@ -200,7 +200,7 @@
                 "Python Script",
                 "Regex"
             ],
-            "data": ["Pandas", "NumPy", "SciPy", "Matplotlib", "ETL"],
+            "data": ["Pandas", "NumPy", "SciPy", "Matplotlib", "ETL", "Excel (+VBA)", "Probability & Statistics", "Calculus & Linear Algebra", "Optimization"],
             "web_scraping": [
                 "Selenium",
                 "BeautifulSoup",

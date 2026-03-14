@@ -6,11 +6,10 @@ import styles from "./Navigation.module.css";
 
 const navLinks = [
     { label: "About", href: "#about-me" },
+    { label: "Portfolio", href: "#portfolio" },
     { label: "Experience", href: "#experience" },
     { label: "Certs", href: "#certifications" },
-    { label: "Skills", href: "#skills" },
     { label: "Education", href: "#education" },
-    { label: "Portfolio", href: "#portfolio" },
     { label: "Contact", href: "#contact" },
 ];
 

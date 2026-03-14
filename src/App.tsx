@@ -4,7 +4,6 @@ import Navigation from "./components/Navigation";
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Certifications from "./components/Certifications";
-import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
@@ -21,11 +20,10 @@ export default function App() {
             {/* Page sections */}
             <main className={styles.main}>
                 <About />
+                <Portfolio />
                 <Experience />
                 <Certifications />
-                <Skills />
                 <Education />
-                <Portfolio />
                 <Contact />
             </main>
         </>
