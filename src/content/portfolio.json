@@ -3,7 +3,18 @@
         "id": "client-hub-open",
         "title": "Client Hub Open Project",
         "description": "Licenses Manager - A client management system for handling licenses and subscriptions.",
-        "tags": ["React", "TypeScript", "Full-Stack"],
+        "tags": [
+            "Go",
+            "Golang",
+            "React",
+            "PostgreSQL",
+            "Docker",
+            "JWT",
+            "RBAC",
+            "Rate Limiting",
+            "Audit Logs",
+            "Nginx"
+        ],
         "link": "https://github.com/gabrielng-rj99/Client-Hub-Open-Project",
         "media": {
             "type": "video",
@@ -15,7 +26,14 @@
         "id": "ai-flow",
         "title": "AI-Flow",
         "description": "AI-powered workflow automation tool for streamlined business processes.",
-        "tags": ["AI", "Automation", "Workflow"],
+        "tags": [
+            "AI",
+            "Automation",
+            "Workflow",
+            "Python",
+            "Integration",
+            "API"
+        ],
         "link": "https://github.com/gabrielng-rj99/AI-Flow",
         "media": {
             "type": "video",
@@ -27,7 +45,14 @@
         "id": "pdf2md",
         "title": "pdf2md",
         "description": "Transform PDF files into Markdown format while preserving formatting and images.",
-        "tags": ["Python", "CLI", "Document Processing"],
+        "tags": [
+            "Python",
+            "PDF Processing",
+            "CLI",
+            "Docker",
+            "React",
+            "Document Processing"
+        ],
         "link": "https://github.com/gabrielng-rj99/pdf2md",
         "media": {
             "type": "video",
@@ -39,11 +64,21 @@
         "id": "website",
         "title": "Web Development",
         "description": "Personal portfolio website — the very site you're viewing right now.",
-        "tags": ["React", "TypeScript", "CSS Modules"],
+        "tags": [
+            "React",
+            "TypeScript",
+            "CSS Modules",
+            "Vite",
+            "Framer Motion",
+            "tsParticles",
+            "GitHub Actions",
+            "CI/CD"
+        ],
         "link": "https://github.com/gabrielng-rj99/gabrielng-rj99.github.io",
         "media": {
             "type": "video",
-            "src": "/assets/images/portfolio/website.mp4"
+            "src": "/assets/images/portfolio/website.mp4",
+            "fit": "fill"
         },
         "featured": false
     },
@@ -51,7 +86,7 @@
         "id": "election-campaign",
         "title": "Campanha Eleitoral",
         "description": "Full-stack application built for data management during an election campaign, including ETL pipelines compliant with LGPD and TSE regulations.",
-        "tags": ["Python", "SQL", "ETL", "LGPD"],
+        "tags": ["Python", "SQL", "ETL", "LGPD", "Data Engineering", "TSE"],
         "link": "https://youtu.be/JziopgNKHR4",
         "media": {
             "type": "image",
@@ -63,11 +98,12 @@
         "id": "2048",
         "title": "2048 CLI Game",
         "description": "A command-line implementation of the classic 2048 puzzle game.",
-        "tags": ["Python", "CLI", "Game"],
+        "tags": ["Python", "CLI", "Game", "Algorithm"],
         "link": "https://github.com/gabrielng-rj99/2048",
         "media": {
             "type": "video",
-            "src": "/assets/images/portfolio/2048.mp4"
+            "src": "/assets/images/portfolio/2048.mp4",
+            "fit": "cover"
         },
         "featured": false
     }
