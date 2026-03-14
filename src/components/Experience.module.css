@@ -255,6 +255,12 @@
 
 .job:hover .jobListItemMobile {
     color: var(--text-primary);
+    text-shadow: 0 0 8px rgba(159, 0, 255, 0.35);
+}
+
+:global([data-theme="dark"]) .job:hover .jobListItemMobile {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(180, 77, 255, 0.4);
 }
 
 /* ============================================
@@ -262,19 +268,18 @@
    ============================================ */
 
 .jobSkills {
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-secondary);
+    margin-top: 0.75rem;
+    padding-left: 30%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     align-items: center;
     gap: 0.5rem;
 }
 
 .jobSkillsMobile {
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-secondary);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -291,6 +296,7 @@
 .skillsList {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 0.4rem;
 }
 

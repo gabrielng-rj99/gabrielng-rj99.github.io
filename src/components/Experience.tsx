@@ -205,6 +205,20 @@ export default function Experience() {
                                     <h6 className={styles.jobLocation}>
                                         {job.location}
                                     </h6>
+
+                                    {/* Skills for this role */}
+                                    {job.skills && job.skills.length > 0 && (
+                                        <div className={styles.jobSkills}>
+                                            <span className={styles.skillsLabel}>Skills:</span>
+                                            <div className={styles.skillsList}>
+                                                {job.skills.map((skill, index) => (
+                                                    <span key={index} className={styles.skillPill}>
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div
@@ -245,19 +259,7 @@ export default function Experience() {
                                         })}
                                     </ul>
 
-                                    {/* Skills for this role */}
-                                    {job.skills && job.skills.length > 0 && (
-                                        <div className={styles.jobSkills}>
-                                            <span className={styles.skillsLabel}>Skills:</span>
-                                            <div className={styles.skillsList}>
-                                                {job.skills.map((skill, index) => (
-                                                    <span key={index} className={styles.skillPill}>
-                                                        {skill}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+
                                 </div>
                             </div>
 
@@ -286,6 +288,20 @@ export default function Experience() {
                                             {job.location}
                                         </span>
                                     </div>
+
+                                    {/* Skills for this role - Mobile */}
+                                    {job.skills && job.skills.length > 0 && (
+                                        <div className={styles.jobSkillsMobile}>
+                                            <span className={styles.skillsLabel}>Skills:</span>
+                                            <div className={styles.skillsList}>
+                                                {job.skills.map((skill, index) => (
+                                                    <span key={index} className={styles.skillPill}>
+                                                        {skill}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                     <ul className={styles.jobListMobile}>
                                         {job.description.map((item, i) => {
                                             const isSubItem =
@@ -317,19 +333,7 @@ export default function Experience() {
                                         })}
                                     </ul>
 
-                                    {/* Skills for this role - Mobile */}
-                                    {job.skills && job.skills.length > 0 && (
-                                        <div className={styles.jobSkillsMobile}>
-                                            <span className={styles.skillsLabel}>Skills:</span>
-                                            <div className={styles.skillsList}>
-                                                {job.skills.map((skill, index) => (
-                                                    <span key={index} className={styles.skillPill}>
-                                                        {skill}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+
                                 </div>
                             </motion.div>
                         </motion.div>
