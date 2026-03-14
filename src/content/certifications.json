@@ -10,12 +10,12 @@
         "status": "earned"
     },
     {
-        "id": "comptia-security-plus",
-        "title": "CompTIA Security+",
-        "issuer": "CompTIA",
-        "date": "",
-        "badgeImage": "/assets/images/certifications/comptia-security-plus.png",
-        "credentialUrl": "",
-        "status": "planned"
+        "id": "ibsec-cybersecurity-awareness",
+        "title": "IBSEC CyberSecurity Awareness",
+        "issuer": "IBSEC",
+        "date": "Mar 2026",
+        "badgeImage": "/assets/images/certifications/IBSEC_PT-IC-SEC-1783.png",
+        "credentialUrl": "https://certs.ibsec.com.br?cert_hash=525e51dd216cd390",
+        "status": "earned"
     }
 ]
