@@ -385,7 +385,7 @@ img {
         var(--accent-gradient-start),
         var(--accent-gradient-end)
     );
-    margin: 0 auto;
+    margin: 0.75rem auto 0;
 }
 
 /* Accent button */
@@ -517,6 +517,7 @@ img {
     line-height: 1.625;
     text-align: center;
     color: var(--text-tertiary);
+    margin-top: 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -661,12 +662,12 @@ img {
 /* Section header with large bottom margin */
 .section-header-lg {
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
     .section-header-lg {
-        margin-bottom: 8rem;
+        margin-bottom: 4rem;
     }
 }
 
@@ -771,7 +772,7 @@ section[id] {
     font-size: 1.125rem;
     color: var(--text-tertiary);
     max-width: 650px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
     line-height: 1.6;
 }
 
