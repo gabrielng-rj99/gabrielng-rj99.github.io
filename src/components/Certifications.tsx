@@ -105,12 +105,7 @@ function CertificationCard({
             </div>
 
             {/* Badge Image */}
-            <div
-                className={styles.badgeImageContainer}
-                style={{
-                    background: "var(--bg-tertiary)",
-                }}
-            >
+            <div className={styles.badgeImageContainer}>
                 <div
                     className={styles.badgeGlow}
                     style={{

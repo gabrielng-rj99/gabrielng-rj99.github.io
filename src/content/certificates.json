@@ -10,14 +10,25 @@
         "logo": "/assets/logo/for_certs/tux.png"
     },
     {
-        "id": "aws-na-pratica",
-        "title": "AWS na Prática",
+        "id": "lpi-linux-essentials",
+        "title": "LPI Linux Essentials",
         "issuer": "Udemy",
-        "date": "Dec 2024",
-        "credentialUrl": "https://ude.my/UC-4ed47ea1-08a6-4f32-8a8e-7343a6c81d46",
-        "description": "Hands-on AWS practical course.",
-        "previewImage": "/assets/previews/aws-na-pratica.png",
-        "logo": "/assets/logo/for_certs/AWS.png"
+        "date": "Feb 2025",
+        "credentialUrl": "https://ude.my/UC-fb280985-90da-4583-adb7-7e94b9f6f699",
+        "description": "Preparation for LPI Linux Essentials certification.",
+        "previewImage": "/assets/previews/lpi-linux-essentials.png",
+        "logo": "/assets/logo/for_certs/tux.png"
+    },
+
+    {
+        "id": "docker",
+        "title": "Docker",
+        "issuer": "Udemy",
+        "date": "Jan 2025",
+        "credentialUrl": "https://ude.my/UC-bb014088-72a5-4adb-b3cc-7d269a173370",
+        "description": "Docker containers hands-on and fundamentals.",
+        "previewImage": "/assets/previews/docker.png",
+        "logo": "/assets/logo/for_certs/docker.svg"
     },
     {
         "id": "kubernetes",
@@ -30,38 +41,18 @@
         "logo": "/assets/logo/for_certs/kubernetes.svg"
     },
     {
-        "id": "zabbix",
-        "title": "Zabbix",
+        "id": "aws-na-pratica",
+        "title": "AWS - Hands-on",
         "issuer": "Udemy",
-        "date": "Feb 2025",
-        "credentialUrl": "https://ude.my/UC-2f87c7d2-75dc-4546-aea6-bfc9f7250b4d",
-        "description": "Zabbix monitoring setup and configuration.",
-        "previewImage": "/assets/previews/zabbix.png",
-        "logo": "/assets/logo/for_certs/zabbix.svg"
-    },
-    {
-        "id": "docker",
-        "title": "Docker",
-        "issuer": "Udemy",
-        "date": "Jan 2025",
-        "credentialUrl": "https://ude.my/UC-bb014088-72a5-4adb-b3cc-7d269a173370",
-        "description": "Docker containers hands-on and fundamentals.",
-        "previewImage": "/assets/previews/docker.png",
-        "logo": "/assets/logo/for_certs/docker.svg"
-    },
-    {
-        "id": "scrum-fundamentals",
-        "title": "Scrum & Agile",
-        "issuer": "Udemy",
-        "date": "Nov 2024",
-        "credentialUrl": "https://ude.my/UC-7b1b13d8-c693-4956-a33c-e49e96b931bf",
-        "description": "Agile fundamentals and Scrum methodology.",
-        "previewImage": "/assets/previews/scrum-fundamentals.png",
-        "logo": "/assets/logo/for_certs/scrum.svg"
+        "date": "Dec 2024",
+        "credentialUrl": "https://ude.my/UC-4ed47ea1-08a6-4f32-8a8e-7343a6c81d46",
+        "description": "Hands-on AWS practical course.",
+        "previewImage": "/assets/previews/aws-na-pratica.png",
+        "logo": "/assets/logo/for_certs/AWS.png"
     },
     {
         "id": "sre-big-picture",
-        "title": "SRE",
+        "title": "SRE - Fundamentals",
         "issuer": "Udemy",
         "date": "Jan 2025",
         "credentialUrl": "https://ude.my/UC-3ecf2b11-2a14-4445-af61-242847f63314",
@@ -80,14 +71,14 @@
         "logo": "/assets/logo/for_certs/Grafana.svg"
     },
     {
-        "id": "lpi-linux-essentials",
-        "title": "LPI Linux Essentials",
+        "id": "zabbix",
+        "title": "Zabbix Monitoring",
         "issuer": "Udemy",
         "date": "Feb 2025",
-        "credentialUrl": "https://ude.my/UC-fb280985-90da-4583-adb7-7e94b9f6f699",
-        "description": "Preparation for LPI Linux Essentials certification.",
-        "previewImage": "/assets/previews/lpi-linux-essentials.png",
-        "logo": "/assets/logo/for_certs/tux.png"
+        "credentialUrl": "https://ude.my/UC-2f87c7d2-75dc-4546-aea6-bfc9f7250b4d",
+        "description": "Zabbix monitoring setup and configuration.",
+        "previewImage": "/assets/previews/zabbix.png",
+        "logo": "/assets/logo/for_certs/zabbix.svg"
     },
     {
         "id": "aws-devops-ci-cd",
@@ -100,34 +91,44 @@
         "logo": "/assets/logo/for_certs/aws-devops.png"
     },
     {
+        "id": "aws-db-migration",
+        "title": "Database Migration",
+        "issuer": "AWS",
+        "date": "Mar 2025",
+        "credentialUrl": "",
+        "description": "AWS database migration introduction.",
+        "previewImage": "/assets/previews/aws-database-migration.png",
+        "logo": "/assets/logo/for_certs/AWS.png"
+    },
+    {
+        "id": "aws-billing-cost",
+        "title": "Manage Cost and Billing",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS billing and cost management course.",
+        "previewImage": "/assets/previews/aws-cost-billing.png",
+        "logo": "/assets/logo/for_certs/AWS.png"
+    },
+    {
         "id": "aws-pipelines-hands-on",
         "title": "AWS Pipelines",
         "issuer": "Udemy",
         "date": "Feb 2025",
-        "credentialUrl": "https://ude.my/UC-db2bt4a6-eb39-4829-b672-5112276b89a3",
+        "credentialUrl": "https://ude.my/UC-db2bf4a6-eb39-4829-b672-5112275b89a3",
         "description": "CodeCommit, CodeBuild, CodeDeploy, CodePipeline.",
         "previewImage": "/assets/previews/aws-pipelines-hands-on.png",
         "logo": "/assets/logo/for_certs/aws-devops.png"
     },
     {
-        "id": "excel",
-        "title": "Excel - Avançado",
+        "id": "scrum-fundamentals",
+        "title": "Scrum & Agile",
         "issuer": "Udemy",
-        "date": "Jul 2024",
-        "credentialUrl": "https://ude.my/UC-92ac3fdf-1a6d-45b8-a150-ae5f5fa38131",
-        "description": "Complete Excel from basics to advanced.",
-        "previewImage": "/assets/previews/excel.png",
-        "logo": "/assets/logo/for_certs/Excel.svg"
-    },
-    {
-        "id": "aws-partner-technical",
-        "title": "AWS Partner: Technical",
-        "issuer": "AWS",
-        "date": "Apr 2025",
-        "credentialUrl": "",
-        "description": "AWS Partner technical accreditation.",
-        "previewImage": "/assets/previews/PLACEHOLDER.png",
-        "logo": "/assets/logo/for_certs/AWS.png"
+        "date": "Nov 2024",
+        "credentialUrl": "https://ude.my/UC-7b1b13d8-c693-4956-a33c-e49e96b931bf",
+        "description": "Agile fundamentals and Scrum methodology.",
+        "previewImage": "/assets/previews/scrum-fundamentals.png",
+        "logo": "/assets/logo/for_certs/scrum.svg"
     },
     {
         "id": "aws-cloud-economics",
@@ -146,37 +147,17 @@
         "date": "Apr 2025",
         "credentialUrl": "",
         "description": "AWS Partner sales accreditation.",
-        "previewImage": "/assets/previews/PLACEHOLDER.png",
+        "previewImage": "/assets/previews/aws-sales.png",
         "logo": "/assets/logo/for_certs/AWS.png"
     },
     {
-        "id": "aws-cloud-essentials-badge",
-        "title": "Cloud Essentials - Badge",
-        "issuer": "AWS",
-        "date": "Apr 2025",
-        "credentialUrl": "",
-        "description": "AWS Cloud Essentials assessment.",
-        "previewImage": "/assets/previews/PLACEHOLDER.png",
-        "logo": "/assets/logo/for_certs/CloudPractitioner-Simple.png"
-    },
-    {
-        "id": "aws-billing-cost",
-        "title": "Manage Cost and Billing",
-        "issuer": "AWS",
-        "date": "Apr 2025",
-        "credentialUrl": "",
-        "description": "AWS billing and cost management course.",
-        "previewImage": "/assets/previews/PLACEHOLDER.png",
-        "logo": "/assets/logo/for_certs/AWS.png"
-    },
-    {
-        "id": "aws-db-migration",
-        "title": "Database Migration",
-        "issuer": "AWS",
-        "date": "Mar 2025",
-        "credentialUrl": "",
-        "description": "AWS database migration introduction.",
-        "previewImage": "/assets/previews/PLACEHOLDER.png",
-        "logo": "/assets/logo/for_certs/AWS.png"
+        "id": "excel",
+        "title": "Excel - Advanced",
+        "issuer": "Udemy",
+        "date": "Jul 2024",
+        "credentialUrl": "https://ude.my/UC-92ac3fdf-1a6d-45b8-a150-ae5f5fa38131",
+        "description": "Complete Excel from basics to advanced.",
+        "previewImage": "/assets/previews/excel.png",
+        "logo": "/assets/logo/for_certs/Excel.svg"
     }
 ]

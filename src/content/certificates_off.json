@@ -38,5 +38,25 @@
         "description": "AWS cloud acquisition fundamentals.",
         "previewImage": "/assets/previews/PLACEHOLDER.png",
         "logo": "/assets/logo/for_certs/AWS.png"
+    },
+    {
+        "id": "aws-partner-technical",
+        "title": "AWS Partner: Technical",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Partner technical accreditation.",
+        "previewImage": "/assets/previews/PLACEHOLDER.png",
+        "logo": "/assets/logo/for_certs/AWS.png"
+    },
+    {
+        "id": "aws-cloud-essentials-badge",
+        "title": "Cloud Essentials - Badge",
+        "issuer": "AWS",
+        "date": "Apr 2025",
+        "credentialUrl": "",
+        "description": "AWS Cloud Essentials assessment.",
+        "previewImage": "/assets/previews/PLACEHOLDER.png",
+        "logo": "/assets/logo/for_certs/CloudPractitioner-Simple.png"
     }
 ]
