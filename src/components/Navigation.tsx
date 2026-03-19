@@ -73,7 +73,7 @@ export default function Navigation() {
                 (entries) => {
                     entries.forEach((entry) => {
                         // Don't mark About when hero is still visible
-                        if (id === "#" && heroVisible) {
+                        if (id === "about-me" && heroVisible) {
                             return;
                         }
                         if (entry.isIntersecting) {
