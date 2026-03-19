@@ -13,17 +13,208 @@
         <meta name="author" content="Gabriel Gomes" />
         <meta name="theme-color" content="#9f00ff" />
 
-        <!-- Blocking script to set theme before React hydrates -->
+        <!-- Blocking script to set theme before first paint -->
         <script>
-            (function() {
-                const STORAGE_KEY = "portfolio-theme";
-                const stored = localStorage.getItem(STORAGE_KEY);
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                const theme = stored === "dark" || stored === "light" ? stored : (prefersDark ? "dark" : "light");
-                document.documentElement.setAttribute("data-theme", theme);
-                document.documentElement.classList.add(theme);
+            (function () {
+                var S = "portfolio-theme";
+                var s = localStorage.getItem(S);
+                var d = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+                var t =
+                    s === "dark" || s === "light" ? s : d ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", t);
+                document.documentElement.classList.add(t);
             })();
         </script>
+
+        <!-- Critical inline CSS — renders the shell before any external resource loads -->
+        <style>
+            :root,
+            [data-theme="light"] {
+                --bg-primary: #ffffff;
+                --text-secondary: #3a3e4d;
+                --accent-gradient-start: #d92cf9;
+                --accent-gradient-end: #9f00ff;
+                --accent-purple: #9f00ff;
+                --accent-magenta: #fd01c7;
+                --border-primary: #dadfe6;
+            }
+            [data-theme="dark"] {
+                --bg-primary: #0a0a14;
+                --text-secondary: #c0c4d0;
+                --accent-gradient-start: #e94dff;
+                --accent-gradient-end: #b44dff;
+                --accent-purple: #b44dff;
+                --accent-magenta: #ff4dd8;
+                --border-primary: #2d2d44;
+            }
+            @keyframes shell-gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+            @keyframes shell-fade-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            @keyframes shell-scroll-bob {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(10px);
+                }
+            }
+            @keyframes shell-dot-pulse {
+                0%,
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                50% {
+                    opacity: 0.3;
+                    transform: translateY(8px);
+                }
+            }
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family:
+                    Poppins,
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                background: var(--bg-primary);
+                color: var(--text-secondary);
+                overflow-x: hidden;
+            }
+            #root {
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .shell-hero {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 0 1rem;
+                animation: shell-fade-in 0.8s ease-out both;
+            }
+            .shell-hero-inner {
+                position: relative;
+                width: min(90vw, 72rem);
+            }
+            .shell-h1 {
+                font-size: clamp(2.25rem, 5vw, 4.5rem);
+                font-weight: 800;
+                line-height: 1.1;
+                letter-spacing: -0.025em;
+                margin-bottom: 1.5rem;
+                background: linear-gradient(
+                    270deg,
+                    var(--accent-gradient-start),
+                    var(--accent-purple),
+                    var(--accent-magenta),
+                    var(--accent-purple)
+                );
+                background-size: 300% 300%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: shell-gradient 6s ease infinite;
+            }
+            .shell-h1 span {
+                color: var(--accent-purple);
+                -webkit-text-fill-color: var(--accent-purple);
+            }
+            .shell-sub {
+                font-size: clamp(1rem, 2vw, 1.25rem);
+                color: var(--text-secondary);
+                margin-bottom: 3rem;
+                opacity: 0;
+                animation: shell-fade-in 0.8s ease-out 0.3s both;
+            }
+            .shell-btns {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+                margin-bottom: 3rem;
+                opacity: 0;
+                animation: shell-fade-in 0.8s ease-out 0.6s both;
+            }
+            .shell-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0.75rem 2rem;
+                border-radius: 9999px;
+                font-weight: 500;
+                font-size: 0.875rem;
+                min-width: 12.5rem;
+                text-decoration: none;
+                font-family: inherit;
+            }
+            .shell-btn-accent {
+                background: var(--accent-purple);
+                color: #fff;
+                border: 1px solid var(--accent-purple);
+            }
+            .shell-btn-outline {
+                background: transparent;
+                color: var(--accent-purple);
+                border: 1px solid var(--accent-purple);
+            }
+            .shell-scroll {
+                display: flex;
+                justify-content: center;
+                margin-top: 3rem;
+                opacity: 0;
+                animation: shell-fade-in 0.8s ease-out 1.2s both;
+            }
+            .shell-mouse {
+                width: 1.5rem;
+                height: 2.5rem;
+                border-radius: 9999px;
+                border: 2px solid var(--border-primary);
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding-top: 0.5rem;
+                animation: shell-scroll-bob 2s ease-in-out infinite;
+            }
+            .shell-dot {
+                width: 0.375rem;
+                height: 0.375rem;
+                border-radius: 9999px;
+                background: var(--accent-purple);
+                animation: shell-dot-pulse 2s ease-in-out infinite;
+            }
+        </style>
 
         <title>Gabriel Gomes | Software Engineer</title>
 
@@ -33,16 +224,52 @@
             href="/assets/logo/EngenHumanas.svg"
         />
 
-        <!-- Poppins Font -->
+        <!-- Poppins Font — only weights actually used (400 body, 500-800 headings/buttons) -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
     </head>
     <body>
-        <div id="root"></div>
+        <!--
+            Static HTML shell — visible in the first TCP round-trip (~14 KB).
+            React replaces this content when it mounts.
+        -->
+        <div id="root">
+            <div class="shell-hero">
+                <div class="shell-hero-inner">
+                    <h1 class="shell-h1">
+                        End<span>-</span>to<span>-</span>End<br />Software
+                        Engineering
+                    </h1>
+                    <p class="shell-sub">
+                        Developing complete solutions across multiple domains
+                    </p>
+                    <div class="shell-btns">
+                        <a
+                            href="/assets/download/CV-Gabriel_Gomes-Software_Engineer.pdf"
+                            download
+                            class="shell-btn shell-btn-accent"
+                        >
+                            ↓ Download Resume
+                        </a>
+                        <a
+                            href="#portfolio"
+                            class="shell-btn shell-btn-outline"
+                        >
+                            View Portfolio
+                        </a>
+                    </div>
+                    <div class="shell-scroll">
+                        <div class="shell-mouse">
+                            <div class="shell-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>
