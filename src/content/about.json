@@ -15,7 +15,7 @@
         },
         {
             "name": "E-Mail",
-            "url": "https://mail.google.com/mail/?view=cm&fs=1&to=gabrielng.rj99@gmail.com",
+            "url": "mailto:gabrielng.rj99@gmail.com",
             "icon": "email",
             "image": "/assets/images/contact-me/Gmail-old.svg"
         },
@@ -33,4 +33,3 @@
         }
     ]
 }
-
