@@ -13,11 +13,6 @@ export default defineConfig({
                 manualChunks: {
                     "vendor-react": ["react", "react-dom"],
                     "vendor-motion": ["framer-motion"],
-                    "vendor-particles": [
-                        "@tsparticles/engine",
-                        "@tsparticles/react",
-                        "@tsparticles/slim",
-                    ],
                     "vendor-icons": ["react-icons"],
                 },
             },
