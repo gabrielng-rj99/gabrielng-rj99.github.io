@@ -1,185 +1,352 @@
-import { useEffect, useMemo, useState } from "react";
-import Particles from "@tsparticles/react";
-import { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
+import { useEffect, useRef, useCallback } from "react";
 import { useTheme } from "../hooks/useTheme";
 
+interface Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    size: number;
+    baseSize: number;
+    opacity: number;
+    baseOpacity: number;
+    // For subtle size/opacity animation
+    sizePhase: number;
+    opacityPhase: number;
+}
+
+// ============================================================
+// Configuration — mirrors the original tsParticles settings
+// ============================================================
+const LINK_DISTANCE = 150;
+const LINK_OPACITY = 0.3;
+const LINK_WIDTH = 1;
+const MOUSE_GRAB_DISTANCE = 180;
+const MOUSE_GRAB_LINK_OPACITY = 0.4;
+const MOUSE_BUBBLE_DISTANCE = 200;
+const MOUSE_BUBBLE_SIZE = 6;
+const MOUSE_BUBBLE_OPACITY = 0.8;
+const MOUSE_SLOW_RADIUS = 100;
+const MOUSE_SLOW_FACTOR = 0.3;
+const MOVE_SPEED = 2;
+const PARTICLE_SIZE_MIN = 1;
+const PARTICLE_SIZE_MAX = 3;
+const PARTICLE_OPACITY_MIN = 0.2;
+const PARTICLE_OPACITY_MAX = 0.5;
+const CLICK_PUSH_COUNT = 3;
+const CLICK_PUSH_SPREAD_DEG = 120;
+const MAX_PARTICLES = 180;
+const FPS_LIMIT = 60;
+const FRAME_INTERVAL = 1000 / FPS_LIMIT;
+
+function getParticleCount(): number {
+    if (typeof window === "undefined") return 100;
+    return window.innerWidth < 768 ? 60 : 150;
+}
+
 export default function ParticleBackground() {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const { theme } = useTheme();
-    const [engineReady, setEngineReady] = useState(false);
+    const themeRef = useRef(theme);
+    const mouseRef = useRef({ x: -9999, y: -9999 });
+    const particlesRef = useRef<Particle[]>([]);
+    const animationRef = useRef<number>(0);
+    const lastFrameTimeRef = useRef<number>(0);
+    const dimensionsRef = useRef({ width: 0, height: 0 });
 
+    // Keep theme ref in sync without re-running the effect
     useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        }).then(() => {
-            setEngineReady(true);
-        });
-    }, []);
-
-    const options: ISourceOptions = useMemo(() => {
-        const isDark = theme === "dark";
-        const particleColor = isDark ? "#b44dff" : "#9f00ff";
-        const lineColor = isDark
-            ? "rgba(180, 77, 255, 0.12)"
-            : "rgba(159, 0, 255, 0.15)";
-        const particleCount =
-            typeof window !== "undefined" && window.innerWidth < 768 ? 60 : 150;
-
-        // Configurações de limite de partículas
-        const limitValue = 180; // Limite máximo de partículas
-        const limitMode = "delete" as const; // "delete" ou "bounce"
-
-        // ============================================================
-        // MOVIMENTO (attract - efeito gravitacional/elástico)
-        // ============================================================
-        // O attract cria um campo de força que atrai partículas para o
-        // centro da tela, criando um movimento orbital/elástico.
-        //
-        // MATEMÁTICA DO ATTRACT:
-        // - Usa coordenadas polares: cada partícula tem um ângulo (θ) e raio (r)
-        // - O movimento é calculado com:
-        //   x = centerX + r * cos(θ + speed * t) * (rotateX / maxDistance)
-        //   y = centerY + r * sin(θ + speed * t) * (rotateY / maxDistance)
-        // - rotateX/rotateY = raio máximo de oscilação em cada eixo (px)
-        // - moveSpeed = velocidade angular (quanto maior = mais rápido gira)
-        //
-        // EXEMPLO (Monitor 500x-500y, rotateX=250, rotateY=250, speed=1.5):
-        // - Partícula a 100px do centro (θ = 45° = π/4 rad)
-        // - Em t=0:  x = 250 + 100 * cos(π/4) = 320.7,  y = 320.7
-        // - Em t=1:  x = 250 + 100 * cos(π/4 + 1.5) = 176.3, y = 323.7
-        // - Em t=2:  x = 250 + 100 * cos(π/4 + 3.0) = 100.0, y = 250.0
-        // - Resultado: a partícula gira 1.5 radianos (~86°) por segundo
-        //   Completando uma volta (2π rad) em ~4.2 segundos
-        // ============================================================
-        const moveSpeed = 2; // Velocidade angular da órbita (1-2 = divertido, não muito rápido)
-        const attractEnable = false; // true = ativa / false = desativa
-        const attractRotateX = 1200; // Raio máximo de oscilação no eixo X (px)
-        const attractRotateY = 600; // Raio máximo de oscilação no eixo Y (px)
-
-        return {
-            fullScreen: {
-                enable: false,
-            },
-            fpsLimit: 60,
-            interactivity: {
-                events: {
-                    onHover: {
-                        enable: true,
-                        mode: ["grab", "bubble", "slow"] as string[],
-                    },
-                    onClick: {
-                        enable: true,
-                        mode: "push",
-                    },
-                    resize: {
-                        enable: true,
-                    },
-                },
-                modes: {
-                    grab: {
-                        distance: 180,
-                        links: {
-                            opacity: 0.4,
-                            color: particleColor,
-                        },
-                    },
-                    bubble: {
-                        distance: 200,
-                        size: 6,
-                        duration: 0.4,
-                        opacity: 0.8,
-                    },
-                    push: {
-                        quantity: 3,
-                        scatter: {
-                            enable: true,
-                            spread: 120, // Espalha em 120° entre cada partícula
-                        },
-                    },
-                    repulse: {
-                        distance: 150,
-                        duration: 0.4,
-                    },
-                    slow: {
-                        factor: 1.1,
-                        radius: 100,
-                    },
-                },
-            },
-            particles: {
-                color: {
-                    value: particleColor,
-                },
-                links: {
-                    color: lineColor,
-                    distance: 150,
-                    enable: true,
-                    opacity: 0.3,
-                    width: 1,
-                },
-                move: {
-                    enable: true,
-                    speed: moveSpeed,
-                    direction: "none" as const,
-                    random: true,
-                    straight: false,
-                    outModes: {
-                        default: "bounce" as const,
-                    },
-                    attract: {
-                        enable: attractEnable,
-                        rotate: {
-                            x: attractRotateX,
-                            y: attractRotateY,
-                        },
-                    },
-                },
-                number: {
-                    density: {
-                        enable: true,
-                        width: 1920,
-                        height: 1080,
-                    },
-                    value: particleCount,
-                    limit: {
-                        value: limitValue,
-                        mode: limitMode,
-                    },
-                },
-                opacity: {
-                    value: { min: 0.2, max: 0.5 },
-                    animation: {
-                        enable: true,
-                        speed: 0.5,
-                        sync: false,
-                    },
-                },
-                shape: {
-                    type: "circle",
-                },
-                size: {
-                    value: { min: 1, max: 3 },
-                    animation: {
-                        enable: true,
-                        speed: 1,
-                        sync: false,
-                    },
-                },
-            },
-            detectRetina: true,
-            smooth: true,
-        };
+        themeRef.current = theme;
     }, [theme]);
 
-    if (!engineReady) {
-        return null;
-    }
+    const getColors = useCallback(() => {
+        const isDark = themeRef.current === "dark";
+        return {
+            particleRgb: isDark ? "180, 77, 255" : "159, 0, 255",
+            lineRgb: isDark ? "180, 77, 255" : "159, 0, 255",
+            lineBaseOpacity: isDark ? 0.12 : 0.15,
+        };
+    }, []);
+
+    const createParticle = useCallback(
+        (x: number, y: number, vx?: number, vy?: number): Particle => {
+            const size =
+                Math.random() * (PARTICLE_SIZE_MAX - PARTICLE_SIZE_MIN) +
+                PARTICLE_SIZE_MIN;
+            const opacity =
+                Math.random() * (PARTICLE_OPACITY_MAX - PARTICLE_OPACITY_MIN) +
+                PARTICLE_OPACITY_MIN;
+            return {
+                x,
+                y,
+                vx: vx ?? (Math.random() - 0.5) * MOVE_SPEED * 2,
+                vy: vy ?? (Math.random() - 0.5) * MOVE_SPEED * 2,
+                size,
+                baseSize: size,
+                opacity,
+                baseOpacity: opacity,
+                sizePhase: Math.random() * Math.PI * 2,
+                opacityPhase: Math.random() * Math.PI * 2,
+            };
+        },
+        [],
+    );
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d", { alpha: true });
+        if (!ctx) return;
+
+        // Respect reduced motion preference
+        const motionQuery = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        );
+        if (motionQuery.matches) {
+            canvas.style.display = "none";
+            return;
+        }
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        const resize = () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            dimensionsRef.current = { width: w, height: h };
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = `${w}px`;
+            canvas.style.height = `${h}px`;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+
+        resize();
+
+        // Initialize particles
+        const count = getParticleCount();
+        const { width, height } = dimensionsRef.current;
+        const particles: Particle[] = [];
+        for (let i = 0; i < count; i++) {
+            particles.push(
+                createParticle(Math.random() * width, Math.random() * height),
+            );
+        }
+        particlesRef.current = particles;
+
+        // ============================================================
+        // Animation loop
+        // ============================================================
+        const animate = (timestamp: number) => {
+            animationRef.current = requestAnimationFrame(animate);
+
+            // FPS limiter
+            const elapsed = timestamp - lastFrameTimeRef.current;
+            if (elapsed < FRAME_INTERVAL) return;
+            lastFrameTimeRef.current = timestamp - (elapsed % FRAME_INTERVAL);
+
+            const { width: w, height: h } = dimensionsRef.current;
+            const colors = getColors();
+            const mx = mouseRef.current.x;
+            const my = mouseRef.current.y;
+            const mouseActive = mx > -999 && my > -999;
+
+            ctx.clearRect(0, 0, w, h);
+
+            const linkDistSq = LINK_DISTANCE * LINK_DISTANCE;
+            const grabDistSq = MOUSE_GRAB_DISTANCE * MOUSE_GRAB_DISTANCE;
+            const bubbleDistSq = MOUSE_BUBBLE_DISTANCE * MOUSE_BUBBLE_DISTANCE;
+            const slowRadiusSq = MOUSE_SLOW_RADIUS * MOUSE_SLOW_RADIUS;
+
+            // --- Update particles ---
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                // Animate size and opacity subtly
+                p.sizePhase += 0.02;
+                p.opacityPhase += 0.01;
+                p.size = p.baseSize + Math.sin(p.sizePhase) * 0.3;
+                p.opacity = p.baseOpacity + Math.sin(p.opacityPhase) * 0.05;
+
+                // Slow effect near mouse
+                let speedFactor = 1;
+                if (mouseActive) {
+                    const dxm = p.x - mx;
+                    const dym = p.y - my;
+                    const distSqMouse = dxm * dxm + dym * dym;
+                    if (distSqMouse < slowRadiusSq) {
+                        const proximity =
+                            1 - Math.sqrt(distSqMouse) / MOUSE_SLOW_RADIUS;
+                        speedFactor = 1 - proximity * (1 - MOUSE_SLOW_FACTOR);
+                    }
+                }
+
+                // Move
+                p.x += p.vx * speedFactor;
+                p.y += p.vy * speedFactor;
+
+                // Bounce off edges
+                if (p.x <= 0 || p.x >= w) {
+                    p.vx *= -1;
+                    p.x = Math.max(0, Math.min(w, p.x));
+                }
+                if (p.y <= 0 || p.y >= h) {
+                    p.vy *= -1;
+                    p.y = Math.max(0, Math.min(h, p.y));
+                }
+            }
+
+            // --- Draw links between particles ---
+            ctx.lineWidth = LINK_WIDTH;
+            for (let i = 0; i < particles.length; i++) {
+                const a = particles[i];
+                for (let j = i + 1; j < particles.length; j++) {
+                    const b = particles[j];
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const distSq = dx * dx + dy * dy;
+
+                    if (distSq < linkDistSq) {
+                        const dist = Math.sqrt(distSq);
+                        const opacity =
+                            colors.lineBaseOpacity *
+                            LINK_OPACITY *
+                            (1 - dist / LINK_DISTANCE);
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.strokeStyle = `rgba(${colors.lineRgb}, ${opacity})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // --- Draw particles ---
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                let drawSize = p.size;
+                let drawOpacity = p.opacity;
+
+                // Bubble effect near mouse
+                if (mouseActive) {
+                    const dxm = p.x - mx;
+                    const dym = p.y - my;
+                    const distSqMouse = dxm * dxm + dym * dym;
+
+                    if (distSqMouse < bubbleDistSq) {
+                        const dist = Math.sqrt(distSqMouse);
+                        const factor = 1 - dist / MOUSE_BUBBLE_DISTANCE;
+                        drawSize =
+                            p.size + (MOUSE_BUBBLE_SIZE - p.size) * factor;
+                        drawOpacity =
+                            p.opacity +
+                            (MOUSE_BUBBLE_OPACITY - p.opacity) * factor;
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, Math.max(0.5, drawSize), 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${colors.particleRgb}, ${drawOpacity})`;
+                ctx.fill();
+            }
+
+            // --- Draw grab lines from mouse to nearby particles ---
+            if (mouseActive) {
+                ctx.lineWidth = LINK_WIDTH;
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    const dx = p.x - mx;
+                    const dy = p.y - my;
+                    const distSq = dx * dx + dy * dy;
+
+                    if (distSq < grabDistSq) {
+                        const dist = Math.sqrt(distSq);
+                        const opacity =
+                            MOUSE_GRAB_LINK_OPACITY *
+                            (1 - dist / MOUSE_GRAB_DISTANCE);
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mx, my);
+                        ctx.strokeStyle = `rgba(${colors.particleRgb}, ${opacity})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+        };
+
+        animationRef.current = requestAnimationFrame(animate);
+
+        // ============================================================
+        // Event handlers
+        // ============================================================
+        const handleMouseMove = (e: MouseEvent) => {
+            mouseRef.current = { x: e.clientX, y: e.clientY };
+        };
+
+        const handleMouseLeave = () => {
+            mouseRef.current = { x: -9999, y: -9999 };
+        };
+
+        const handleClick = (e: MouseEvent) => {
+            const spreadRad = (CLICK_PUSH_SPREAD_DEG * Math.PI) / 180;
+            const baseAngle = Math.random() * Math.PI * 2;
+
+            for (let i = 0; i < CLICK_PUSH_COUNT; i++) {
+                const angle = baseAngle + i * spreadRad;
+                const speed = 1 + Math.random() * MOVE_SPEED;
+                particles.push(
+                    createParticle(
+                        e.clientX,
+                        e.clientY,
+                        Math.cos(angle) * speed,
+                        Math.sin(angle) * speed,
+                    ),
+                );
+            }
+
+            // Enforce particle limit — remove oldest first
+            while (particles.length > MAX_PARTICLES) {
+                particles.shift();
+            }
+        };
+
+        const handleResize = () => {
+            resize();
+        };
+
+        // Handle reduced motion change
+        const handleMotionChange = (e: MediaQueryListEvent) => {
+            if (e.matches) {
+                cancelAnimationFrame(animationRef.current);
+                canvas.style.display = "none";
+            } else {
+                canvas.style.display = "";
+                animationRef.current = requestAnimationFrame(animate);
+            }
+        };
+
+        window.addEventListener("mousemove", handleMouseMove, {
+            passive: true,
+        });
+        window.addEventListener("mouseleave", handleMouseLeave);
+        window.addEventListener("click", handleClick);
+        window.addEventListener("resize", handleResize);
+        motionQuery.addEventListener("change", handleMotionChange);
+
+        return () => {
+            cancelAnimationFrame(animationRef.current);
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseleave", handleMouseLeave);
+            window.removeEventListener("click", handleClick);
+            window.removeEventListener("resize", handleResize);
+            motionQuery.removeEventListener("change", handleMotionChange);
+        };
+    }, [getColors, createParticle]);
 
     return (
-        <Particles
+        <canvas
+            ref={canvasRef}
             id="tsparticles"
-            options={options}
             className="no-theme-transition"
         />
     );
