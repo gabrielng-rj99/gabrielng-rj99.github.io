@@ -76,6 +76,9 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    /* Dark backdrop prevents white card bleed-through during
+       GPU compositing gaps between video frames */
+    background: #000;
 }
 
 .mediaFeatured {
