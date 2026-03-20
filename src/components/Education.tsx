@@ -4,14 +4,13 @@ import educationData from "../content/education.json";
 import styles from "./Education.module.css";
 
 const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    hidden: { opacity: 0, y: 20 },
     visible: (index: number) => ({
         opacity: 1,
         y: 0,
-        scale: 1,
         transition: {
-            duration: 0.6,
-            delay: index * 0.15,
+            duration: 0.35,
+            delay: index * 0.08,
             ease: "easeOut" as const,
         },
     }),
