@@ -13,89 +13,113 @@ const navLinks = [
     { label: "Contact", href: "#contact" },
 ];
 
+const DESKTOP_MQ = "(min-width: 768px)";
+
 export default function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
     const [isBlurLoaded, setIsBlurLoaded] = useState(false);
 
-    // Lazy load blur effect after nav animation completes
+    // ── Track whether we are on desktop (>= 768 px) ──
+    // layoutId animations on hidden (display:none) desktop nav items cause
+    // framer-motion to call scrollTo(0,0) during measurement.  We only
+    // render the shared layoutId indicator when the desktop nav is visible.
+    const [isDesktop, setIsDesktop] = useState(() =>
+        typeof window !== "undefined"
+            ? window.matchMedia(DESKTOP_MQ).matches
+            : true,
+    );
+
     useEffect(() => {
-        const timer = setTimeout(() => setIsBlurLoaded(true), 700);
+        const mql = window.matchMedia(DESKTOP_MQ);
+        const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+        mql.addEventListener("change", onChange);
+        return () => mql.removeEventListener("change", onChange);
+    }, []);
+
+    // Apply glass effect after nav entrance animation completes
+    useEffect(() => {
+        const timer = setTimeout(() => setIsBlurLoaded(true), 500);
         return () => clearTimeout(timer);
     }, []);
 
+    // ── Scroll-spy logic ──
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+        const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
 
-            // Force contact as active if user scrolled to the absolute bottom
-            if (
-                window.innerHeight + window.scrollY >=
-                document.documentElement.scrollHeight - 50
-            ) {
-                setActiveSection("contact");
-            }
-            // Forcehome "" active when at top (before hero ends)
-            else if (window.scrollY < 300) {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            setIsScrolled(scrollY > 50);
+
+            // At top → Home
+            if (scrollY < 50) {
                 setActiveSection("");
+                return;
+            }
+
+            // Use getBoundingClientRect for reliable detection regardless
+            // of lazy-load state or image loading affecting offsetTop.
+            const triggerLine = window.innerHeight * 0.35;
+
+            // At bottom → last section (Contact)
+            // Only if the contact section is actually rendered and visible.
+            const atBottom =
+                window.innerHeight + scrollY >=
+                document.documentElement.scrollHeight - 50;
+
+            if (atBottom) {
+                const contactEl = document.getElementById("contact");
+                if (
+                    contactEl &&
+                    contactEl.getBoundingClientRect().top < window.innerHeight
+                ) {
+                    setActiveSection("contact");
+                    return;
+                }
+            }
+
+            // Walk sections top-to-bottom; pick the last one whose top has
+            // scrolled past the trigger line (i.e. rect.top <= triggerLine).
+            let closest = "";
+            for (const id of sectionIds) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= triggerLine) {
+                    closest = id;
+                }
+            }
+            if (closest) {
+                setActiveSection(closest);
             }
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
-    // Track active section via IntersectionObserver
-    useEffect(() => {
-        const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
-        const observers: IntersectionObserver[] = [];
-
-        // Don't set About as active when hero is visible
-        const heroEl = document.getElementById("hero");
-        let heroVisible = true;
-
-        if (heroEl) {
-            const heroObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        heroVisible = entry.isIntersecting;
-                        // If hero is visible, don't mark About as active
-                        if (heroVisible) {
-                            setActiveSection("");
-                        }
-                    });
-                },
-                { rootMargin: "0px 0px -70% 0px", threshold: 0 },
-            );
-            heroObserver.observe(heroEl);
-            observers.push(heroObserver);
-        }
-
-        sectionIds.forEach((id) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        // Don't mark About when hero is still visible
-                        if (id === "about-me" && heroVisible) {
-                            return;
-                        }
-                        if (entry.isIntersecting) {
-                            setActiveSection(id);
-                        }
-                    });
-                },
-                { rootMargin: "-30% 0px -60% 0px", threshold: 0 },
-            );
-
-            observer.observe(el);
-            observers.push(observer);
+        // ── Run detection on mount so the active section matches the
+        // current scroll position (handles reload / scroll-restore). ──
+        // We use rAF + short delay to let lazy-loaded Suspense children
+        // and images settle before the first measurement.
+        const initialRaf = requestAnimationFrame(() => {
+            handleScroll();
         });
 
-        return () => observers.forEach((obs) => obs.disconnect());
+        // Also re-detect when page height changes (lazy components
+        // loading, images finishing, etc.) via ResizeObserver.
+        let resizeObserver: ResizeObserver | null = null;
+        if (typeof ResizeObserver !== "undefined") {
+            resizeObserver = new ResizeObserver(() => {
+                handleScroll();
+            });
+            resizeObserver.observe(document.documentElement);
+        }
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            cancelAnimationFrame(initialRaf);
+            resizeObserver?.disconnect();
+        };
     }, []);
 
     const handleNavClick = (
@@ -105,16 +129,33 @@ export default function Navigation() {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-            const navHeight = window.innerWidth >= 768 ? 30 : 30;
+            const navHeight = 30;
+            // Capture position before any layout changes
             const targetPosition =
                 target.getBoundingClientRect().top + window.scrollY - navHeight;
-            window.scrollTo({ top: targetPosition, behavior: "smooth" });
-            // For Home link, set activeSection to empty to show it's active
+
+            // Close mobile menu (triggers AnimatePresence exit)
+            setIsMobileMenuOpen(false);
+
+            // framer-motion's measureAllKeyframes calls scrollTo(0,0)
+            // synchronously during React's commit / AnimatePresence exit.
+            // A double-rAF guarantees we fire AFTER that batch completes,
+            // so our smooth scroll is never overridden.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: "smooth",
+                    });
+                });
+            });
+
             if (href === "#") {
                 setActiveSection("");
             }
+        } else {
+            setIsMobileMenuOpen(false);
         }
-        setIsMobileMenuOpen(false);
     };
 
     // Check if Home should be active (when at top of page)
@@ -145,7 +186,7 @@ export default function Navigation() {
                             className={`${styles.logo} ${isHomeActive ? styles.navItemActive : ""}`}
                         >
                             Home
-                            {isHomeActive && (
+                            {isHomeActive && isDesktop && (
                                 <motion.span
                                     layoutId="nav-indicator"
                                     className={styles.navIndicator}
@@ -175,7 +216,7 @@ export default function Navigation() {
                                     className={`${styles.navItem} ${isActive ? styles.navItemActive : ""}`}
                                 >
                                     {link.label}
-                                    {isActive && (
+                                    {isActive && isDesktop && (
                                         <motion.span
                                             layoutId="nav-indicator"
                                             className={styles.navIndicator}
@@ -246,8 +287,9 @@ export default function Navigation() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                         className={styles.mobileMenu}
+                        style={{ overflow: "hidden" }}
                     >
                         <div className={styles.mobileMenuContent}>
                             {navLinks.map((link, index) => {
