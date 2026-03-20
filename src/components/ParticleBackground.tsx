@@ -19,20 +19,20 @@ interface Particle {
 // Configuration — mirrors the original tsParticles settings
 // ============================================================
 const LINK_DISTANCE = 150;
-const LINK_OPACITY = 0.3;
+const LINK_OPACITY = 1;
 const LINK_WIDTH = 1;
 const MOUSE_GRAB_DISTANCE = 180;
-const MOUSE_GRAB_LINK_OPACITY = 0.4;
+const MOUSE_GRAB_LINK_OPACITY = 0.5;
 const MOUSE_BUBBLE_DISTANCE = 200;
-const MOUSE_BUBBLE_SIZE = 6;
+const MOUSE_BUBBLE_SIZE = 8;
 const MOUSE_BUBBLE_OPACITY = 0.8;
-const MOUSE_SLOW_RADIUS = 100;
-const MOUSE_SLOW_FACTOR = 0.3;
-const MOVE_SPEED = 2;
+const MOUSE_SLOW_RADIUS = 150;
+const MOUSE_SLOW_FACTOR = 0.6;
+const MOVE_SPEED = 1;
 const PARTICLE_SIZE_MIN = 1;
 const PARTICLE_SIZE_MAX = 3;
-const PARTICLE_OPACITY_MIN = 0.2;
-const PARTICLE_OPACITY_MAX = 0.5;
+const PARTICLE_OPACITY_MIN = 0.3;
+const PARTICLE_OPACITY_MAX = 0.8;
 const CLICK_PUSH_COUNT = 3;
 const CLICK_PUSH_SPREAD_DEG = 120;
 const MAX_PARTICLES = 180;
