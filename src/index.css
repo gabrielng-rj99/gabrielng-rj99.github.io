@@ -13,7 +13,7 @@
     --bg-card: #ffffff;
     --bg-card-hover: #f3f0ff;
     --bg-hero-overlay: rgba(22, 6, 31, 0.84);
-    --bg-nav: rgba(255, 255, 255, 0.85);
+    --bg-nav: #ffffff;
 
     /* Text */
     --text-primary: #13151a;
@@ -59,7 +59,7 @@
     --bg-card: #16162a;
     --bg-card-hover: #1e1e3a;
     --bg-hero-overlay: rgba(5, 2, 12, 0.9);
-    --bg-nav: rgba(10, 10, 20, 0.85);
+    --bg-nav: #0a0a14;
 
     /* Text */
     --text-primary: #e4e6eb;
@@ -362,8 +362,6 @@ img {
 /* Glass morphism effect */
 .glass {
     background: var(--bg-nav);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-primary);
 }
 
