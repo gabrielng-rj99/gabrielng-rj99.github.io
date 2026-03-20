@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { HiDownload } from "react-icons/hi";
 import aboutData from "../content/about.json";
+import { NAV_HEIGHT_OFFSET } from "./navigation.constants";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
@@ -79,11 +80,10 @@ export default function Hero() {
                                 e.preventDefault();
                                 const target = document.querySelector("#portfolio");
                                 if (target) {
-                                    const navHeight = 30;
                                     const targetPosition =
                                         target.getBoundingClientRect().top +
                                         window.scrollY -
-                                        navHeight;
+                                        NAV_HEIGHT_OFFSET;
                                     window.scrollTo({
                                         top: targetPosition,
                                         behavior: "smooth",
