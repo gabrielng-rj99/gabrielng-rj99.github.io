@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { HiDownload, HiMenuAlt3, HiX } from "react-icons/hi";
 import ThemeToggle from "./ThemeToggle";
 import styles from "./Navigation.module.css";
+import { NAV_HEIGHT_OFFSET } from "./navigation.constants";
 
 const navLinks = [
     { label: "About", href: "#about-me" },
@@ -14,14 +15,16 @@ const navLinks = [
 ];
 
 const DESKTOP_MQ = "(min-width: 768px)";
+
+const BOTTOM_MARGIN = 50;
 const SCROLL_THRESHOLD = 500;
 const TOP_POSITION_THRESHOLD = 50;
-const BOTTOM_MARGIN = 50;
 const TRIGGER_LINE_RATIO = 0.5;
-const NAV_HEIGHT_OFFSET = 50;
+
 const BLUR_LOAD_DELAY = 500;
 const NAV_ENTRANCE_DURATION = 0.7;
 const MOBILE_MENU_ITEM_DELAY = 0.05;
+
 const SPRING_TRANSITION = {
     type: "spring" as const,
     stiffness: 350,
@@ -232,10 +235,6 @@ export default function Navigation() {
                     });
                 });
             });
-
-            if (href === "#") {
-                setActiveSection("");
-            }
         } else {
             setIsMobileMenuOpen(false);
         }
