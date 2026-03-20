@@ -17,6 +17,13 @@ export default function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
+    const [isBlurLoaded, setIsBlurLoaded] = useState(false);
+
+    // Lazy load blur effect after nav animation completes
+    useEffect(() => {
+        const timer = setTimeout(() => setIsBlurLoaded(true), 700);
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -120,8 +127,8 @@ export default function Navigation() {
         <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`${styles.nav} glass ${isScrolled ? styles.navScrolled : ""}`}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className={`${styles.nav} ${isBlurLoaded ? "glass" : ""} ${isScrolled ? styles.navScrolled : ""}`}
         >
             <div className={styles.navContainer}>
                 {/* Use a simple CSS Grid with 3 equal columns for perfect centering */}
