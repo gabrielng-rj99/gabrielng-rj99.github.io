@@ -57,6 +57,8 @@ const BOLD_TERMS = [
     "(NEW)",
 ];
 
+const SORTED_BOLD_TERMS = [...BOLD_TERMS].sort((a, b) => b.length - a.length);
+
 function parseDescription(text: string): React.ReactNode {
     const colonIndex = text.indexOf(":");
     if (colonIndex > 0 && colonIndex < text.length - 1) {
@@ -72,10 +74,9 @@ function parseDescription(text: string): React.ReactNode {
 
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
-    const sortedTerms = [...BOLD_TERMS].sort((a, b) => b.length - a.length);
     const matches: { start: number; end: number; term: string }[] = [];
 
-    for (const term of sortedTerms) {
+    for (const term of SORTED_BOLD_TERMS) {
         const escaped = term.replace(/[.*+?^${}|[\]\\]/g, "\\$&");
         const hasParentheses = term.includes("(") || term.includes(")");
         const regex = hasParentheses

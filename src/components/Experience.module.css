@@ -219,20 +219,6 @@
     transform: scale(1.25);
 }
 
-.jobListItemMobile.subItem {
-    padding-left: 1rem;
-}
-
-.job:hover .jobListItemMobile {
-    color: var(--text-primary);
-    text-shadow: 0 0 8px rgba(159, 0, 255, 0.35);
-}
-
-:global([data-theme="dark"]) .job:hover .jobListItemMobile {
-    color: #ffffff;
-    text-shadow: 0 0 12px rgba(180, 77, 255, 0.4);
-}
-
 .jobSkills {
     margin-top: 0.75rem;
     padding-left: 30%;
