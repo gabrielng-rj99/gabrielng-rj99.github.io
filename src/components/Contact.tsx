@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+
 import aboutData from "../content/about.json";
 import styles from "./Contact.module.css";
 
