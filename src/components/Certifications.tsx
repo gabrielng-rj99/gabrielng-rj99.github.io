@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { HiExternalLink, HiBadgeCheck, HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import {
+    HiExternalLink,
+    HiBadgeCheck,
+    HiChevronLeft,
+    HiChevronRight,
+} from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
 import certificationsData from "../content/certifications.json";
 import certificatesData from "../content/certificates.json";
@@ -65,10 +70,10 @@ function CertificationCard({
     const Wrapper = hasCredential ? motion.a : motion.div;
     const wrapperProps = hasCredential
         ? {
-            href: certification.credentialUrl,
-            target: "_blank",
-            rel: "noopener noreferrer",
-        }
+              href: certification.credentialUrl,
+              target: "_blank",
+              rel: "noopener noreferrer",
+          }
         : {};
 
     return (
@@ -87,10 +92,11 @@ function CertificationCard({
                         ? "rgba(0, 200, 83, 0.1)"
                         : "rgba(159, 0, 255, 0.1)",
                     color: isEarned ? "#00c853" : "var(--accent-purple)",
-                    border: `1px solid ${isEarned
-                        ? "rgba(0, 200, 83, 0.2)"
-                        : "rgba(159, 0, 255, 0.2)"
-                        }`,
+                    border: `1px solid ${
+                        isEarned
+                            ? "rgba(0, 200, 83, 0.2)"
+                            : "rgba(159, 0, 255, 0.2)"
+                    }`,
                 }}
             >
                 {isEarned ? (
@@ -195,30 +201,26 @@ function CertificationCard({
 
 /* ─── Certificate Card (Unified Card) ───────────────────────────── */
 
-function CertificateCard({
-    certificate,
-}: {
-    certificate: Certificate;
-}) {
+function CertificateCard({ certificate }: { certificate: Certificate }) {
     const hasCredential =
         certificate.credentialUrl && certificate.credentialUrl.length > 0;
-    const hasImage = certificate.previewImage && !certificate.previewImage.includes("PLACEHOLDER");
+    const hasImage =
+        certificate.previewImage &&
+        !certificate.previewImage.includes("PLACEHOLDER");
 
     const Wrapper = hasCredential ? motion.a : motion.div;
     const wrapperProps = hasCredential
         ? {
-            href: certificate.credentialUrl,
-            target: "_blank",
-            rel: "noopener noreferrer",
-        }
+              href: certificate.credentialUrl,
+              target: "_blank",
+              rel: "noopener noreferrer",
+          }
         : {};
 
     return (
         <Wrapper
             {...(wrapperProps as Record<string, string>)}
             variants={cardVariants}
-            whileHover={{ y: -4, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
             className={`${styles.certificateCard} ${hasCredential ? styles.certCardClickable : styles.certCardStatic}`}
         >
             {/* Top Image Preview */}
@@ -237,7 +239,10 @@ function CertificateCard({
                 )}
                 {hasCredential && (
                     <div className={styles.certDomainBadge}>
-                        <HiExternalLink size={12} style={{ marginRight: "4px" }} />
+                        <HiExternalLink
+                            size={12}
+                            style={{ marginRight: "4px" }}
+                        />
                         {new URL(certificate.credentialUrl).hostname}
                     </div>
                 )}
@@ -253,24 +258,32 @@ function CertificateCard({
                             {certificate.issuer}
                         </p>
                         {certificate.date && (
-                            <p className={styles.certDate2}>{certificate.date}</p>
+                            <p className={styles.certDate2}>
+                                {certificate.date}
+                            </p>
                         )}
                     </div>
                     {certificate.logo && (
                         <div className={styles.certLogoContainer}>
-                            <img src={certificate.logo} alt="" className={styles.certLogo} />
+                            <img
+                                src={certificate.logo}
+                                alt=""
+                                className={styles.certLogo}
+                            />
                         </div>
                     )}
                 </div>
 
                 {certificate.description && (
                     <p className={styles.certDescription}>
-                        {certificate.description.split("\n").map((line, i, arr) => (
-                            <React.Fragment key={i}>
-                                {line}
-                                {i < arr.length - 1 && <br />}
-                            </React.Fragment>
-                        ))}
+                        {certificate.description
+                            .split("\n")
+                            .map((line, i, arr) => (
+                                <React.Fragment key={i}>
+                                    {line}
+                                    {i < arr.length - 1 && <br />}
+                                </React.Fragment>
+                            ))}
                     </p>
                 )}
             </div>
@@ -325,7 +338,7 @@ export default function Certifications() {
         const scrollAmount = 950; // 4 cards = ~960px with gaps
         carouselRef.current.scrollBy({
             left: direction === "left" ? -scrollAmount : scrollAmount,
-            behavior: "smooth"
+            behavior: "smooth",
         });
     };
 
@@ -467,25 +480,40 @@ export default function Certifications() {
                                 onMouseMove={handleMouseMove}
                             >
                                 {/* Each slide = 8 cards (4 top + 4 bottom) */}
-                                {Array.from({ length: Math.ceil(certificates.length / 8) }).map((_, slideIndex) => (
-                                    <div key={slideIndex} className={styles.carouselSlide}>
+                                {Array.from({
+                                    length: Math.ceil(certificates.length / 8),
+                                }).map((_, slideIndex) => (
+                                    <div
+                                        key={slideIndex}
+                                        className={styles.carouselSlide}
+                                    >
                                         {/* Top row - 4 cards */}
                                         <div className={styles.carouselRow}>
-                                            {certificates.slice(slideIndex * 8, slideIndex * 8 + 4).map((cert) => (
-                                                <CertificateCard
-                                                    key={cert.id}
-                                                    certificate={cert}
-                                                />
-                                            ))}
+                                            {certificates
+                                                .slice(
+                                                    slideIndex * 8,
+                                                    slideIndex * 8 + 4,
+                                                )
+                                                .map((cert) => (
+                                                    <CertificateCard
+                                                        key={cert.id}
+                                                        certificate={cert}
+                                                    />
+                                                ))}
                                         </div>
                                         {/* Bottom row - 4 cards */}
                                         <div className={styles.carouselRow}>
-                                            {certificates.slice(slideIndex * 8 + 4, slideIndex * 8 + 8).map((cert) => (
-                                                <CertificateCard
-                                                    key={cert.id}
-                                                    certificate={cert}
-                                                />
-                                            ))}
+                                            {certificates
+                                                .slice(
+                                                    slideIndex * 8 + 4,
+                                                    slideIndex * 8 + 8,
+                                                )
+                                                .map((cert) => (
+                                                    <CertificateCard
+                                                        key={cert.id}
+                                                        certificate={cert}
+                                                    />
+                                                ))}
                                         </div>
                                     </div>
                                 ))}
