@@ -138,27 +138,27 @@ const containerVariants: Variants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.05,
+            staggerChildren: 0.2,
+            delayChildren: 0.1,
         },
     },
 };
 
 const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.4, ease: "easeOut" as const },
+        transition: { duration: 0.6, ease: "easeOut" as const },
     },
 };
 
 const mobileItemVariants: Variants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -30 },
     visible: {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.35, ease: "easeOut" as const },
+        transition: { duration: 0.5, ease: "easeOut" as const },
     },
 };
 
