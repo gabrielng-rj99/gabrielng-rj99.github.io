@@ -1,12 +1,7 @@
 @import "tailwindcss";
 
-/* ============================================
-   CSS Custom Properties — Light & Dark Themes
-   ============================================ */
-
 :root,
 [data-theme="light"] {
-    /* Backgrounds */
     --bg-primary: #ffffff;
     --bg-secondary: #f9fbfd;
     --bg-tertiary: #e6ecf3;
@@ -16,14 +11,12 @@
     --bg-nav: #ffffff;
     --bg-nav-glass: rgba(255, 255, 255, 1);
 
-    /* Text */
     --text-primary: #13151a;
     --text-secondary: #3a3e4d;
     --text-tertiary: #616880;
     --text-muted: #747d99;
     --text-link: #6a708e;
 
-    /* Accent Colors */
     --accent-purple: #9f00ff;
     --accent-purple-hover: #b636fe;
     --accent-magenta: #fd01c7;
@@ -32,12 +25,10 @@
     --accent-neon: #d6ff00;
     --accent-green-border: #00ff00;
 
-    /* Borders */
     --border-primary: #dadfe6;
     --border-secondary: #e5ebf2;
     --border-muted: #999fb3;
 
-    /* Misc */
     --shadow-color: rgba(0, 0, 0, 0.1);
     --shadow-strong: rgba(0, 0, 0, 0.25);
     --particle-color: #9f00ff;
@@ -45,7 +36,6 @@
     --scrollbar-track: #f1f1f1;
     --scrollbar-thumb: #b2c1ce;
 
-    /* Timeline */
     --timeline-bg: #1f2c6c;
     --timeline-text: #ffffff;
 
@@ -53,7 +43,6 @@
 }
 
 [data-theme="dark"] {
-    /* Backgrounds */
     --bg-primary: #0a0a14;
     --bg-secondary: #111125;
     --bg-tertiary: #1a1a2e;
@@ -63,14 +52,12 @@
     --bg-nav: #0a0a14;
     --bg-nav-glass: rgba(10, 10, 20, 1);
 
-    /* Text */
     --text-primary: #e4e6eb;
     --text-secondary: #c0c4d0;
     --text-tertiary: #9399ad;
     --text-muted: #6b7190;
     --text-link: #b0b6cc;
 
-    /* Accent Colors */
     --accent-purple: #b44dff;
     --accent-purple-hover: #c87aff;
     --accent-magenta: #ff4dd8;
@@ -79,12 +66,10 @@
     --accent-neon: #d6ff00;
     --accent-green-border: #00ff00;
 
-    /* Borders */
     --border-primary: #2d2d44;
     --border-secondary: #252540;
     --border-muted: #3a3a5c;
 
-    /* Misc */
     --shadow-color: rgba(0, 0, 0, 0.3);
     --shadow-strong: rgba(0, 0, 0, 0.6);
     --particle-color: #b44dff;
@@ -92,16 +77,11 @@
     --scrollbar-track: #111125;
     --scrollbar-thumb: #2d2d44;
 
-    /* Timeline */
     --timeline-bg: #1a1a40;
     --timeline-text: #e4e6eb;
 
     color-scheme: dark;
 }
-
-/* ============================================
-   Base Styles
-   ============================================ */
 
 *,
 *::before,
@@ -162,10 +142,6 @@ img {
     color: #ffffff;
 }
 
-/* ============================================
-   Scrollbar Styling
-   ============================================ */
-
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -183,15 +159,10 @@ img {
     background: var(--accent-purple);
 }
 
-/* Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
-
-/* ============================================
-   Theme Transition
-   ============================================ */
 
 [data-theme] * {
     transition-property: background-color, border-color, color, box-shadow;
@@ -199,17 +170,12 @@ img {
     transition-timing-function: ease;
 }
 
-/* Exclude elements that have their own animations */
 [data-theme] canvas,
 [data-theme] video,
 [data-theme] img,
 [data-theme] .no-theme-transition {
     transition: none !important;
 }
-
-/* ============================================
-   Keyframe Animations
-   ============================================ */
 
 @keyframes fade-in {
     from {
@@ -321,11 +287,6 @@ img {
     }
 }
 
-/* ============================================
-   Utility Classes
-   ============================================ */
-
-/* Gradient text */
 .text-gradient {
     background: linear-gradient(
         135deg,
@@ -352,7 +313,6 @@ img {
     animation: gradient-shift 6s ease infinite;
 }
 
-/* Gradient backgrounds */
 .bg-accent-gradient {
     background: linear-gradient(
         to right,
@@ -361,7 +321,6 @@ img {
     );
 }
 
-/* Glass morphism effect — applied to navbar after BLUR_LOAD_DELAY */
 .glass {
     background: var(--bg-nav-glass);
     border: 1px solid var(--border-primary);
@@ -375,7 +334,6 @@ img {
         color-mix(in srgb, var(--border-primary) 50%, transparent);
 }
 
-/* Section divider */
 .section-divider {
     width: 60px;
     height: 4px;
@@ -388,7 +346,6 @@ img {
     margin: 0.75rem auto 0;
 }
 
-/* Accent button */
 .btn-accent {
     display: inline-flex;
     align-items: center;
@@ -414,7 +371,6 @@ img {
     transform: translateY(-1px);
 }
 
-/* Outline button */
 .btn-outline {
     display: inline-flex;
     align-items: center;
@@ -439,7 +395,6 @@ img {
     transform: translateY(-1px);
 }
 
-/* Card hover effect */
 .card-hover {
     transition:
         transform 0.3s ease,
@@ -451,11 +406,6 @@ img {
     box-shadow: 0 12px 40px var(--shadow-color);
 }
 
-/* ============================================
-   Global Component Patterns
-   ============================================ */
-
-/* Card base - common card styling */
 .card-base {
     border-radius: 0.75rem;
     border-width: 1px;
@@ -479,7 +429,6 @@ img {
     }
 }
 
-/* Icon button - circular icon button */
 .icon-btn {
     width: 2.5rem;
     height: 2.5rem;
@@ -498,7 +447,6 @@ img {
     color: var(--accent-purple);
 }
 
-/* Icon button arrow - icon inside icon button */
 .icon-btn-arrow {
     width: 1rem;
     height: 1rem;
@@ -511,7 +459,6 @@ img {
     }
 }
 
-/* Description text - centered description */
 .description-text {
     font-size: 0.875rem;
     line-height: 1.625;
@@ -526,7 +473,6 @@ img {
     }
 }
 
-/* List item with bullet */
 .list-item-bullet {
     display: flex;
     align-items: flex-start;
@@ -547,7 +493,6 @@ img {
     text-shadow: 0 0 12px rgba(180, 77, 255, 0.4);
 }
 
-/* Bullet point */
 .list-bullet {
     width: 6px;
     height: 6px;
@@ -557,7 +502,6 @@ img {
     flex-shrink: 0;
 }
 
-/* Timeline dot */
 .timeline-dot {
     width: 20px;
     height: 20px;
@@ -571,7 +515,6 @@ img {
     flex-shrink: 0;
 }
 
-/* Badge / Pill */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -586,7 +529,6 @@ img {
     color: var(--text-tertiary);
 }
 
-/* Role / Title text */
 .role-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -595,7 +537,6 @@ img {
     color: var(--text-primary);
 }
 
-/* Secondary text (company/institution) */
 .text-secondary {
     font-size: 1rem;
     font-weight: 600;
@@ -603,18 +544,12 @@ img {
     color: var(--text-secondary);
 }
 
-/* Period / Meta text */
 .period-text {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--accent-purple);
 }
 
-/* ============================================
-   Global Section Patterns
-   ============================================ */
-
-/* Section wrapper - base for all sections */
 .section-wrapper {
     position: relative;
     margin-top: 2rem;
@@ -631,7 +566,6 @@ img {
     }
 }
 
-/* Section container - main content container with responsive width */
 .section-container {
     width: min(90vw, 72rem);
     margin: 0 auto;
@@ -653,7 +587,6 @@ img {
     }
 }
 
-/* Section header - centered header with optional divider */
 .section-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -665,7 +598,6 @@ img {
     }
 }
 
-/* Section header with large bottom margin */
 .section-header-lg {
     text-align: center;
     margin-bottom: 3rem;
@@ -677,7 +609,6 @@ img {
     }
 }
 
-/* Section glow background - subtle glow behind content */
 .section-glow-bg {
     position: relative;
 }
@@ -700,7 +631,6 @@ img {
     z-index: -1;
 }
 
-/* Hide scrollbar on specific containers */
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -710,15 +640,10 @@ img {
     display: none;
 }
 
-/* Focus visible styling */
 :focus-visible {
     outline: 2px solid var(--accent-purple);
     outline-offset: 2px;
 }
-
-/* ============================================
-   Navigation — CV Download Button
-   ============================================ */
 
 .nav-download-btn {
     display: inline-flex;
@@ -749,11 +674,6 @@ img {
     transform: translateY(0);
 }
 
-/* ============================================
-   Section base styling
-   ============================================ */
-
-/* Offset fixed navbar height when navigating to anchors */
 section[id] {
     scroll-margin-top: 12rem;
 }
@@ -782,10 +702,6 @@ section[id] {
     line-height: 1.6;
 }
 
-/* ============================================
-   Particles canvas
-   ============================================ */
-
 #tsparticles {
     position: fixed;
     top: 0;
@@ -794,23 +710,14 @@ section[id] {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    /* GPU layer isolation — prevents canvas repaints from
-       triggering full-page recomposition (video flicker fix) */
     will-change: transform;
     contain: strict;
 }
 
-/* Force video elements into their own compositing layer so the
-   continuous canvas repaint cycle does not interfere with
-   hardware video decoding, which causes white-frame flicker. */
 video {
     transform: translateZ(0);
     backface-visibility: hidden;
 }
-
-/* ============================================
-   Responsive helpers
-   ============================================ */
 
 @media (max-width: 768px) {
     .section-heading {
@@ -822,7 +729,6 @@ video {
     }
 }
 
-/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -841,9 +747,6 @@ video {
     }
 }
 
-/* ============================================
-   Section Glow Background
-   ============================================ */
 .section-glow-bg {
     position: relative;
     z-index: 1;
@@ -890,10 +793,6 @@ video {
     filter: blur(50px);
 }
 
-/* ============================================
-   Experience Section Styles
-   ============================================ */
-
 .experience-section {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -918,7 +817,6 @@ video {
     position: relative;
 }
 
-/* Timeline lines */
 .timeline-line-desktop {
     position: absolute;
     top: 24px;
@@ -948,7 +846,6 @@ video {
     }
 }
 
-/* Job item */
 .experience-job {
     margin-bottom: 3.5rem;
     cursor: default;
@@ -958,7 +855,6 @@ video {
     margin-bottom: 0;
 }
 
-/* Desktop layout */
 .experience-job-desktop {
     display: none;
     align-items: flex-start;
@@ -970,7 +866,6 @@ video {
     }
 }
 
-/* Left side - job info */
 .experience-job-left {
     width: 35%;
     padding-right: 2rem;
@@ -1012,7 +907,6 @@ video {
     color: var(--text-muted);
 }
 
-/* Timeline dot - desktop */
 .experience-timeline-dot {
     position: absolute;
     left: 0;
@@ -1043,7 +937,6 @@ video {
     background: var(--accent-magenta);
 }
 
-/* Right side - job description */
 .experience-job-right {
     width: 65%;
     padding-left: 3rem;
@@ -1055,13 +948,11 @@ video {
     transform: translateX(8px);
 }
 
-/* Dot counter-movement to stay centered */
 .experience-job:hover .experience-timeline-dot {
     transform: scale(1.4) translateX(-6px);
     box-shadow: 0 0 15px rgba(159, 0, 255, 0.6);
 }
 
-/* Highlight box */
 .experience-highlight {
     position: absolute;
     top: -0.5rem;
@@ -1079,7 +970,6 @@ video {
     opacity: 1;
 }
 
-/* Description list */
 .experience-list {
     list-style: none;
     padding: 0;
@@ -1105,7 +995,6 @@ video {
     color: var(--text-primary);
 }
 
-/* Bullets */
 .experience-bullet {
     width: 6px;
     height: 6px;
@@ -1124,14 +1013,9 @@ video {
     transform: scale(1.25);
 }
 
-/* Description text */
 .experience-text {
     word-wrap: break-word;
 }
-
-/* ============================================
-   Mobile Layout
-   ============================================ */
 
 .experience-job-mobile {
     display: block;
@@ -1145,7 +1029,6 @@ video {
     }
 }
 
-/* Mobile dot */
 .experience-timeline-dot-mobile {
     position: absolute;
     left: 24px;
@@ -1167,7 +1050,6 @@ video {
     box-shadow: 0 0 10px rgba(159, 0, 255, 0.5);
 }
 
-/* Mobile content */
 .experience-job-content-mobile {
     position: relative;
     margin-bottom: 2rem;
@@ -1190,7 +1072,6 @@ video {
     opacity: 1;
 }
 
-/* Mobile job info */
 .job-role-mobile {
     font-size: 1.125rem;
     font-weight: 700;
@@ -1221,7 +1102,6 @@ video {
     color: var(--text-muted);
 }
 
-/* Mobile list */
 .experience-list-mobile {
     list-style: none;
     padding: 0;
@@ -1247,7 +1127,6 @@ video {
     color: var(--text-primary);
 }
 
-/* Mobile bullets */
 .experience-bullet-mobile {
     width: 5px;
     height: 5px;

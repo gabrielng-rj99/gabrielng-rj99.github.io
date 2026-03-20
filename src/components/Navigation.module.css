@@ -1,4 +1,3 @@
-/* Navigation Container */
 .nav {
     position: fixed;
     top: 0;
@@ -24,15 +23,12 @@
         0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-/* Glass morphism — lives in the module to avoid lightningcss stripping
-   the unprefixed backdrop-filter when processed through @tailwindcss/vite */
 .navGlass {
     background: var(--bg-nav-glass);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
 
-/* Container */
 .navContainer {
     width: min(90vw, 72rem);
     padding-left: 1rem;
@@ -53,7 +49,6 @@
     }
 }
 
-/* Grid Layout */
 .navGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -68,7 +63,6 @@
     }
 }
 
-/* Logo / Home */
 .navHome {
     display: flex;
     justify-content: flex-start;
@@ -94,7 +88,6 @@
     opacity: 0.8;
 }
 
-/* Desktop Navigation Links */
 .navLinks {
     display: none;
     justify-content: center;
@@ -151,7 +144,6 @@
     background: var(--accent-purple);
 }
 
-/* Desktop Tools */
 .navTools {
     display: none;
     justify-content: flex-end;
@@ -165,7 +157,6 @@
     }
 }
 
-/* Download Button */
 .downloadBtn {
     display: flex;
     align-items: center;
@@ -189,7 +180,6 @@
     border-color: var(--border-secondary);
 }
 
-/* Mobile Tools */
 .mobileTools {
     display: flex;
     justify-content: flex-end;
@@ -203,7 +193,6 @@
     }
 }
 
-/* Mobile Menu Toggle */
 .menuToggle {
     padding: 0.25rem;
     border-radius: 0.5rem;
@@ -218,7 +207,6 @@
     background-color: var(--bg-card-hover);
 }
 
-/* Mobile Menu */
 .mobileMenu {
     position: absolute;
     top: 100%;
@@ -261,7 +249,6 @@
     background-color: var(--bg-card-hover);
 }
 
-/* Theme Toggle Spacing */
 .themeToggle {
     margin-left: 0.25rem;
 }

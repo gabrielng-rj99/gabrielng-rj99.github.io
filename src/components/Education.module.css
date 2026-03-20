@@ -1,9 +1,7 @@
-/* Timeline Container */
 .timelineContainer {
     position: relative;
 }
 
-/* Horizontal Line - Desktop Only */
 .horizontalLine {
     display: none;
     position: absolute;
@@ -14,7 +12,6 @@
     z-index: 0;
 }
 
-/* Vertical Line - Mobile Only */
 .verticalLine {
     display: block;
     position: absolute;
@@ -35,7 +32,6 @@
     }
 }
 
-/* Cards Grid */
 .cardsGrid {
     display: grid;
     grid-template-columns: 1fr;
@@ -57,7 +53,6 @@
     }
 }
 
-/* Card Wrapper */
 .cardWrapper {
     display: flex;
     flex-direction: column;
@@ -73,7 +68,6 @@
     }
 }
 
-/* Card Header Sync */
 .cardHeader {
     display: flex;
     flex-direction: column;
@@ -89,7 +83,6 @@
     }
 }
 
-/* Period Badge */
 .periodBadge {
     padding: 0.35rem 0.8rem;
     border-radius: 9999px;
@@ -100,7 +93,6 @@
     gap: 0.35rem;
 }
 
-/* Degree */
 .degree {
     text-align: left;
     font-size: 0.875rem;
@@ -117,7 +109,6 @@
     }
 }
 
-/* Timeline Dot */
 .timelineDotContainer {
     display: flex;
     flex-direction: column;
@@ -164,7 +155,6 @@
     }
 }
 
-/* Location */
 .location {
     display: flex;
     align-items: center;
@@ -176,7 +166,6 @@
     font-size: 0.75rem;
 }
 
-/* Description List */
 .descriptionList {
     list-style: none;
     padding: 0;

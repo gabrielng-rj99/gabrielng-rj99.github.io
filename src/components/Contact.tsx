@@ -26,10 +26,8 @@ const cardVariants = {
 export default function Contact() {
     return (
         <>
-            {/* Contact Section */}
             <section id="contact" className="section-wrapper section-glow-bg">
                 <div className="section-container">
-                    {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +43,6 @@ export default function Contact() {
                         </p>
                     </motion.div>
 
-                    {/* Contact Cards Grid */}
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -71,7 +68,6 @@ export default function Contact() {
                                     loading="lazy"
                                 />
 
-                                {/* Label */}
                                 <span
                                     className={styles.label}
                                     style={{ color: "var(--text-secondary)" }}
@@ -84,11 +80,9 @@ export default function Contact() {
                 </div>
             </section>
 
-            {/* Footer */}
             <footer className={`${styles.footer} section-glow-bg`}>
                 <div className="section-container">
                     <div className={styles.footerContent}>
-                        {/* Copyright */}
                         <p
                             className={styles.copyright}
                             style={{ color: "var(--text-muted)" }}
@@ -98,7 +92,6 @@ export default function Contact() {
                         </p>
                     </div>
 
-                    {/* Scroll to Top */}
                     <div className={styles.scrollButtonContainer}>
                         <motion.button
                             onClick={() =>

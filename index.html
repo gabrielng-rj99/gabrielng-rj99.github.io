@@ -13,22 +13,25 @@
         <meta name="author" content="Gabriel Gomes" />
         <meta name="theme-color" content="#9f00ff" />
 
-        <!-- Blocking script to set theme before first paint -->
+        <!-- Apply theme before first paint -->
         <script>
             (function () {
-                var S = "portfolio-theme";
-                var s = localStorage.getItem(S);
-                var d = window.matchMedia(
+                var themeKey = "portfolio-theme";
+                var storedTheme = localStorage.getItem(themeKey);
+                var prefersDark = window.matchMedia(
                     "(prefers-color-scheme: dark)",
                 ).matches;
-                var t =
-                    s === "dark" || s === "light" ? s : d ? "dark" : "light";
-                document.documentElement.setAttribute("data-theme", t);
-                document.documentElement.classList.add(t);
+                var theme =
+                    storedTheme === "dark" || storedTheme === "light"
+                        ? storedTheme
+                        : prefersDark
+                          ? "dark"
+                          : "light";
+                document.documentElement.setAttribute("data-theme", theme);
+                document.documentElement.classList.add(theme);
             })();
         </script>
 
-        <!-- Critical inline CSS — renders the shell before any external resource loads -->
         <style>
             :root,
             [data-theme="light"] {
@@ -224,7 +227,6 @@
             href="/assets/logo/EngenHumanas.svg"
         />
 
-        <!-- Poppins Font — only weights actually used (400 body, 500-800 headings/buttons) -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -233,10 +235,7 @@
         />
     </head>
     <body>
-        <!--
-            Static HTML shell — visible in the first TCP round-trip (~14 KB).
-            React replaces this content when it mounts.
-        -->
+        <!-- First-paint shell -->
         <div id="root">
             <div class="shell-hero">
                 <div class="shell-hero-inner">

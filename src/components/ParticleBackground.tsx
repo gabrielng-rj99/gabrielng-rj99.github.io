@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useTheme } from "../hooks/useTheme";
 
 interface Particle {
@@ -10,14 +10,10 @@ interface Particle {
     baseSize: number;
     opacity: number;
     baseOpacity: number;
-    // For subtle size/opacity animation
-    sizePhase: number;
-    opacityPhase: number;
+    sizeOscillationPhase: number;
+    opacityOscillationPhase: number;
 }
 
-// ============================================================
-// Configuration — mirrors the original tsParticles settings
-// ============================================================
 const LINK_DISTANCE = 150;
 const LINK_OPACITY = 1;
 const LINK_WIDTH = 1;
@@ -54,7 +50,6 @@ export default function ParticleBackground() {
     const lastFrameTimeRef = useRef<number>(0);
     const dimensionsRef = useRef({ width: 0, height: 0 });
 
-    // Keep theme ref in sync without re-running the effect
     useEffect(() => {
         themeRef.current = theme;
     }, [theme]);
@@ -76,6 +71,7 @@ export default function ParticleBackground() {
             const opacity =
                 Math.random() * (PARTICLE_OPACITY_MAX - PARTICLE_OPACITY_MIN) +
                 PARTICLE_OPACITY_MIN;
+
             return {
                 x,
                 y,
@@ -85,8 +81,8 @@ export default function ParticleBackground() {
                 baseSize: size,
                 opacity,
                 baseOpacity: opacity,
-                sizePhase: Math.random() * Math.PI * 2,
-                opacityPhase: Math.random() * Math.PI * 2,
+                sizeOscillationPhase: Math.random() * Math.PI * 2,
+                opacityOscillationPhase: Math.random() * Math.PI * 2,
             };
         },
         [],
@@ -96,10 +92,9 @@ export default function ParticleBackground() {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const ctx = canvas.getContext("2d", { alpha: true });
-        if (!ctx) return;
+        const context = canvas.getContext("2d", { alpha: true });
+        if (!context) return;
 
-        // Respect reduced motion preference
         const motionQuery = window.matchMedia(
             "(prefers-reduced-motion: reduce)",
         );
@@ -111,164 +106,168 @@ export default function ParticleBackground() {
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
         const resize = () => {
-            const w = window.innerWidth;
-            const h = window.innerHeight;
-            dimensionsRef.current = { width: w, height: h };
-            canvas.width = w * dpr;
-            canvas.height = h * dpr;
-            canvas.style.width = `${w}px`;
-            canvas.style.height = `${h}px`;
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            dimensionsRef.current = { width, height };
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            context.setTransform(dpr, 0, 0, dpr, 0, 0);
         };
 
         resize();
 
-        // Initialize particles
-        const count = getParticleCount();
+        const particleCount = getParticleCount();
         const { width, height } = dimensionsRef.current;
         const particles: Particle[] = [];
-        for (let i = 0; i < count; i++) {
+        for (let index = 0; index < particleCount; index++) {
             particles.push(
                 createParticle(Math.random() * width, Math.random() * height),
             );
         }
         particlesRef.current = particles;
 
-        // ============================================================
-        // Animation loop
-        // ============================================================
         const animate = (timestamp: number) => {
             animationRef.current = requestAnimationFrame(animate);
 
-            // FPS limiter
             const elapsed = timestamp - lastFrameTimeRef.current;
             if (elapsed < FRAME_INTERVAL) return;
             lastFrameTimeRef.current = timestamp - (elapsed % FRAME_INTERVAL);
 
-            const { width: w, height: h } = dimensionsRef.current;
+            const { width, height } = dimensionsRef.current;
             const colors = getColors();
-            const mx = mouseRef.current.x;
-            const my = mouseRef.current.y;
-            const mouseActive = mx > -999 && my > -999;
+            const mouseX = mouseRef.current.x;
+            const mouseY = mouseRef.current.y;
+            const hasMouse = mouseX > -999 && mouseY > -999;
 
-            ctx.clearRect(0, 0, w, h);
+            context.clearRect(0, 0, width, height);
 
-            const linkDistSq = LINK_DISTANCE * LINK_DISTANCE;
-            const grabDistSq = MOUSE_GRAB_DISTANCE * MOUSE_GRAB_DISTANCE;
-            const bubbleDistSq = MOUSE_BUBBLE_DISTANCE * MOUSE_BUBBLE_DISTANCE;
-            const slowRadiusSq = MOUSE_SLOW_RADIUS * MOUSE_SLOW_RADIUS;
+            const linkDistanceSquared = LINK_DISTANCE * LINK_DISTANCE;
+            const grabDistanceSquared =
+                MOUSE_GRAB_DISTANCE * MOUSE_GRAB_DISTANCE;
+            const bubbleDistanceSquared =
+                MOUSE_BUBBLE_DISTANCE * MOUSE_BUBBLE_DISTANCE;
+            const slowRadiusSquared = MOUSE_SLOW_RADIUS * MOUSE_SLOW_RADIUS;
 
-            // --- Update particles ---
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
+            for (let index = 0; index < particles.length; index++) {
+                const particle = particles[index];
 
-                // Animate size and opacity subtly
-                p.sizePhase += 0.02;
-                p.opacityPhase += 0.01;
-                p.size = p.baseSize + Math.sin(p.sizePhase) * 0.3;
-                p.opacity = p.baseOpacity + Math.sin(p.opacityPhase) * 0.05;
+                particle.sizeOscillationPhase += 0.02;
+                particle.opacityOscillationPhase += 0.01;
+                particle.size =
+                    particle.baseSize +
+                    Math.sin(particle.sizeOscillationPhase) * 0.3;
+                particle.opacity =
+                    particle.baseOpacity +
+                    Math.sin(particle.opacityOscillationPhase) * 0.05;
 
-                // Slow effect near mouse
                 let speedFactor = 1;
-                if (mouseActive) {
-                    const dxm = p.x - mx;
-                    const dym = p.y - my;
-                    const distSqMouse = dxm * dxm + dym * dym;
-                    if (distSqMouse < slowRadiusSq) {
+                if (hasMouse) {
+                    const deltaX = particle.x - mouseX;
+                    const deltaY = particle.y - mouseY;
+                    const mouseDistanceSquared =
+                        deltaX * deltaX + deltaY * deltaY;
+
+                    if (mouseDistanceSquared < slowRadiusSquared) {
                         const proximity =
-                            1 - Math.sqrt(distSqMouse) / MOUSE_SLOW_RADIUS;
+                            1 -
+                            Math.sqrt(mouseDistanceSquared) /
+                                MOUSE_SLOW_RADIUS;
                         speedFactor = 1 - proximity * (1 - MOUSE_SLOW_FACTOR);
                     }
                 }
 
-                // Move
-                p.x += p.vx * speedFactor;
-                p.y += p.vy * speedFactor;
+                particle.x += particle.vx * speedFactor;
+                particle.y += particle.vy * speedFactor;
 
-                // Bounce off edges
-                if (p.x <= 0 || p.x >= w) {
-                    p.vx *= -1;
-                    p.x = Math.max(0, Math.min(w, p.x));
+                if (particle.x <= 0 || particle.x >= width) {
+                    particle.vx *= -1;
+                    particle.x = Math.max(0, Math.min(width, particle.x));
                 }
-                if (p.y <= 0 || p.y >= h) {
-                    p.vy *= -1;
-                    p.y = Math.max(0, Math.min(h, p.y));
+
+                if (particle.y <= 0 || particle.y >= height) {
+                    particle.vy *= -1;
+                    particle.y = Math.max(0, Math.min(height, particle.y));
                 }
             }
 
-            // --- Draw links between particles ---
-            ctx.lineWidth = LINK_WIDTH;
-            for (let i = 0; i < particles.length; i++) {
-                const a = particles[i];
-                for (let j = i + 1; j < particles.length; j++) {
-                    const b = particles[j];
-                    const dx = a.x - b.x;
-                    const dy = a.y - b.y;
-                    const distSq = dx * dx + dy * dy;
+            context.lineWidth = LINK_WIDTH;
+            for (let index = 0; index < particles.length; index++) {
+                const source = particles[index];
+                for (let targetIndex = index + 1; targetIndex < particles.length; targetIndex++) {
+                    const target = particles[targetIndex];
+                    const deltaX = source.x - target.x;
+                    const deltaY = source.y - target.y;
+                    const distanceSquared = deltaX * deltaX + deltaY * deltaY;
 
-                    if (distSq < linkDistSq) {
-                        const dist = Math.sqrt(distSq);
+                    if (distanceSquared < linkDistanceSquared) {
+                        const distance = Math.sqrt(distanceSquared);
                         const opacity =
                             colors.lineBaseOpacity *
                             LINK_OPACITY *
-                            (1 - dist / LINK_DISTANCE);
-                        ctx.beginPath();
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.strokeStyle = `rgba(${colors.lineRgb}, ${opacity})`;
-                        ctx.stroke();
+                            (1 - distance / LINK_DISTANCE);
+                        context.beginPath();
+                        context.moveTo(source.x, source.y);
+                        context.lineTo(target.x, target.y);
+                        context.strokeStyle = `rgba(${colors.lineRgb}, ${opacity})`;
+                        context.stroke();
                     }
                 }
             }
 
-            // --- Draw particles ---
-            for (let i = 0; i < particles.length; i++) {
-                const p = particles[i];
-                let drawSize = p.size;
-                let drawOpacity = p.opacity;
+            for (let index = 0; index < particles.length; index++) {
+                const particle = particles[index];
+                let drawSize = particle.size;
+                let drawOpacity = particle.opacity;
 
-                // Bubble effect near mouse
-                if (mouseActive) {
-                    const dxm = p.x - mx;
-                    const dym = p.y - my;
-                    const distSqMouse = dxm * dxm + dym * dym;
+                if (hasMouse) {
+                    const deltaX = particle.x - mouseX;
+                    const deltaY = particle.y - mouseY;
+                    const mouseDistanceSquared = deltaX * deltaX + deltaY * deltaY;
 
-                    if (distSqMouse < bubbleDistSq) {
-                        const dist = Math.sqrt(distSqMouse);
-                        const factor = 1 - dist / MOUSE_BUBBLE_DISTANCE;
+                    if (mouseDistanceSquared < bubbleDistanceSquared) {
+                        const distance = Math.sqrt(mouseDistanceSquared);
+                        const factor = 1 - distance / MOUSE_BUBBLE_DISTANCE;
                         drawSize =
-                            p.size + (MOUSE_BUBBLE_SIZE - p.size) * factor;
+                            particle.size +
+                            (MOUSE_BUBBLE_SIZE - particle.size) * factor;
                         drawOpacity =
-                            p.opacity +
-                            (MOUSE_BUBBLE_OPACITY - p.opacity) * factor;
+                            particle.opacity +
+                            (MOUSE_BUBBLE_OPACITY - particle.opacity) * factor;
                     }
                 }
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, Math.max(0.5, drawSize), 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${colors.particleRgb}, ${drawOpacity})`;
-                ctx.fill();
+                context.beginPath();
+                context.arc(
+                    particle.x,
+                    particle.y,
+                    Math.max(0.5, drawSize),
+                    0,
+                    Math.PI * 2,
+                );
+                context.fillStyle = `rgba(${colors.particleRgb}, ${drawOpacity})`;
+                context.fill();
             }
 
-            // --- Draw grab lines from mouse to nearby particles ---
-            if (mouseActive) {
-                ctx.lineWidth = LINK_WIDTH;
-                for (let i = 0; i < particles.length; i++) {
-                    const p = particles[i];
-                    const dx = p.x - mx;
-                    const dy = p.y - my;
-                    const distSq = dx * dx + dy * dy;
+            if (hasMouse) {
+                context.lineWidth = LINK_WIDTH;
+                for (let index = 0; index < particles.length; index++) {
+                    const particle = particles[index];
+                    const deltaX = particle.x - mouseX;
+                    const deltaY = particle.y - mouseY;
+                    const distanceSquared = deltaX * deltaX + deltaY * deltaY;
 
-                    if (distSq < grabDistSq) {
-                        const dist = Math.sqrt(distSq);
+                    if (distanceSquared < grabDistanceSquared) {
+                        const distance = Math.sqrt(distanceSquared);
                         const opacity =
                             MOUSE_GRAB_LINK_OPACITY *
-                            (1 - dist / MOUSE_GRAB_DISTANCE);
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(mx, my);
-                        ctx.strokeStyle = `rgba(${colors.particleRgb}, ${opacity})`;
-                        ctx.stroke();
+                            (1 - distance / MOUSE_GRAB_DISTANCE);
+                        context.beginPath();
+                        context.moveTo(particle.x, particle.y);
+                        context.lineTo(mouseX, mouseY);
+                        context.strokeStyle = `rgba(${colors.particleRgb}, ${opacity})`;
+                        context.stroke();
                     }
                 }
             }
@@ -276,35 +275,31 @@ export default function ParticleBackground() {
 
         animationRef.current = requestAnimationFrame(animate);
 
-        // ============================================================
-        // Event handlers
-        // ============================================================
-        const handleMouseMove = (e: MouseEvent) => {
-            mouseRef.current = { x: e.clientX, y: e.clientY };
+        const handleMouseMove = (event: MouseEvent) => {
+            mouseRef.current = { x: event.clientX, y: event.clientY };
         };
 
         const handleMouseLeave = () => {
             mouseRef.current = { x: -9999, y: -9999 };
         };
 
-        const handleClick = (e: MouseEvent) => {
-            const spreadRad = (CLICK_PUSH_SPREAD_DEG * Math.PI) / 180;
+        const handleClick = (event: MouseEvent) => {
+            const spreadRadians = (CLICK_PUSH_SPREAD_DEG * Math.PI) / 180;
             const baseAngle = Math.random() * Math.PI * 2;
 
-            for (let i = 0; i < CLICK_PUSH_COUNT; i++) {
-                const angle = baseAngle + i * spreadRad;
+            for (let index = 0; index < CLICK_PUSH_COUNT; index++) {
+                const angle = baseAngle + index * spreadRadians;
                 const speed = 1 + Math.random() * MOVE_SPEED;
                 particles.push(
                     createParticle(
-                        e.clientX,
-                        e.clientY,
+                        event.clientX,
+                        event.clientY,
                         Math.cos(angle) * speed,
                         Math.sin(angle) * speed,
                     ),
                 );
             }
 
-            // Enforce particle limit — remove oldest first
             while (particles.length > MAX_PARTICLES) {
                 particles.shift();
             }
@@ -314,9 +309,8 @@ export default function ParticleBackground() {
             resize();
         };
 
-        // Handle reduced motion change
-        const handleMotionChange = (e: MediaQueryListEvent) => {
-            if (e.matches) {
+        const handleMotionChange = (event: MediaQueryListEvent) => {
+            if (event.matches) {
                 cancelAnimationFrame(animationRef.current);
                 canvas.style.display = "none";
             } else {
@@ -341,7 +335,7 @@ export default function ParticleBackground() {
             window.removeEventListener("resize", handleResize);
             motionQuery.removeEventListener("change", handleMotionChange);
         };
-    }, [getColors, createParticle]);
+    }, [createParticle, getColors]);
 
     return (
         <canvas

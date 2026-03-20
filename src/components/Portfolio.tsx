@@ -28,8 +28,6 @@ const cardVariants = {
     },
 };
 
-/* ─── Media Component ─────────────────────────────────────────────── */
-
 function ProjectMedia({
     media,
     title,
@@ -95,8 +93,6 @@ function ProjectMedia({
     );
 }
 
-/* ─── Tag Pill ────────────────────────────────────────────────────── */
-
 function TagPill({ label }: { label: string }) {
     return (
         <span
@@ -117,8 +113,6 @@ function TagPill({ label }: { label: string }) {
     );
 }
 
-/* ─── Featured Card ───────────────────────────────────────────────── */
-
 function FeaturedCard({
     project,
 }: {
@@ -137,14 +131,12 @@ function FeaturedCard({
                 borderColor: "var(--border-primary)",
             }}
         >
-            {/* Media */}
             <ProjectMedia
                 media={project.media}
                 title={project.title}
                 featured
             />
 
-            {/* Hover overlay */}
             <div
                 className={`${styles.overlay} ${styles.overlayFeatured}`}
                 style={{
@@ -170,7 +162,6 @@ function FeaturedCard({
                 </motion.div>
             </div>
 
-            {/* Bottom info bar */}
             <div
                 className={`${styles.cardInfo} ${styles.cardInfoFeatured}`}
                 style={{
@@ -207,7 +198,6 @@ function FeaturedCard({
                     ))}
                 </div>
 
-                {/* Featured badge */}
                 <div
                     className={styles.featuredBadge}
                     style={{
@@ -223,8 +213,6 @@ function FeaturedCard({
     );
 }
 
-/* ─── Regular Card ────────────────────────────────────────────────── */
-
 function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
     return (
         <motion.a
@@ -239,10 +227,8 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
                 borderColor: "var(--border-primary)",
             }}
         >
-            {/* Media */}
             <ProjectMedia media={project.media} title={project.title} />
 
-            {/* Hover overlay */}
             <div
                 className={`${styles.overlay} ${styles.overlayRegular}`}
                 style={{
@@ -261,7 +247,6 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
                 </div>
             </div>
 
-            {/* Info */}
             <div
                 className={`${styles.cardInfo} ${styles.cardInfoRegular}`}
                 style={{
@@ -300,8 +285,6 @@ function ProjectCard({ project }: { project: (typeof portfolioData)[number] }) {
     );
 }
 
-/* ─── Main Portfolio Section ──────────────────────────────────────── */
-
 export default function Portfolio() {
     const featured = portfolioData.filter((p) => p.featured);
     const regular = portfolioData.filter((p) => !p.featured);
@@ -309,7 +292,6 @@ export default function Portfolio() {
     return (
         <section id="portfolio" className="section-wrapper section-glow-bg">
             <div className="section-container">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -329,7 +311,6 @@ export default function Portfolio() {
                     </p>
                 </motion.div>
 
-                {/* Featured Projects */}
                 {featured.length > 0 && (
                     <motion.div
                         variants={containerVariants}
@@ -344,7 +325,6 @@ export default function Portfolio() {
                     </motion.div>
                 )}
 
-                {/* Regular Projects */}
                 {regular.length > 0 && (
                     <motion.div
                         variants={containerVariants}
@@ -359,7 +339,6 @@ export default function Portfolio() {
                     </motion.div>
                 )}
 
-                {/* View more link */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

@@ -15,7 +15,6 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    {/* Headline */}
                     <h1 className={styles.heroHeadline}>
                         {headlineParts.map((part, index) => (
                             <React.Fragment key={index}>
@@ -42,7 +41,6 @@ export default function Hero() {
                         ))}
                     </h1>
 
-                    {/* Subtitle */}
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -56,7 +54,6 @@ export default function Hero() {
                         {aboutData.subheadline}
                     </motion.p>
 
-                    {/* CTA Buttons */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -100,7 +97,6 @@ export default function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Scroll indicator */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

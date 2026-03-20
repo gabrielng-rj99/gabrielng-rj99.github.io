@@ -34,20 +34,17 @@ const itemVariants = {
 
 export default function About() {
     const greetingLines = aboutData.greeting.split("\n");
-    const bioParas = aboutData.bio.split("\n\n");
+    const bioParagraphs = aboutData.bio.split("\n\n");
 
     return (
         <section className={styles.section}>
-            {/* Hero Section */}
             <Hero />
 
-            {/* About Me Content */}
             <div
                 id="about-me"
                 className={`${styles.aboutMeContainer} section-glow-bg`}
             >
                 <div className="section-container">
-                    {/* Section Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +56,6 @@ export default function About() {
                         <div className="section-divider" />
                     </motion.div>
 
-                    {/* Content Grid */}
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -67,12 +63,10 @@ export default function About() {
                         viewport={{ once: true, margin: "-80px" }}
                         className={styles.aboutGrid}
                     >
-                        {/* Text Column — wider */}
                         <motion.div
                             variants={itemVariants}
                             className={styles.aboutTextColumn}
                         >
-                            {/* Greeting */}
                             <div className={`${styles.aboutGreeting}`}>
                                 {greetingLines.map((line, i) => (
                                     <h3
@@ -116,19 +110,17 @@ export default function About() {
                                 ))}
                             </div>
 
-                            {/* Bio */}
                             <div className={styles.aboutBio}>
-                                {bioParas.map((para, i) => (
+                                {bioParagraphs.map((paragraph, i) => (
                                     <p
                                         key={i}
                                         className={`${styles.aboutBioText}`}
                                     >
-                                        {para}
+                                        {paragraph}
                                     </p>
                                 ))}
                             </div>
 
-                            {/* Social Icons */}
                             <motion.div
                                 variants={itemVariants}
                                 className={styles.aboutSocials}
@@ -157,16 +149,13 @@ export default function About() {
                             </motion.div>
                         </motion.div>
 
-                        {/* Image Column */}
                         <motion.div
                             variants={itemVariants}
                             className={styles.aboutImageColumn}
                         >
                             <div className={styles.aboutImageWrapper}>
-                                {/* Decorative border/glow */}
                                 <div className={styles.aboutImageGlow} />
 
-                                {/* Image container */}
                                 <div className={styles.aboutImageContainer}>
                                     <motion.img
                                         src={aboutData.profileImage}
@@ -180,7 +169,6 @@ export default function About() {
                                         }}
                                     />
 
-                                    {/* Overlay gradient on bottom */}
                                     <div className={styles.aboutImageOverlay} />
                                 </div>
                             </div>

@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
-    HiExternalLink,
     HiBadgeCheck,
     HiChevronLeft,
     HiChevronRight,
+    HiExternalLink,
 } from "react-icons/hi";
 import { FiClock } from "react-icons/fi";
 import certificationsData from "../content/certifications.json";
@@ -32,6 +32,12 @@ interface Certificate {
     logo?: string;
 }
 
+const BADGE_GRID_MAX_COLUMNS = 6;
+const CARDS_PER_ROW = 4;
+const CARDS_PER_SLIDE = CARDS_PER_ROW * 2;
+const CAROUSEL_DRAG_MULTIPLIER = 2;
+const CAROUSEL_SCROLL_STEP = 950;
+
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,13 +62,7 @@ const cardVariants = {
     },
 };
 
-/* ─── Certification Badge Card ────────────────────────────────────── */
-
-function CertificationCard({
-    certification,
-}: {
-    certification: Certification;
-}) {
+function CertificationCard({ certification }: { certification: Certification }) {
     const isEarned = certification.status === "earned";
     const hasCredential =
         certification.credentialUrl && certification.credentialUrl.length > 0;
@@ -84,7 +84,6 @@ function CertificationCard({
             whileTap={{ scale: 0.98 }}
             className={`${styles.certCard} ${hasCredential ? styles.certCardClickable : styles.certCardStatic}`}
         >
-            {/* Status Badge */}
             <div
                 className={styles.statusBadge}
                 style={{
@@ -99,18 +98,9 @@ function CertificationCard({
                     }`,
                 }}
             >
-                {isEarned ? (
-                    <>
-                        <HiBadgeCheck size={12} />
-                    </>
-                ) : (
-                    <>
-                        <FiClock size={10} />
-                    </>
-                )}
+                {isEarned ? <HiBadgeCheck size={12} /> : <FiClock size={10} />}
             </div>
 
-            {/* Badge Image */}
             <div className={styles.badgeImageContainer}>
                 <div
                     className={styles.badgeGlow}
@@ -124,8 +114,8 @@ function CertificationCard({
                     alt={`${certification.title} badge`}
                     className={`${styles.badgeImage} ${!isEarned ? styles.badgeImageUnearned : ""}`}
                     loading="lazy"
-                    onError={(e) => {
-                        const target = e.currentTarget;
+                    onError={(event) => {
+                        const target = event.currentTarget;
                         target.style.display = "none";
                         const parent = target.parentElement;
                         if (
@@ -145,20 +135,18 @@ function CertificationCard({
                 />
             </div>
 
-            {/* Title */}
             <h3
                 className={styles.certTitle}
                 style={{ color: "var(--text-primary)" }}
             >
-                {certification.title.split("\n").map((line, i, arr) => (
-                    <React.Fragment key={i}>
+                {certification.title.split("\n").map((line, index, lines) => (
+                    <React.Fragment key={index}>
                         {line}
-                        {i < arr.length - 1 && <br />}
+                        {index < lines.length - 1 && <br />}
                     </React.Fragment>
                 ))}
             </h3>
 
-            {/* Issuer */}
             <p
                 className={styles.certIssuer}
                 style={{ color: "var(--text-muted)" }}
@@ -166,7 +154,6 @@ function CertificationCard({
                 {certification.issuer}
             </p>
 
-            {/* Date (if earned) */}
             {isEarned && certification.date && (
                 <p
                     className={styles.certDate}
@@ -176,7 +163,6 @@ function CertificationCard({
                 </p>
             )}
 
-            {/* Credential link indicator */}
             {hasCredential && (
                 <div
                     className={styles.credentialLink}
@@ -187,7 +173,6 @@ function CertificationCard({
                 </div>
             )}
 
-            {/* Hover accent line */}
             <div
                 className={styles.accentLine}
                 style={{
@@ -198,8 +183,6 @@ function CertificationCard({
         </Wrapper>
     );
 }
-
-/* ─── Certificate Card (Unified Card) ───────────────────────────── */
 
 function CertificateCard({ certificate }: { certificate: Certificate }) {
     const hasCredential =
@@ -223,7 +206,6 @@ function CertificateCard({ certificate }: { certificate: Certificate }) {
             variants={cardVariants}
             className={`${styles.certificateCard} ${hasCredential ? styles.certCardClickable : styles.certCardStatic}`}
         >
-            {/* Top Image Preview */}
             <div className={styles.certImageContainer}>
                 {hasImage ? (
                     <img
@@ -248,7 +230,6 @@ function CertificateCard({ certificate }: { certificate: Certificate }) {
                 )}
             </div>
 
-            {/* Content Area */}
             <div className={styles.certContent}>
                 <h4 className={styles.certName}>{certificate.title}</h4>
 
@@ -278,23 +259,26 @@ function CertificateCard({ certificate }: { certificate: Certificate }) {
                     <p className={styles.certDescription}>
                         {certificate.description
                             .split("\n")
-                            .map((line, i, arr) => (
-                                <React.Fragment key={i}>
+                            .map((line, index, lines) => (
+                                <React.Fragment key={index}>
                                     {line}
-                                    {i < arr.length - 1 && <br />}
+                                    {index < lines.length - 1 && <br />}
                                 </React.Fragment>
                             ))}
                     </p>
                 )}
             </div>
 
-            {/* Bottom accent line edge */}
             <div className={styles.certAccentLine} />
         </Wrapper>
     );
 }
 
-/* ─── Main Section ────────────────────────────────────────────────── */
+function getGridColumns(count: number, maxColumns: number) {
+    if (count <= maxColumns) return count;
+    const rows = Math.ceil(count / maxColumns);
+    return Math.ceil(count / rows);
+}
 
 export default function Certifications() {
     const certifications = certificationsData as Certification[];
@@ -302,18 +286,16 @@ export default function Certifications() {
 
     const hasCertifications = certifications.length > 0;
     const hasCertificates = certificates.length > 0;
-
-    // Carousel state and refs
     const carouselRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
+    const [dragStartX, setDragStartX] = useState(0);
+    const [dragStartScrollLeft, setDragStartScrollLeft] = useState(0);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    const handleMouseDown = (event: React.MouseEvent) => {
         if (!carouselRef.current) return;
         setIsDragging(true);
-        setStartX(e.pageX - carouselRef.current.offsetLeft);
-        setScrollLeft(carouselRef.current.scrollLeft);
+        setDragStartX(event.pageX - carouselRef.current.offsetLeft);
+        setDragStartScrollLeft(carouselRef.current.scrollLeft);
     };
 
     const handleMouseLeave = () => {
@@ -324,40 +306,37 @@ export default function Certifications() {
         setIsDragging(false);
     };
 
-    const handleMouseMove = (e: React.MouseEvent) => {
+    const handleMouseMove = (event: React.MouseEvent) => {
         if (!isDragging || !carouselRef.current) return;
-        e.preventDefault();
-        const x = e.pageX - carouselRef.current.offsetLeft;
-        const walk = (x - startX) * 2; // scroll wrapper multiplier
-        carouselRef.current.scrollLeft = scrollLeft - walk;
+        event.preventDefault();
+        const pointerX = event.pageX - carouselRef.current.offsetLeft;
+        const dragOffset =
+            (pointerX - dragStartX) * CAROUSEL_DRAG_MULTIPLIER;
+        carouselRef.current.scrollLeft = dragStartScrollLeft - dragOffset;
     };
 
     const scrollCarousel = (direction: "left" | "right") => {
         if (!carouselRef.current) return;
-        // Scroll by approximately 4 card widths (slightly less to avoid overshoot)
-        const scrollAmount = 950; // 4 cards = ~960px with gaps
         carouselRef.current.scrollBy({
-            left: direction === "left" ? -scrollAmount : scrollAmount,
+            left:
+                direction === "left"
+                    ? -CAROUSEL_SCROLL_STEP
+                    : CAROUSEL_SCROLL_STEP,
             behavior: "smooth",
         });
     };
 
-    // Calculate columns
-    const calcCols = (count: number, maxCols: number) => {
-        if (count <= maxCols) return count;
-        const rows = Math.ceil(count / maxCols);
-        return Math.ceil(count / rows);
-    };
-
-    const badgeCols = calcCols(certifications.length, 6);
-
+    const badgeColumns = getGridColumns(
+        certifications.length,
+        BADGE_GRID_MAX_COLUMNS,
+    );
     const badgeGridStyle = {
-        "--grid-cols": badgeCols,
+        "--grid-cols": badgeColumns,
     } as React.CSSProperties;
+    const slideCount = Math.ceil(certificates.length / CARDS_PER_SLIDE);
 
     return (
         <>
-            {/* ─── Certifications (Badges) ───────────────────────────── */}
             {hasCertifications && (
                 <section
                     id="certifications"
@@ -387,13 +366,13 @@ export default function Certifications() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
-                            className={`${styles.badgesGrid}`}
+                            className={styles.badgesGrid}
                             style={badgeGridStyle}
                         >
-                            {certifications.map((cert) => (
+                            {certifications.map((certification) => (
                                 <CertificationCard
-                                    key={cert.id}
-                                    certification={cert}
+                                    key={certification.id}
+                                    certification={certification}
                                 />
                             ))}
                         </motion.div>
@@ -412,7 +391,7 @@ export default function Certifications() {
                                     <HiBadgeCheck size={10} />
                                     Earned
                                 </span>
-                                <span className={`${styles.legendText}`}>
+                                <span className={styles.legendText}>
                                     — certified
                                 </span>
                             </div>
@@ -423,7 +402,7 @@ export default function Certifications() {
                                     <FiClock size={10} />
                                     Planned
                                 </span>
-                                <span className={`${styles.legendText}`}>
+                                <span className={styles.legendText}>
                                     — in progress or next goal
                                 </span>
                             </div>
@@ -432,7 +411,6 @@ export default function Certifications() {
                 </section>
             )}
 
-            {/* ─── Certificates (List) ───────────────────────────────── */}
             {hasCertificates && (
                 <section
                     id="certificates"
@@ -448,7 +426,6 @@ export default function Certifications() {
                         >
                             <h2 className="section-heading">Certificates</h2>
                             <div className="section-divider" />
-
                             <p
                                 className="description-text"
                                 style={{ color: "var(--text-tertiary)" }}
@@ -479,44 +456,62 @@ export default function Certifications() {
                                 onMouseUp={handleMouseUp}
                                 onMouseMove={handleMouseMove}
                             >
-                                {/* Each slide = 8 cards (4 top + 4 bottom) */}
-                                {Array.from({
-                                    length: Math.ceil(certificates.length / 8),
-                                }).map((_, slideIndex) => (
-                                    <div
-                                        key={slideIndex}
-                                        className={styles.carouselSlide}
-                                    >
-                                        {/* Top row - 4 cards */}
-                                        <div className={styles.carouselRow}>
-                                            {certificates
-                                                .slice(
-                                                    slideIndex * 8,
-                                                    slideIndex * 8 + 4,
-                                                )
-                                                .map((cert) => (
-                                                    <CertificateCard
-                                                        key={cert.id}
-                                                        certificate={cert}
-                                                    />
-                                                ))}
-                                        </div>
-                                        {/* Bottom row - 4 cards */}
-                                        <div className={styles.carouselRow}>
-                                            {certificates
-                                                .slice(
-                                                    slideIndex * 8 + 4,
-                                                    slideIndex * 8 + 8,
-                                                )
-                                                .map((cert) => (
-                                                    <CertificateCard
-                                                        key={cert.id}
-                                                        certificate={cert}
-                                                    />
-                                                ))}
-                                        </div>
-                                    </div>
-                                ))}
+                                {Array.from({ length: slideCount }).map(
+                                    (_, slideIndex) => {
+                                        const slideStart =
+                                            slideIndex * CARDS_PER_SLIDE;
+                                        const topRowCertificates =
+                                            certificates.slice(
+                                                slideStart,
+                                                slideStart + CARDS_PER_ROW,
+                                            );
+                                        const bottomRowCertificates =
+                                            certificates.slice(
+                                                slideStart + CARDS_PER_ROW,
+                                                slideStart + CARDS_PER_SLIDE,
+                                            );
+
+                                        return (
+                                            <div
+                                                key={slideIndex}
+                                                className={styles.carouselSlide}
+                                            >
+                                                <div
+                                                    className={styles.carouselRow}
+                                                >
+                                                    {topRowCertificates.map(
+                                                        (certificate) => (
+                                                            <CertificateCard
+                                                                key={
+                                                                    certificate.id
+                                                                }
+                                                                certificate={
+                                                                    certificate
+                                                                }
+                                                            />
+                                                        ),
+                                                    )}
+                                                </div>
+                                                <div
+                                                    className={styles.carouselRow}
+                                                >
+                                                    {bottomRowCertificates.map(
+                                                        (certificate) => (
+                                                            <CertificateCard
+                                                                key={
+                                                                    certificate.id
+                                                                }
+                                                                certificate={
+                                                                    certificate
+                                                                }
+                                                            />
+                                                        ),
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    },
+                                )}
                             </motion.div>
 
                             <button

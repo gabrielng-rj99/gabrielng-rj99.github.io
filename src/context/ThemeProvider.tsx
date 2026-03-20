@@ -38,12 +38,10 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
         });
     }, [applyTheme]);
 
-    // Apply theme on mount
     useEffect(() => {
         applyTheme(theme);
     }, [applyTheme, theme]);
 
-    // Listen for system preference changes (only when no explicit user choice is stored)
     useEffect(() => {
         const mq = window.matchMedia("(prefers-color-scheme: dark)");
 

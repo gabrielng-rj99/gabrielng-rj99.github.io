@@ -1,6 +1,3 @@
-/* Skills Section - Global classes handle section-wrapper, section-container, section-header-lg, card-base, badge */
-
-/* Section Glow Background - subtle glow around content */
 .section-wrapper::before {
     content: "";
     position: absolute;
@@ -29,7 +26,6 @@
     }
 }
 
-/* Skills Grid */
 .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -49,7 +45,6 @@
     }
 }
 
-/* Card Header (within card-base) */
 .cardHeader {
     display: flex;
     align-items: center;
@@ -78,7 +73,6 @@
     }
 }
 
-/* Skill List */
 .skillList {
     padding-top: 0.5rem;
     display: flex;
@@ -86,7 +80,6 @@
     gap: 0.25rem;
 }
 
-/* Skill Node */
 .skillNode {
     list-style: none;
     margin-bottom: 0.75rem;
@@ -102,7 +95,6 @@
     gap: 0.5rem;
 }
 
-/* Skill Button */
 .skillButton {
     display: flex;
     align-items: center;
@@ -149,7 +141,6 @@
     font-weight: 700;
 }
 
-/* Nested Children Container */
 .nestedContainer {
     overflow: hidden;
     padding-top: 0.25rem;
@@ -167,7 +158,6 @@
     margin-top: 0.5rem;
 }
 
-/* Legend */
 .legend {
     display: flex;
     flex-wrap: wrap;

@@ -21,7 +21,6 @@ export default function Education() {
     return (
         <section id="education" className="section-wrapper section-glow-bg">
             <div className="section-container section-glow-bg">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -33,20 +32,16 @@ export default function Education() {
                     <div className="section-divider" />
                 </motion.div>
 
-                {/* Horizontal Timeline */}
                 <div className={styles.timelineContainer}>
-                    {/* Horizontal line connecting cards — desktop */}
                     <div
                         className={styles.horizontalLine}
                         style={{ background: "var(--border-muted)" }}
                     />
-                    {/* Vertical line connecting cards — mobile */}
                     <div
                         className={styles.verticalLine}
                         style={{ background: "var(--border-muted)" }}
                     />
 
-                    {/* Cards Grid */}
                     <div className={styles.cardsGrid}>
                         {educationData.map((edu, index) => (
                             <motion.div
@@ -58,9 +53,7 @@ export default function Education() {
                                 viewport={{ once: true, margin: "-60px" }}
                                 className={styles.cardWrapper}
                             >
-                                {/* Header Area to align heights */}
                                 <div className={styles.cardHeader}>
-                                    {/* Period Badge */}
                                     <div
                                         className={`badge period-text ${styles.periodBadge}`}
                                         style={{
@@ -72,7 +65,6 @@ export default function Education() {
                                         {edu.period}
                                     </div>
 
-                                    {/* Degree */}
                                     <h3
                                         className={styles.degree}
                                         style={{ color: "var(--accent-purple)" }}
@@ -81,7 +73,6 @@ export default function Education() {
                                     </h3>
                                 </div>
 
-                                {/* Timeline Dot — desktop only */}
                                 <div className={styles.timelineDotContainer}>
                                     <div
                                         className={styles.timelineDotOuter}
@@ -106,7 +97,6 @@ export default function Education() {
                                     />
                                 </div>
 
-                                {/* Card */}
                                 <div
                                     className="card-base"
                                     style={{
@@ -114,7 +104,6 @@ export default function Education() {
                                         borderColor: "var(--border-primary)",
                                     }}
                                 >
-                                    {/* Institution */}
                                     <h4
                                         className="text-secondary"
                                         style={{ color: "var(--text-primary)" }}
@@ -122,7 +111,6 @@ export default function Education() {
                                         {edu.institution}
                                     </h4>
 
-                                    {/* Location */}
                                     <div
                                         className={styles.location}
                                         style={{ color: "var(--text-muted)" }}
@@ -133,7 +121,6 @@ export default function Education() {
                                         </span>
                                     </div>
 
-                                    {/* Description */}
                                     <ul className={styles.descriptionList}>
                                         {edu.description.map((item, i) => (
                                             <li

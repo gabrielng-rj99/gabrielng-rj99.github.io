@@ -1,14 +1,7 @@
-/* Experience Section Styles - Unique timeline-specific layout */
-
-/* ============================================
-   Timeline Container
-   ============================================ */
-
 .timeline {
     position: relative;
 }
 
-/* Timeline lines */
 .timelineLineDesktop {
     position: absolute;
     top: 24px;
@@ -38,10 +31,6 @@
     }
 }
 
-/* ============================================
-   Job Item
-   ============================================ */
-
 .job {
     margin-bottom: 3.5rem;
     cursor: default;
@@ -51,7 +40,6 @@
     margin-bottom: 0;
 }
 
-/* Desktop layout */
 .jobDesktop {
     display: none;
     align-items: flex-start;
@@ -64,7 +52,6 @@
     }
 }
 
-/* Left side - job info */
 .jobLeft {
     width: 35%;
     padding-right: 2rem;
@@ -84,7 +71,6 @@
     color: var(--text-muted);
 }
 
-/* Timeline dot positioning - desktop */
 .timelineDot {
     position: absolute;
     left: 35%;
@@ -107,7 +93,6 @@
     background: var(--accent-magenta);
 }
 
-/* Right side - job description */
 .jobRight {
     width: 65%;
     padding-left: 3rem;
@@ -119,13 +104,11 @@
     transform: translateX(8px);
 }
 
-/* Dot counter-movement to stay centered */
 .job:hover .timelineDot {
     transform: scale(1.4);
     box-shadow: 0 0 15px rgba(159, 0, 255, 0.6);
 }
 
-/* Highlight box */
 .highlight {
     position: absolute;
     top: -0.5rem;
@@ -143,7 +126,6 @@
     opacity: 1;
 }
 
-/* Description list */
 .jobList {
     list-style: none;
     padding: 0;
@@ -153,10 +135,6 @@
 .jobText {
     word-wrap: break-word;
 }
-
-/* ============================================
-   Mobile Layout
-   ============================================ */
 
 .jobMobile {
     display: block;
@@ -170,7 +148,6 @@
     }
 }
 
-/* Mobile dot positioning */
 .timelineDotMobile {
     position: absolute;
     left: 24px;
@@ -186,7 +163,6 @@
     box-shadow: 0 0 10px rgba(159, 0, 255, 0.5);
 }
 
-/* Mobile content */
 .jobContentMobile {
     position: relative;
     margin-bottom: 2rem;
@@ -221,7 +197,6 @@
     color: var(--text-muted);
 }
 
-/* Mobile list */
 .jobListMobile {
     list-style: none;
     padding: 0;
@@ -231,10 +206,6 @@
 .jobTextMobile {
     word-wrap: break-word;
 }
-
-/* ============================================
-   Sub-items (indented bullets)
-   ============================================ */
 
 .subItem {
     padding-left: 1.5rem;
@@ -248,7 +219,6 @@
     transform: scale(1.25);
 }
 
-/* Mobile sub-items */
 .jobListItemMobile.subItem {
     padding-left: 1rem;
 }
@@ -262,10 +232,6 @@
     color: #ffffff;
     text-shadow: 0 0 12px rgba(180, 77, 255, 0.4);
 }
-
-/* ============================================
-   Skills Section
-   ============================================ */
 
 .jobSkills {
     margin-top: 0.75rem;

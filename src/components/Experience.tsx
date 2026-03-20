@@ -4,9 +4,7 @@ import type { Variants } from "framer-motion";
 import experienceData from "../content/experience.json";
 import styles from "./Experience.module.css";
 
-// Keywords to bold in lines without colons
-const KEYWORDS = [
-    // Technologies
+const BOLD_TERMS = [
     "AWS",
     "EC2",
     "S3",
@@ -33,7 +31,6 @@ const KEYWORDS = [
     "FTP",
     "VBA",
     "Excel",
-    // Actions
     "Implemented",
     "Developed",
     "Created",
@@ -48,7 +45,6 @@ const KEYWORDS = [
     "Secured",
     "Deployed",
     "Data analysis",
-    // Domain terms
     "Monitoring",
     "Security",
     "Observability",
@@ -57,18 +53,11 @@ const KEYWORDS = [
     "Server",
     "Web Application",
     "Containerization",
-    // Metrics/percentages
     "1500%",
     "(NEW)",
 ];
 
-/**
- * Parses description text and returns JSX with appropriate bold styling:
- * - Lines with ":" bold the text before the colon
- * - Lines without ":" bold identified keywords
- */
 function parseDescription(text: string): React.ReactNode {
-    // Check if line has a colon divider
     const colonIndex = text.indexOf(":");
     if (colonIndex > 0 && colonIndex < text.length - 1) {
         const beforeColon = text.slice(0, colonIndex).trim();
@@ -81,51 +70,43 @@ function parseDescription(text: string): React.ReactNode {
         );
     }
 
-    // No colon - bold keywords
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
+    const sortedTerms = [...BOLD_TERMS].sort((a, b) => b.length - a.length);
+    const matches: { start: number; end: number; term: string }[] = [];
 
-    // Sort keywords by length (longest first) to avoid partial matches
-    const sortedKeywords = [...KEYWORDS].sort((a, b) => b.length - a.length);
+    for (const term of sortedTerms) {
+        const escaped = term.replace(/[.*+?^${}|[\]\\]/g, "\\$&");
+        const hasParentheses = term.includes("(") || term.includes(")");
+        const regex = hasParentheses
+            ? new RegExp(term.replace(/[()]/g, "\\$&"), "gi")
+            : new RegExp(`\\b${escaped}\\b`, "gi");
 
-    // Find all keyword matches
-    const matches: { start: number; end: number; keyword: string }[] = [];
-    for (const keyword of sortedKeywords) {
-        // Escape special regex chars, but handle parentheses specially
-        const escaped = keyword.replace(/[.*+?^${}|[\]\\]/g, "\\$&");
-        // Use word boundary for normal words, or lookbehind/lookahead for special chars like (NEW)
-        const hasParens = keyword.includes("(") || keyword.includes(")");
-        const regex = hasParens
-            ? new RegExp(keyword.replace(/[()]/g, "\\$&"), "gi")
-            : new RegExp("\\b" + escaped + "\\b", "gi");
-        let match;
+        let match: RegExpExecArray | null;
         while ((match = regex.exec(text)) !== null) {
             matches.push({
                 start: match.index,
-                end: match.index + keyword.length,
-                keyword,
+                end: match.index + term.length,
+                term,
             });
         }
     }
 
-    // Sort matches by position and filter overlaps
     matches.sort((a, b) => a.start - b.start);
-    const filteredMatches = matches.filter((m, i) => {
-        if (i === 0) return true;
-        const prev = matches[i - 1];
-        return m.start >= prev.end;
+    const filteredMatches = matches.filter((currentMatch, index) => {
+        if (index === 0) return true;
+        const previousMatch = matches[index - 1];
+        return currentMatch.start >= previousMatch.end;
     });
 
-    // Build parts array
     for (const match of filteredMatches) {
         if (match.start > lastIndex) {
             parts.push(text.slice(lastIndex, match.start));
         }
-        parts.push(<strong key={match.start}>{match.keyword}</strong>);
+        parts.push(<strong key={match.start}>{match.term}</strong>);
         lastIndex = match.end;
     }
 
-    // Add remaining text
     if (lastIndex < text.length) {
         parts.push(text.slice(lastIndex));
     }
@@ -182,7 +163,7 @@ export default function Experience() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
-                    className={`${styles.timeline}`}
+                    className={styles.timeline}
                 >
                     <div className={styles.timelineLineDesktop} />
                     <div className={styles.timelineLineMobile} />
@@ -194,25 +175,27 @@ export default function Experience() {
                             className={styles.job}
                         >
                             <div className={styles.jobDesktop}>
-                                <div className={`${styles.jobLeft}`}>
+                                <div className={styles.jobLeft}>
                                     <h3 className="role-title">{job.role}</h3>
                                     <h4 className="text-secondary">
                                         {job.company}
                                     </h4>
-                                    <h5 className="period-text">
-                                        {job.period}
-                                    </h5>
+                                    <h5 className="period-text">{job.period}</h5>
                                     <h6 className={styles.jobLocation}>
                                         {job.location}
                                     </h6>
 
-                                    {/* Skills for this role */}
                                     {job.skills && job.skills.length > 0 && (
                                         <div className={styles.jobSkills}>
-                                            <span className={styles.skillsLabel}>Skills:</span>
+                                            <span className={styles.skillsLabel}>
+                                                Skills:
+                                            </span>
                                             <div className={styles.skillsList}>
                                                 {job.skills.map((skill, index) => (
-                                                    <span key={index} className={styles.skillPill}>
+                                                    <span
+                                                        key={index}
+                                                        className={styles.skillPill}
+                                                    >
                                                         {skill}
                                                     </span>
                                                 ))}
@@ -226,10 +209,10 @@ export default function Experience() {
                                 >
                                     <span className={styles.timelineDotInner} />
                                 </div>
-                                <div className={`${styles.jobRight}`}>
+                                <div className={styles.jobRight}>
                                     <div className={styles.highlight} />
                                     <ul className={styles.jobList}>
-                                        {job.description.map((item, i) => {
+                                        {job.description.map((item, index) => {
                                             const isSubItem =
                                                 item.startsWith("  -") ||
                                                 item.startsWith("  ");
@@ -239,16 +222,14 @@ export default function Experience() {
 
                                             return (
                                                 <li
-                                                    key={i}
+                                                    key={index}
                                                     className={`list-item-bullet ${isSubItem ? styles.subItem : ""}`}
                                                 >
                                                     <span
                                                         className={`list-bullet ${isSubItem ? styles.subBullet : ""}`}
                                                     />
                                                     <span
-                                                        className={
-                                                            styles.jobText
-                                                        }
+                                                        className={styles.jobText}
                                                     >
                                                         {parseDescription(
                                                             cleanText,
@@ -258,8 +239,6 @@ export default function Experience() {
                                             );
                                         })}
                                     </ul>
-
-
                                 </div>
                             </div>
 
@@ -289,13 +268,17 @@ export default function Experience() {
                                         </span>
                                     </div>
 
-                                    {/* Skills for this role - Mobile */}
                                     {job.skills && job.skills.length > 0 && (
                                         <div className={styles.jobSkillsMobile}>
-                                            <span className={styles.skillsLabel}>Skills:</span>
+                                            <span className={styles.skillsLabel}>
+                                                Skills:
+                                            </span>
                                             <div className={styles.skillsList}>
                                                 {job.skills.map((skill, index) => (
-                                                    <span key={index} className={styles.skillPill}>
+                                                    <span
+                                                        key={index}
+                                                        className={styles.skillPill}
+                                                    >
                                                         {skill}
                                                     </span>
                                                 ))}
@@ -303,7 +286,7 @@ export default function Experience() {
                                         </div>
                                     )}
                                     <ul className={styles.jobListMobile}>
-                                        {job.description.map((item, i) => {
+                                        {job.description.map((item, index) => {
                                             const isSubItem =
                                                 item.startsWith("  -") ||
                                                 item.startsWith("  ");
@@ -313,7 +296,7 @@ export default function Experience() {
 
                                             return (
                                                 <li
-                                                    key={i}
+                                                    key={index}
                                                     className={`list-item-bullet ${isSubItem ? styles.subItem : ""}`}
                                                 >
                                                     <span
@@ -332,8 +315,6 @@ export default function Experience() {
                                             );
                                         })}
                                     </ul>
-
-
                                 </div>
                             </motion.div>
                         </motion.div>

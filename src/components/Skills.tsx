@@ -5,8 +5,6 @@ import { FiBookOpen } from "react-icons/fi";
 import skillsData from "../content/skills.json";
 import styles from "./Skills.module.css";
 
-/* ─── Types ───────────────────────────────────────────────────────── */
-
 interface SkillItem {
     name: string;
     learning?: boolean;
@@ -18,8 +16,6 @@ interface SkillCategory {
     title: string;
     items: SkillItem[];
 }
-
-/* ─── Inline Tag Badge ────────────────────────────────────────────── */
 
 function SkillTag({ item }: { item: SkillItem }) {
     return (
@@ -43,8 +39,6 @@ function SkillTag({ item }: { item: SkillItem }) {
         </span>
     );
 }
-
-/* ─── Collapsible Tree Node (for Detailed Breakdown) ─────────────── */
 
 function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
     const hasChildren = item.children && item.children.length > 0;
@@ -145,8 +139,6 @@ function SkillNode({ item, depth = 0 }: { item: SkillItem; depth?: number }) {
     );
 }
 
-/* ─── Unified Skill Card ──────────────────────────────────────────── */
-
 function SkillCard({ category }: { category: SkillCategory }) {
     return (
         <motion.div
@@ -180,7 +172,6 @@ function SkillCard({ category }: { category: SkillCategory }) {
                 </h3>
             </div>
 
-            {/* Structured Breakdown containing Badges */}
             <div>
                 <ul className={styles.skillList}>
                     {category.items.map((item, i) => (
@@ -196,15 +187,12 @@ function SkillCard({ category }: { category: SkillCategory }) {
     );
 }
 
-/* ─── Main Section ────────────────────────────────────────────────── */
-
 export default function Skills() {
     const categories = skillsData as SkillCategory[];
 
     return (
         <section id="skills" className="section-wrapper section-glow-bg">
             <div className="section-container">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -216,14 +204,12 @@ export default function Skills() {
                     <div className="section-divider" />
                 </motion.div>
 
-                {/* Skills Grid — unified cards */}
                 <div className={styles.grid}>
                     {categories.map((category) => (
                         <SkillCard key={category.title} category={category} />
                     ))}
                 </div>
 
-                {/* Legend */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}

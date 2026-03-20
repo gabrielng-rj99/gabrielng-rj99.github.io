@@ -16,9 +16,7 @@ export default function ThemeToggle() {
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             title={isDark ? "Switch to light mode" : "Switch to dark mode"}
         >
-            {/* Track de fundo */}
             <div className={styles.track}>
-                {/* Indicador deslizante */}
                 <motion.div
                     className={styles.indicator}
                     animate={{
@@ -32,7 +30,6 @@ export default function ThemeToggle() {
                 />
             </div>
 
-            {/* Ícones - sempre visíveis mas com opacidade variável */}
             <div className={styles.icons}>
                 <span className={`${styles.icon} ${!isDark ? styles.iconActive : ''}`}>
                     <FiSun size={16} />
