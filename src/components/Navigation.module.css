@@ -24,6 +24,14 @@
         0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+/* Glass morphism — lives in the module to avoid lightningcss stripping
+   the unprefixed backdrop-filter when processed through @tailwindcss/vite */
+.navGlass {
+    background: var(--bg-nav-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
 /* Container */
 .navContainer {
     width: min(90vw, 72rem);
