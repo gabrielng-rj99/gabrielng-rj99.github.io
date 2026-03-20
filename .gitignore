@@ -40,3 +40,4 @@ vite.config.ts.timestamp-*
 # IA files
 CLAUDE.md
 .claude
+copilot-instructions.md

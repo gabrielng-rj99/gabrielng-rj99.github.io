@@ -12,6 +12,8 @@ const outputJson = path.join(rootDir, "src/content/certificate_previews.json");
 const imageDir = path.join(rootDir, "public/assets/previews");
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const logInfo = (message) => process.stdout.write(`${message}\n`);
+const logError = (message) => process.stderr.write(`${message}\n`);
 
 const downloadImage = (url, filepath) => {
     return new Promise((resolve, reject) => {
@@ -46,47 +48,67 @@ const downloadImage = (url, filepath) => {
 };
 
 async function main() {
-    console.log("Reading certificates...");
+    logInfo("Reading certificates...");
     let certsData;
     try {
         const fileContent = await fs.readFile(certsFile, "utf-8");
         certsData = JSON.parse(fileContent);
     } catch (error) {
-        console.error("Failed to read certificates.json", error.message);
+        const message =
+            error instanceof Error ? error.message : "Unknown read error";
+        logError(`Failed to read certificates.json: ${message}`);
         process.exit(1);
     }
 
     const previews = {};
+    await fs.mkdir(imageDir, { recursive: true });
 
     for (const cert of certsData) {
         if (!cert.credentialUrl || cert.credentialUrl.trim() === "") continue;
 
-        console.log(`Generating offline preview data for ${cert.title} (${cert.id})...`);
-        
+        logInfo(
+            `Generating offline preview data for ${cert.title} (${cert.id})...`,
+        );
+
         previews[cert.id] = {
             title: `${cert.title} - ${cert.issuer} Certificate`,
             description: cert.description || `View my ${cert.title} certification on ${cert.issuer}.`,
-            image: `https://placehold.co/600x400/9f00ff/ffffff/png?text=${encodeURIComponent(cert.title)}`
+            image: `https://placehold.co/600x400/9f00ff/ffffff/png?text=${encodeURIComponent(cert.title)}`,
         };
 
         const imageName = `${cert.id}.png`;
         const localImagePath = path.join(imageDir, imageName);
-        
+
         try {
-            console.log(`Downloading dummy image for ${cert.id}...`);
+            logInfo(`Downloading dummy image for ${cert.id}...`);
             await downloadImage(previews[cert.id].image, localImagePath);
             previews[cert.id].image = `/assets/previews/${imageName}`;
         } catch (imgError) {
-            console.error(`Failed to download placehold.co for ${cert.id}: ${imgError.message}`);
+            const message =
+                imgError instanceof Error
+                    ? imgError.message
+                    : "Unknown download error";
+            logError(
+                `Failed to download placehold.co for ${cert.id}: ${message}`,
+            );
         }
 
         await wait(200);
     }
 
-    console.log(`Saving ${Object.keys(previews).length} previews...`);
+    logInfo(`Saving ${Object.keys(previews).length} previews...`);
     await fs.writeFile(outputJson, JSON.stringify(previews, null, 2));
-    
-    console.log(`Done! Fetched ${Object.keys(previews).length} previews using placeholder fallback.`);
+
+    logInfo(
+        `Done! Fetched ${Object.keys(previews).length} previews using placeholder fallback.`,
+    );
 }
 
-main().catch(console.error);
+main().catch((error) => {
+    const message =
+        error instanceof Error
+            ? error.stack ?? error.message
+            : "Unknown script failure";
+    logError(message);
+    process.exitCode = 1;
+});
