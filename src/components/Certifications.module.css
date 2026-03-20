@@ -347,10 +347,6 @@
     z-index: 10;
 }
 
-.certCardClickable {
-    cursor: pointer;
-}
-
 .certImageContainer {
     position: relative;
     width: 100%;
