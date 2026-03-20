@@ -19,21 +19,20 @@ Personal portfolio built with **React 19**, **TypeScript**, **Tailwind CSS v4**,
 src/
 ├── components/         # React section components
 │   ├── About.tsx       # Hero banner + About Me (merged)
-│   ├── Contact.tsx     # Contact cards + Acknowledgments + Footer
+│   ├── Contact.tsx     # Contact cards + Footer
 │   ├── Education.tsx   # Education timeline
 │   ├── Experience.tsx  # Experience alternating timeline
 │   ├── Navigation.tsx  # Fixed navbar with mobile menu
 │   ├── ParticleBackground.tsx  # tsParticles full-screen background
 │   ├── Portfolio.tsx   # Featured + regular project cards
-│   ├── Skills.tsx      # Expandable skill tree cards
 │   └── ThemeToggle.tsx # Light/dark pill toggle
 ├── content/            # Editable JSON data (no hardcoded text)
 │   ├── about.json
-│   ├── acknowledgments.json
+│   ├── certifications.json
+│   ├── certificates.json
 │   ├── education.json
 │   ├── experience.json
-│   ├── portfolio.json
-│   └── skills.json
+│   └── portfolio.json
 ├── context/
 │   ├── ThemeContext.tsx   # Theme context definition
 │   └── ThemeProvider.tsx  # Theme provider with system detection
@@ -58,10 +57,11 @@ All visible text lives in `src/content/*.json`. Edit those files to update the s
 
 - **about.json** — Name, headline, subtitle, greeting, bio, social links, profile image, resume URL.
 - **experience.json** — Work history entries (role, company, period, description bullets).
-- **skills.json** — Skill categories with nested tree structure and optional `learning` badges.
+- **certifications.json** — Industry certifications and badges.
+- **certificates.json** — Courses and training certificates shown in the certificate carousel.
 - **education.json** — Degrees with institution, period, location, and description.
 - **portfolio.json** — Projects with media (image or video), tags, featured flag.
-- **acknowledgments.json** — Institution logos shown in the footer area.
+
 
 ## Development
 
