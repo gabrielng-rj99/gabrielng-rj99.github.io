@@ -19,11 +19,19 @@ export default function App() {
 
             <main className={styles.main}>
                 <About />
-                <Suspense>
+                <Suspense fallback={null}>
                     <Portfolio />
+                </Suspense>
+                <Suspense fallback={null}>
                     <Experience />
+                </Suspense>
+                <Suspense fallback={null}>
                     <Certifications />
+                </Suspense>
+                <Suspense fallback={null}>
                     <Education />
+                </Suspense>
+                <Suspense fallback={null}>
                     <Contact />
                 </Suspense>
             </main>
